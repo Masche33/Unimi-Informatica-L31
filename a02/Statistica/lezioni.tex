@@ -110,6 +110,12 @@ Se un insieme è approssimativamente normale con media $\overline{x}$ con una de
 
 \end{enumerate}
 
+
+\subsection*{Grafico ramo-foglia}
+
+Una versione di 'istogramma' sdraiato sul lato, utilizzato per notare velocemente se un grafico è normale.
+
+
 \hfill
 
 \begin{minipage}[c]{0.35\textwidth}
@@ -118,7 +124,7 @@ Se un insieme è approssimativamente normale con media $\overline{x}$ con una de
         22 & 372 \\
         23 & 512, 688, 941 \\
         24 & 706 \\
-        25 & 020, 057, 128, 400, 446, 575\\
+        25 & 020, 057, 128, 400, 446, 575 \\
         26 & 183, 894, 982 \\
         27 & 671, 711, 744 \\
         28 & 345, 764, 913, 967 \\
@@ -127,12 +133,39 @@ Se un insieme è approssimativamente normale con media $\overline{x}$ con una de
 \hspace{2mm}
 \begin{minipage}[c]{0.6\textwidth}
     \vspace{-2mm}
-    Un modo efficiente di rappresentare un insieme di dati di dimensioni medie consiste nell'utizzare il \textit{diagramma ramo-foglia} (o a stelo). Tale grafico si ottiene dividendo ciascun valore dei dati in due parti, chiamati appunto rami e foglie. \\ \\
-    La scelta dei rami dovrebbe essere fatta in modo che il \mbox{diagramma} ramo-foglia che ne risulta sia informativo sui dati. Questi diagrammi sono particolarmente adatti a descrivere insiemi di dati dimensioni ridotte.
+    Sulla sinistra si trova il \textit{prefisso} del valore e sulla destra i valori con quel suffisso. \\ \\
+    La scelta del suffisso deve essere scelto in modo da rendere comprensibile il grafico. Perde la sua utilità su campioni di grandi dimensioni.
 \end{minipage}
 
 \hfill
 
+\subsection*{Coefficenti di correlazione campionaria}
+
+Si consideri campione formato da dati accoppiati $(x_1,y_1)(x_2,y_2)\dots,(x_n,y_n)$, il \textit{coefficente di correlazione campionaria} quantifica in che misura i grandi valori di $x$ corrispondono ai grandi valori di $y$.  La correlazione può essere positiva, negativa, etc$\dots$. \\
+Si consideri un campione così composto: $(x_i,y_i)| i=1,\dots,n$ le medie campionarie sono $\overline{x}, \overline{y}$. Considero per la $i$-esima coppia considero lo scarto di $x$ con la sua media e lo scarto di $y$ con la sua media $(x_i-\overline{x}, y_i-\overline{y})$. Saprò quindi se $x$ supera la sua media e se $y$ supera la sua media, se $x - \overline{x} > 0$ allora $x$ è maggiore viceversa, stesso vale per $y$. Si può facilmente notare che se lo scarto per $x$ e per $y$ hanno lo stesso segno il prodotto sarà positivo e in caso di disomogeneità avrà segno negativo. Si ottiene così il tipo di correlazione tra una coppia di dati, lo scarto del campione viene calcolato somma il valore degli scarti ( $\sum_{i=1}^n(x_i-\overline{x})(y_i-\overline{y})$ ). Si standardizza la somma divedendo per $n-1$ e per le due deviazioni standard. 
+
+\begin{tcolorbox}
+  Dati $S_x$ e $S_y$ rispettivamente, le diviazione standard di $x$ e $y$. Il \textit{coefficente di correlazione campionaria} detta $r$ con le coppie $(x_i,y_i),i=1,\dots,n$: $$r=\frac{\sum_{i=1}^n(x_i-\overline{x})(y_i-\overline{y})}{(n-1)s_xs_y}= \\ \frac{
+\sum_{i=1}^n(x_i-\overline{x})(y_i-\overline{y})}{(n-1)\sqrt{\frac{\sum_{i=1}^n(x-\overline{x})^2 \sum_{i=1}^n(y-\overline{y})^2}{(n-1)^2}  }}= \frac{
+\sum_{i=1}^n(x_i-\overline{x})(y_i-\overline{y})}{\sqrt{\sum_{i=1}^n(x-\overline{x})^2 \sum_{i=1}^n(y-\overline{y})^2}}$$ 
+
+
+\begin{enumerate}
+  \item $r$ è compreso $[-1,1]$ 
+  \item $r$ è uguale $+1$ se, per una costante $a$ $y_i=a+bx$ dove $b$ è costante positiva.
+  \item $r$ è uguale $-1$ se, per una costante $a$ $y_i=a+bx$ dove $b$ è costante negativa.
+  \item Se $r$ è il é \textit{coefficente di correlazione campionaria} per i dati $x_i,y_i, i=1,\dots,n$ allora per qualunque costante $a,b,c,d,r$ allora il \textit{coefficente di correlazione campionaria} per i dati: $a+bx_i,c+dy_i, i=1,\dots,n$. 
+
+\end{enumerate}
+
+Si può dire anche che $|r|$ è la misura dell'intensità della \textit{relazione lineare}. Un valore di $0.9$ indica una forte relazione mentre un valore come $0.3$ ne indica una debole. 
+
+
+
+\end{tcolorbox}
+
+Formula per il calcolo di r: 
+  $$r = \frac{\sum_{i=1}^{n} x_i y_i - n \bar{x} \bar{y}}{\sqrt{\left(\sum_{i=1}^{n} x_i^2 - n \bar{x}^2\right) \left(\sum_{i=1}^{n} y_i^2 - n \bar{y}^2\right)}}$$
 
 
 
