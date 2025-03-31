@@ -10,399 +10,212 @@
 \usepackage{pgf-pie}
 \pgfplotsset{compat=1.16}
 
-\geometry{a4paper, margin=1in}
-
-\title{Statistica e Analisi dei dati}
-\author{Matteo Mascherpa}
-\date{a.a. 2024/2025}
+\title{Statistica \& Analisi dei dati}
+\author{Mascherpa Matteo}
+\date{a.a. 2024-2025}
 
 \begin{document}
 
 \maketitle
 
-\tableofcontents
+% \tableofcontents
 
-\section*{Lezione 1}
+\section{Introduzione alla Statistica}
+  \subsection{Definizioni:}
+    \begin{description}
+      \item[Statistica:] La \textit{statistica} è l'arte di apprendere dai dati. La statistica si occupa della raccolta, della descrizione e dell'analisi dei dati, possibilmente permettendo di trarne delle conclusioni.
+      \item[Statistica descrittiva:] La parte della statistica che si occupa di descrivere e riassumere i dati.
+      \item[Statistica inferenziale:] La parte della statistica che si occupa di trarre conclusioni dai dati. (Richiede quindi di conoscere i concetti di probabilità)
+      \item[Popolazione:] L'insieme della totalità dei dati.
+      \item[Campione:] Sottoinsieme omogeneo delle popolazione. 
+      \item[Campione Casuale:] Il campione è un sottoinsieme della popolazione dove ogni elemento ha la stessa probabilità di essere scelto.
+      \item[Frequenza assoluta:] Numero di volte che un dato compare in un campione. Indicata con $f_j$ dove $j$ è un elemento del campione.
+      \item[Frequenza relativa:] Frazione di volte che un dato compare nel campione. Indicata con $f'_j (= \frac{f_j}{n})$.
+    \end{description}
 
-Leggere la prima dispensa.
+  \subsection{Popolazione e Campioni}
+    In statistica si vuole ottenere informazioni da un insieme di dati(\textit{popolazione}. Ma dato la natura delle popolazione, spesso enorme, se ne prende un sottoinsieme di distribuzione omogenea(\textit{Campione}) dove ogni elemento ha una stessa probabilità di essere scelto. In caso il campione non abbia questa qualità le informazioni da esso estratto sono inconcludenti poiché non \textit{rappresentativo}. Una volta ottenuto il \textit{campione casuale} si può usare tecniche di \textit{statistica inferenziale} per ottenere da esso le informazioni volute(dato che dal campione si possano ricavare, da un insieme di dati sul colore dei vestiti non si potrà in ogni caso trovare alcun dato sui gusti dei gelati). 
+  
+    \subsubsection*{Campione casuale stratificato}
+      Prendere valori a caso non è spesso la migliore delle scelte, è una scelta buona, ma esistono opzioni migliori. Per questo esiste il concetto di \textbf{\textit{campione casuale stratificato}}. Prima di prendere gli elementi casuali del campione si divide la popolazione in \textit{classi} secondo un qualche criterio. Una volta si prende da ogni classe un numero di elementi proporzionale alla cardianlità della classe. Se una classe è composta dal $15\%$ della popolazione allora il $15\%$ del campione dovrà essere preso casualmente dalla quella classe, e così via. 
 
-\section*{Lezione 2}
+\section{Rappresentazione dei dati}
+  Serve un metodo per rendere i dati leggibili e facilmente interpretabili, a questo scopo ci vengono in soccorso un potente strumento grafico, i \textit{grafici}.
 
-Leggi la seconda dispensa.
-
-\section*{Lezione 3}
-
-\subsection*{Tabelle e grafici di frequenza}
-
-Dato un campione di dati bisogna trovare un modo per disporre i dati in modo che sia di più facile lettura.
-
-\subsubsection*{Grafi a bastoncini, a barre e poligonali}
-
-\begin{figure}[h]
-    \begin{minipage}{0.35\textwidth} % Grafico occupa il 35% della larghezza
-      DRAW HERE A STICK CHART. 
-    \end{minipage}
+  \subsection{Tabelle e Grafici}
+    Avendo un insieme di dati di dati disposti nel modo più elementare possibile la lettura diventa complessa, invece, gli stessi dati, una volta riarrangiati vengono letti con semplicità.
+  
+    \begin{minipage}[t]{0.45\textwidth}
+    \begin{flushleft}
+      2, 2, 0, 0, 5, 8, 3, 4, 1, 0, 0, 7, 1, 7, 1, 5, 4, 0, 4, 0, 1, 8, 9, 7, 0, 1, 7, 2, 5, 5, 4, 3, 3, 0, 0, 2, 5, 1, 3, 0, 1, 0, 2, 4, 5, 0, 5, 7, 5, 1
+    \end{flushleft}
+    \end{minipage}%
     \hfill
-    \begin{minipage}{0.6\textwidth} % Testo occupa il 60% della larghezza
-      Grafico dalla lettura intuitiva dove ogni dato è rappresentato da un semplice segmento.
-    \end{minipage}
-\end{figure}
-\begin{figure}[h]
-    \begin{minipage}{0.35\textwidth} % Grafico occupa il 35% della larghezza
-      \begin{tikzpicture}
-        \begin{axis}[
-            ybar,
-            ymin=0, ymax=13,
-            symbolic x coords={0, 1, 2, 3, 4, 5, 6, 7, 8, 9},
-            xtick=data,
-            axis lines=left,
-            enlarge x limits=0.1,
-            enlarge y limits={upper, value=0.2},
-            width=\textwidth, % Larghezza del grafico uguale alla larghezza del testo
-            bar width=8pt, % Larghezza delle barre
-            legend style={at={(0.5,-0.2)}, anchor=north, legend columns=-1}
-        ]
-            % Primo set di dati
-            \addplot[black, fill=black!80] coordinates {
-                (0, 12)
-                (1, 8)
-                (2, 5)
-                (3, 4)
-                (4, 5)
-                (5, 8)
-                (6, 0)
-                (7, 5)
-                (8, 2)
-                (9, 1)
-            };
-
-        \end{axis}
-    \end{tikzpicture}
-    \end{minipage}
-    \hfill
-    \begin{minipage}{0.6\textwidth} % Testo occupa il 60% della larghezza
-      Spesso utilizzati per la rappresentazione di dati, per ogni dato sull'asse delle ascisse esiste un parallepipedo dall'altezza equivalente al valore del dato che si vuole sappresentare. Comodo per la visualizzazione dei valori di varie categorie diverse in un unico grafico.
-    \end{minipage}
-\end{figure}
-\begin{figure}[h]
-    \begin{minipage}{0.35\textwidth} % Grafico occupa il 35% della larghezza
-       \begin{tikzpicture}
-        \begin{axis}[
-            axis lines=left,
-            xmin=-0.5, xmax=9.5,
-            ymin=0, ymax=13,
-            xtick={0, 1, 2, 3, 4, 5, 6, 7, 8, 9},
-            ytick={0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12},
-            width=\textwidth, % Larghezza del grafico uguale alla larghezza del testo
-            height=5cm, % Altezza del grafico
-            mark=*, % Stile dei marker
-            smooth % Linee lisce tra i punti
-        ]
-            \addplot coordinates {
-                (0, 12)
-                (1, 8)
-                (2, 5)
-                (3, 4)
-                (4, 5)
-                (5, 8)
-                (6, 0)
-                (7, 5)
-                (8, 2)
-                (9, 1)
-            };
-        \end{axis}
-    \end{tikzpicture}
-    \end{minipage}
-    \hfill
-    \begin{minipage}{0.6\textwidth} % Testo occupa il 60% della larghezza
-      Il grafico poligonale infine serve a rendere visibile l'andamento di un dato unendo ogni punto con il successivo tramite un segmento creando quandi una sorta di funzione che indica l'andamento del valore sull'asse delle ordinate.    
-    \end{minipage}
-\end{figure}
-
-Un insieme di dati si dice simmetrico al valore $x_n$ se le frequenze dei valori $x_n-c$ e $x_n+c$ sono le stesse per ogni $c$. Si dice \textit{quasi simmetrico} se i valori sono precisamente uguali ma sono solamente simili, è quindi una proprietà meno restrittiva.
-
-\subsubsection*{Grafici per le sequenze relative}
-
-A volte è conveniente, al posto di avere le frequenze assolute, visualizzazare le frequenze \textit{relative}. Dato $f$ la frequenza di $x$ allora posso avere un grafico \textit{frequenza relativa} $\frac{f}{n}$ dove $n$ è il numero totale di ossservazioni del dato. In caso la somma dei valori delle colonne farà $1$ cioé tutte tutte le osservazioni.
-
-\subsubsection*{Grafici a torta}
-
-\begin{figure}[h]
-    \begin{minipage}{0.20\textwidth} % Grafico occupa il 35% della larghezza
-     \begin{tikzpicture}
-       \pie[radius=1]{10/A, 20/B, 30/C, 40/D}
-     \end{tikzpicture}
-    \end{minipage}
-    \hfill
-    \begin{minipage}{0.8\textwidth}
-
-      In caso che i dati non siano numerici una valida opzione è il grafico a torta che indica le frequenze relative di ogni dato. La percentuale di grafico da assegnare ad un solo valore si calcola $\frac{f}{n}$ dove $n$ è il numero totale di osservazioni e per ottenere. Per invece ottenere l'angolo del grafico a torta la formula diventa $\frac{360*f}{n}$.
-    \end{minipage}
-\end{figure}
-
-\subsubsection*{Raggrupamenti di dati e istogrammi}
-
- Serve quando la quantità dei dati è tale da rendere inutile la rappresentazione normale in un grafico. In tal caso conviene raggruppare in classi i dati. Trovare il numero perfetto di classi è spesso molto complesso e ci si può accontentare con un compromesso tra, scegliere poche classi(a costo di perdere molte informazioni) e scegliere molte classi(in modo da mantenere il significato dei dati nel campione). Di solito il valore è compreso in $[5,10]$. Il libro usa la convenzione di includere in una classi il suo valore inferiore e non quello superiore: $[\text{lim}_{inf}, \text{lim}_{sup})$. Ogni valore è la media dei valori nella classe.
-
- \subsubsection*{Diagrammi Ramo-Foglia}
-
-
-\hfill
-
-\begin{minipage}[c]{0.30\textwidth}
-    \centering
-    \fbox{%
-        \begin{minipage}{0.91\textwidth}
-            \hspace*{-1.5mm}
-            \begin{tabular}{r|l}
-              22 & 123 \\
-              23 & 234, 567, 890 \\
-              24 & 345 \\
-              25 & 012, 034, 078, 234, 890 \\
-              26 & 123, 456, 789 \\
-              27 & 234, 345, 456 \\
-              28 & 567, 678, 789, 890 \\
-
-            \end{tabular}
-        \end{minipage}%
-    }
-    \vspace{-2mm}
-\end{minipage}
-\hspace{2mm}
-\begin{minipage}[c]{0.6\textwidth}
-  Comodo per rapprentare un piccolo campione di dati. Dove il valore a sinistra è il suffisso e i valori a destra sono i valori che hanno quel suffisso. Questo serve a riassumere i dati. In caso un ramo abbia troppe foglie si può dividere.
-    \vspace{-3mm}
-\end{minipage}
-\vspace{1mm}
-
-\section*{Lezione 4}
-
-La statistica serve per avere informazioni oggettive. Consente di dare un significato ai dati, descritti e analizzati.
-
-\subsection*{Definizioni}
-
-\subsubsection*{Raccolta dati}
-Momento critico per la statistica è la raccolta dei dati, per fare in modo che un senso si possa estrapolare da essi. Il momento in cui i dati che verrano poi interpretati vengono ottenuti.
-
-\subsubsection*{Statistica desecrittiva}
-Parte della statistica che descrive i dati.
-
-\subsubsection*{Statistica Inferenziale}
-Parte della statistica che cerca le informazioni dai dati.
-
-\subsubsection*{Popolazione \& Campioni}
-L'insieme di tutti gli elementi da cui ottenere informazioni si chiama \textit{popolazione}, ma quando si deve raccogliere i dati per poterci lavorare sopra la popolazione è troppo numerosa la maggior parte delle volte allora si raccoglie i dati da un sottoinsieme omogene chiamato \textit{campione}. Un campione non rappresentativo porta ad una statistica fallata. Ottenere un campione perfettamente rappresentativo è praticamente impossibile si può solo sperare di essersi avvicinati il più possibile all'ottimo.
-
-\subsubsection*{Insieme di dati a coppie}
-
-
-
-\section*{Lezione 5}
-
-\section*{Lezione 6}
-
-\subsection*{Mediana Campionaria}
-
-Sia il campione: $23,04,02,2,110,5,7,6,7,3$ la \textit{media campionaria} è $\overline{x} = 140/7=20$. Se si vuole avere un valore che identifichi il centro del campione serve la \textit{mediana campionaria} per indicarla uso $m$.
-
-\begin{tcolorbox}
- Dati i valori di un campione ordinati in ordine crescente. Se la cardinalità del campione è \textbf{dispari} allora $m$ è il valore intermedio della lista altrimenti, se la cardinalità è \textbf{pari} allora $m$ è la media dei due valori intermedi.  
-\end{tcolorbox}
-
-Al contrario della \textit{media campionaria} che prende in considerazione tutti i valori degli insiemi dati la \textit{mediana campionaria} non è influenzata dai valori estremi.
-
-\subsection*{Percentili campionari}
-
-La media campionaria è una caso di statistica nota come: \textit{100p-esimo percentile campionario} con $p \in [0,1]$. Esso è un valore che è maggiore del(di almeno) $100p$\% dei valori del campione e minore del(di almeno) $100(1-p)\%$ dei valori. Nel capo della mediana $p=0,5$.
-
-\begin{tcolorbox}
-Come trovare il $100p-esimo$ percentile
-  \begin{enumerate}
-    \item Ordina i dati in ordine crescente
-    \item Se $np$ non è intero, trova il più piccolo $\ge$ di $np$. Il valore è quello nella posizione trovata.
-    \item Se $np$ è intero, allora il valore è la media tra i valori in posizione $np$ e $np+1$
-  \end{enumerate}  
-\end{tcolorbox}
-
-\subsection*{Quartili}
-
-I quartili suddividono il campionario dei dati in quattro parti $25\%$ l'una.
-
-\begin{enumerate}
-  \item Primo quartile: Il $25$-esimo percentile.
-  \item Secondo quartile: Il $50$-esimo percentile.
-  \item Terzo quartile: Il $75$-esimo percentile.
-\end{enumerate}
-
-\subsection*{Gli insiemi di dati normali e la regola empirica}
-
-La maggior parte degli istogrammi hanno un simile aspetto. Sono spesso simmetrici sulla frequenza massima e assumono una forma a campana. L'insieme di questi istogrammi si dice\textit{istogrammi normali}.  
-
-\begin{tcolorbox}
-Un insieme si dice \textit{normale} se il rispettivo istogramma:
-\begin{enumerate}
-  \item Ha punto di massima in corrispondenza dell'intervallo centrale.
-  \item Spostandosi dal centro in una qualsiasi direzione l'altezza cala in modo da creare una forma a campana.
-  \item L'istogramma è simmetrico a rispetto all'intervallo centrale.
-\end{enumerate}
- 
-  \textbf{Esempio:} 
-
-\begin{tikzpicture}
-\begin{axis}[
-    ybar interval, % Questo specifica che le barre sono intervalli
-    width=12cm,
-    height=6cm,
-    xtick=\empty, % Rimuove i numeri sull'asse x
-    ytick=\empty, % Rimuove i numeri sull'asse y
-    nodes near coords,
-    nodes near coords = \empty 
-]
-\addplot coordinates {
-        (3, 3) (4, 4) (5, 5) (6, 6) (7, 7) (8, 8) (9, 9) 
-    (10, 10) (11, 9) (12, 8) (13, 7) (14, 6) (15, 5) (16, 4) (17, 3) 
-    (18, 2) 
-};
-\end{axis}
-\end{tikzpicture}
-
-\end{tcolorbox}
-
-\subsection*{Regola empirica}
-
-Se un insieme è approssimativamente normale con media $\overline{x}$ con una devizione standard $s$.
-
-\begin{enumerate}
-  \item Approssimativamente $68\%$ dei dati si trovano nell'intervallo: $[\overline{x}-s,\overline{x}+s]$
-  \item Approssimativamente $95\%$ dei dati si trovano nell'intervallo: $[\overline{x}-2s,\overline{x}+2s]$
-  \item Approssimativamente $99,7\%$ dei dati si trovano nell'intervallo: $[\overline{x}-3s,\overline{x}+3s]$
-
-\end{enumerate}
-
-
-\subsection*{Grafico ramo-foglia}
-
-Una versione di 'istogramma' sdraiato sul lato, utilizzato per notare velocemente se un grafico è normale.
-
-
-\hfill
-
-\begin{minipage}[c]{0.35\textwidth}
-    \centering
-    \begin{tabular}{r|l}
-        22 & 372 \\
-        23 & 512, 688, 941 \\
-        24 & 706 \\
-        25 & 020, 057, 128, 400, 446, 575 \\
-        26 & 183, 894, 982 \\
-        27 & 671, 711, 744 \\
-        28 & 345, 764, 913, 967 \\
+    \begin{minipage}[t]{0.45\textwidth}
+    \begin{tabular}{|c|c|}
+      \hline
+      \textbf{Valore} & \textbf{Frequenza} \\
+      \hline
+      0 & 12 \\
+      \hline
+      1 & 8 \\
+      \hline
+      2 & 5 \\
+      \hline
+      3 & 4 \\
+      \hline
+      4 & 5 \\
+      \hline
+      5 & 8 \\
+      \hline
+      7 & 6 \\
+      \hline
+      8 & 2 \\
+      \hline
+      9 & 1 \\
+      \hline
     \end{tabular}
-\end{minipage}
-\hspace{2mm}
-\begin{minipage}[c]{0.6\textwidth}
-    \vspace{-2mm}
-    Sulla sinistra si trova il \textit{prefisso} del valore e sulla destra i valori con quel suffisso. \\ \\
-    La scelta del suffisso deve essere scelto in modo da rendere comprensibile il grafico. Perde la sua utilità su campioni di grandi dimensioni.
-\end{minipage}
+    \end{minipage}
 
-\hfill
+  \subsection{Grafici a bastoncini, a barre \& poligonali}
+    Varie sono le tipologie di grafici, tra le opzioni ci sono grafici a bastoncini, a barre e poligonali.
+  
+    \begin{figure}[h]
+      \begin{minipage}{0.35\textwidth} % Grafico occupa il 35% della larghezza
+        DRAW HERE A STICK CHART. 
+      \end{minipage}
+      \hfill
+      \begin{minipage}{0.6\textwidth} % Testo occupa il 60% della larghezza
+        Grafico dalla lettura intuitiva dove ogni dato è rappresentato da un semplice segmento.
+      \end{minipage}
+    \end{figure}
+    \begin{figure}[h]
+      \begin{minipage}{0.35\textwidth} % Grafico occupa il 35% della larghezza
+        \begin{tikzpicture}
+          \begin{axis}[
+              ybar,
+              ymin=0, ymax=13,
+              symbolic x coords={0, 1, 2, 3, 4, 5, 6, 7, 8, 9},
+              xtick=data,
+              axis lines=left,
+              enlarge x limits=0.1,
+              enlarge y limits={upper, value=0.2},
+              width=\textwidth, % Larghezza del grafico uguale alla larghezza del testo
+              bar width=8pt, % Larghezza delle barre
+              legend style={at={(0.5,-0.2)}, anchor=north, legend columns=-1}
+          ]
+              % Primo set di dati
+              \addplot[black, fill=black!80] coordinates {
+                  (0, 12)
+                  (1, 8)
+                  (2, 5)
+                  (3, 4)
+                  (4, 5)
+                  (5, 8)
+                  (6, 0)
+                  (7, 5)
+                  (8, 2)
+                  (9, 1)
+              };
+  
+          \end{axis}
+        \end{tikzpicture}
+      \end{minipage}
+      \hfill
+      \begin{minipage}{0.6\textwidth} % Testo occupa il 60% della larghezza
+        Spesso utilizzati per la rappresentazione di dati, per ogni dato sull'asse delle ascisse esiste un parallepipedo dall'altezza equivalente al valore del dato che si vuole sappresentare. Comodo per la visualizzazione dei valori di varie categorie diverse in un unico grafico.
+      \end{minipage}
+    \end{figure}
+    \begin{figure}[h]
+      \begin{minipage}{0.35\textwidth} % Grafico occupa il 35% della larghezza
+        \begin{tikzpicture}
+          \begin{axis}[
+              axis lines=left,
+              xmin=-0.5, xmax=9.5,
+              ymin=0, ymax=13,
+              xtick={0, 1, 2, 3, 4, 5, 6, 7, 8, 9},
+              ytick={0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12},
+              width=\textwidth, % Larghezza del grafico uguale alla larghezza del testo
+              height=5cm, % Altezza del grafico
+              mark=*, % Stile dei marker
+              smooth % Linee lisce tra i punti
+          ]
+              \addplot coordinates {
+                  (0, 12)
+                  (1, 8)
+                  (2, 5)
+                  (3, 4)
+                  (4, 5)
+                  (5, 8)
+                  (6, 0)
+                  (7, 5)
+                  (8, 2)
+                  (9, 1)
+              };
+          \end{axis}
+        \end{tikzpicture}
+      \end{minipage}
+      \hfill
+      \begin{minipage}{0.6\textwidth} % Testo occupa il 60% della larghezza
+        Il grafico poligonale infine serve a rendere visibile l'andamento di un dato unendo ogni punto con il successivo tramite un segmento creando quandi una sorta di funzione che indica l'andamento del valore sull'asse delle ordinate.    
+      \end{minipage}
+    \end{figure}
+  
+  Un insieme di dati si dice simmetrico al valore $x_n$ se le frequenze dei valori $x_n-c$ e $x_n+c$ sono le stesse per ogni $c$. Si dice \textit{quasi simmetrico} se i valori sono precisamente uguali ma sono solamente simili, è quindi una proprietà meno restrittiva.
+  
+  \subsubsection*{Grafici per le sequenze relative}
+  
+  A volte è conveniente, al posto di avere le frequenze assolute, visualizzazare le frequenze \textit{relative}. Dato $f$ la frequenza di $x$ allora posso avere un grafico \textit{frequenza relativa} $\frac{f}{n}$ dove $n$ è il numero totale di ossservazioni del dato. In caso la somma dei valori delle colonne farà $1$ cioé tutte tutte le osservazioni.
+  
+  \subsubsection*{Grafici a torta}
+  
+  \begin{figure}[h]
+      \begin{minipage}{0.20\textwidth} % Grafico occupa il 35% della larghezza
+       \begin{tikzpicture}
+         \pie[radius=1]{10/A, 20/B, 30/C, 40/D}
+       \end{tikzpicture}
+      \end{minipage}
+      \hfill
+      \begin{minipage}{0.8\textwidth}
+        In caso che i dati non siano numerici una valida opzione è il grafico a torta che indica le frequenze relative di ogni dato. La percentuale di grafico da assegnare ad un solo valore si calcola $\frac{f}{n}$ dove $n$ è il numero totale di osservazioni e per ottenere. Per invece ottenere l'angolo del grafico a torta la formula diventa $\frac{360*f}{n}$.
+      \end{minipage}
+  \end{figure}
+  
+  \subsubsection*{Raggrupamenti di dati e istogrammi}
+  
+   Serve quando la quantità dei dati è tale da rendere inutile la rappresentazione normale in un grafico. In tal caso conviene raggruppare in classi i dati. Trovare il numero perfetto di classi è spesso molto complesso e ci si può accontentare con un compromesso tra, scegliere poche classi(a costo di perdere molte informazioni) e scegliere molte classi(in modo da mantenere il significato dei dati nel campione). Di solito il valore è compreso in $[5,10]$. Il libro usa la convenzione di includere in una classi il suo valore inferiore e non quello superiore: $[\text{lim}_{inf}, \text{lim}_{sup})$. Ogni valore è la media dei valori nella classe.
+  
+   \subsubsection*{Diagrammi Ramo-Foglia}
+  
+  
+  \hfill
+  
+  \begin{minipage}[c]{0.30\textwidth}
+      \centering
+      \fbox{%
+        \begin{minipage}{0.91\textwidth}
+          \hspace*{-1.5mm}
+          \begin{tabular}{r|l}
+            22 & 123 \\
+            23 & 234, 567, 890 \\
+            24 & 345 \\
+            25 & 012, 034, 078, 234 \\
+            26 & 123, 456, 789 \\
+            27 & 234, 345, 456 \\
+            28 & 567, 678, 789, 890 \\
 
-\subsection*{Coefficenti di correlazione campionaria}
-
-Si consideri campione formato da dati accoppiati $(x_1,y_1)(x_2,y_2)\dots,(x_n,y_n)$, il \textit{coefficente di correlazione campionaria} quantifica in che misura i grandi valori di $x$ corrispondono ai grandi valori di $y$.  La correlazione può essere positiva, negativa, etc$\dots$. \\
-Si consideri un campione così composto: $(x_i,y_i)| i=1,\dots,n$ le medie campionarie sono $\overline{x}, \overline{y}$. Considero per la $i$-esima coppia considero lo scarto di $x$ con la sua media e lo scarto di $y$ con la sua media $(x_i-\overline{x}, y_i-\overline{y})$. Saprò quindi se $x$ supera la sua media e se $y$ supera la sua media, se $x - \overline{x} > 0$ allora $x$ è maggiore viceversa, stesso vale per $y$. Si può facilmente notare che se lo scarto per $x$ e per $y$ hanno lo stesso segno il prodotto sarà positivo e in caso di disomogeneità avrà segno negativo. Si ottiene così il tipo di correlazione tra una coppia di dati, lo scarto del campione viene calcolato somma il valore degli scarti ( $\sum_{i=1}^n(x_i-\overline{x})(y_i-\overline{y})$ ). Si standardizza la somma divedendo per $n-1$ e per le due deviazioni standard. 
-
-\begin{tcolorbox}
-  Dati $S_x$ e $S_y$ rispettivamente, le diviazione standard di $x$ e $y$. Il \textit{coefficente di correlazione campionaria} detta $r$ con le coppie $(x_i,y_i),i=1,\dots,n$: $$r=\frac{\sum_{i=1}^n(x_i-\overline{x})(y_i-\overline{y})}{(n-1)s_xs_y}= \\ \frac{
-\sum_{i=1}^n(x_i-\overline{x})(y_i-\overline{y})}{(n-1)\sqrt{\frac{\sum_{i=1}^n(x-\overline{x})^2 \sum_{i=1}^n(y-\overline{y})^2}{(n-1)^2}  }}= \frac{
-\sum_{i=1}^n(x_i-\overline{x})(y_i-\overline{y})}{\sqrt{\sum_{i=1}^n(x-\overline{x})^2 \sum_{i=1}^n(y-\overline{y})^2}}$$ 
-
-
-\begin{enumerate}
-  \item $r$ è compreso $[-1,1]$ 
-  \item $r$ è uguale $+1$ se, per una costante $a$ $y_i=a+bx$ dove $b$ è costante positiva.
-  \item $r$ è uguale $-1$ se, per una costante $a$ $y_i=a+bx$ dove $b$ è costante negativa.
-  \item Se $r$ è il é \textit{coefficente di correlazione campionaria} per i dati $x_i,y_i, i=1,\dots,n$ allora per qualunque costante $a,b,c,d,r$ allora il \textit{coefficente di correlazione campionaria} per i dati: $a+bx_i,c+dy_i, i=1,\dots,n$. 
-
-\end{enumerate}
-
-Si può dire anche che $|r|$ è la misura dell'intensità della \textit{relazione lineare}. Un valore di $0.9$ indica una forte relazione mentre un valore come $0.3$ ne indica una debole. 
-
-
-
-\end{tcolorbox}
-
-Formula per il calcolo di r: 
-  $$r = \frac{\sum_{i=1}^{n} x_i y_i - n \bar{x} \bar{y}}{\sqrt{\left(\sum_{i=1}^{n} x_i^2 - n \bar{x}^2\right) \left(\sum_{i=1}^{n} y_i^2 - n \bar{y}^2\right)}}$$
-
-
-
-\section*{Lezione 7}
-
-
-\subsection*{Concentrazione}
-
-Può servire per valutare la dispersione di un carattere, dove minima significa che è poco distribiuta e massima significa che è molto distribiuta. Dato il campione $a_1 \le a_2 \le \dots a_n$ allora il totale è: $\sum_{i=1}^na_i$. La frazione di ricchezza dei primi $i$ individui è: $\forall i=1,\dots,n _i=\frac{i}{n}$\% individui. $Q_i=\frac{1}{\text{TOT}}$ $\sum_{i=1}^nq_k$.
-
-\begin{tcolorbox}
-   
-  Dimostrazione:
-
-  ... (Recupera)
-    
-\end{tcolorbox}
-
-\subsection*{Tipi di Concentrazione}
-
-Concentrazione massima: \\
-
-I dati saranno così formati: $$a_i \to 0,0,0,0,\dots,\text{TOT}\\ q_i \to 0,0,0,0,\dots,1.$$ 
-
-Concentrazione minima: \\
-
-I dati saranno così formati: $$a_i \to \overline{a},\overline{a},\dots,\overline{a} \\ Q_i=\frac{1}{\text{TOT}}$$.:
-
-\subsection*{Trasformazione dei dati}
-
-A volte serve modificare un campione di dati per renderlo più espressivo, per farlo non si fa altro che aèèlicare una funziona ad ogni membro del campione.
-
-Data una funzione \textbf{iniettiva lineare} allora una volta trasformato le frequenze nel campione rimangono invariate.
-
-\begin{enumerate}
-  \item Traslazione: Utile quando il campione è molto compatto ma di valore molto alto allora lo si può traslare per una più semplice visualizzazione. $f(x)=x+k$. \\ Questa trasformazione cambia:
-    \begin{enumerate}
-      \item Media Campionaria
-      \item Mediana Campionaria
-      \item Moda
-      \item Quantili.
-    \end{enumerate}
-  La trasformazione non cambia:
-    \begin{enumerate}
-      \item Varianza 
-      \item Deviazione standard  
-      \item Scarto/range-interquartile
-      \item range dei dati
-    \end{enumerate}
-  \item Scalatura: Utile a espandere o contrarre i dati. Utile quando i dati sono molto dispersi o molto compressi. $f(x)=hx$. Con $h=\frac{1}{max_x}$ si può scalare i dati nell'intervallo $[0,1]$. Si può anche arrivare ad avere un range di $[0,n]$ con $h=\frac{1}{max_x*n}$
-    Questa trasformazione cambia:
-    \begin{enumerate}
-      \item Media Campionaria
-      \item Mediana Campionaria
-      \item Moda
-      \item Quantili.
-      \item Varianza 
-      \item Deviazione standard  
-      \item Scarto/range-interquartile
-      \item range dei dati
-    \end{enumerate}
-  La trasformazione non cambia:
-    \item Standardizzazione  
-
-
-\end{enumerate}
-
-\section*{Lezione 8}
+          \end{tabular}
+        \end{minipage}%
+      }
+      \vspace{-2mm}
+  \end{minipage}
+  \hspace{2mm}
+  \begin{minipage}[c]{0.6\textwidth}
+    Comodo per rapprentare un piccolo campione di dati. Dove il valore a sinistra è il suffisso e i valori a destra sono i valori che hanno quel suffisso. Questo serve a riassumere i dati. In caso un ramo abbia troppe foglie si può dividere.
+      \vspace{-3mm}
+  \end{minipage}
+  \vspace{1mm}
+  
 
 
 \end{document}
