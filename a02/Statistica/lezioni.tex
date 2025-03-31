@@ -4,6 +4,7 @@
 \usepackage{amsmath}
 \usepackage{tcolorbox}
 \usepackage{amsfonts}
+\usepackage{amssymb}
 \usepackage{geometry}
 \usepackage{pgfplots}
 \usepackage{caption}
@@ -185,7 +186,7 @@
   
    Serve quando la quantità dei dati è tale da rendere inutile la rappresentazione normale in un grafico. In tal caso conviene raggruppare in classi i dati. Trovare il numero perfetto di classi è spesso molto complesso e ci si può accontentare con un compromesso tra, scegliere poche classi(a costo di perdere molte informazioni) e scegliere molte classi(in modo da mantenere il significato dei dati nel campione). Di solito il valore è compreso in $[5,10]$. Il libro usa la convenzione di includere in una classi il suo valore inferiore e non quello superiore: $[\text{lim}_{inf}, \text{lim}_{sup})$. Ogni valore è la media dei valori nella classe.
   
-   \subsubsection*{Diagrammi Ramo-Foglia}
+  \subsubsection*{Diagrammi Ramo-Foglia}
   
   
   \hfill
@@ -218,5 +219,36 @@
   
 \section{Statistica descrittiva}
 
+  \subsection{Tipi di dato}
+    Prima di addentrarci nella statistica si deve introdurre il concetto di tipo di dato.
+    \begin{itemize}
+      \item \textbf{Dati quantitativi}: Dove il valore è effettivamente una quantità numerica
+      \item \textbf{Dati qualitativi}: Dove il valore è un \textit{tag} che appartiene ad un insieme di \textit{tag}.
+    \end{itemize}
+    
+    \subsubsection{Dati quantitivi}
+      Le principali tipologie di dati quantitativi dipendono dall'insieme di valori che il dato può valere. Esse si dividono in: 
+      \begin{itemize}
+        \item \textbf{Discreti} dove il valore appartiene ad un insieme \textit{discreto}, cioé che tra un valore e un altro può non esserci un valore intermedio. Un esempio di dati \textbf{quantitativi discreti} può essere l'insieme dei voti di un esame compresi nell'intervallo $[1;30]$. 
+        \item \textbf{Continui} dove il valore appartiene ad un insieme continuo, cioé tra due valori ne esiste sempre un terzo intermedio. Un esempio di dati \textbf{quantitativi continui} può essere le percentuali di presenze di un gruppo di operai.
+      \end{itemize}
 
+    
+    \subsubsection{Dati qualitativi}
+      Le principali categorie sono: \textit{binari}, \textit{nominali} e \textit{ordinali}. 
+      \begin{itemize}
+        \item Si definisce \textbf{binario} quel valore che ad ogni osservazione può ottenere un solo tra due arbitrari valori distinti e non confrontabili. Un esempio potrebbe essere un campione di animali composto da soli cani e gatti, ad ogni osservazione il valore può essere uno di due. 
+        \item Si definisce \textbf{nominale}, un insime di dati non confrontabili ma che non sono limitati a soli due valori. Ampliando il precedente esempio se nel campione si aggiungono mucche e cavalli il campione sarà composto da \textit{dati qualitativi nominali}. 
+        \item Si definisce \textbf{ordinale} quando nell'insieme di dati si possono mettere in relazione i valori del campione in modo da sapere quale valore sia inferiore o maggiore di un altro. Un esempio potrebbe essere quelle della misura di una cottura di bistecca, \textit{al sangue} che è inferiore a \textit{cottura media} che è inferiore a \textit{ben cotta}. Nonostante non siano valori numerici si può comunque dedurre quale bistecca sia più o meno cotta. 
+      \end{itemize} 
+
+    \subsection{Funzione cumulativa empirica}
+      La \textbf{funzione cumulativa empirica}, (\textbf{ECDF}), strumento per stimare la distribuzione cumulativa di una variabile casuale in un campione di dati. Utile per scoprire la distribuzione dei dati nel campione. 
+    \begin{tcolorbox}
+      \textbf{Definizione:} Dato un insieme di osservazioni ${x_1, \dots, x_n}$ è definita come quella funzione $\hat{F}:\mathbb{R}\to[0;1]$ tale che per ogni $x\in\mathbb{R}$ assume un valore pari alla \textit{frequenza relativa} delle osservazioni minori o uguali a $x$. Si può vedere la formula come la stima della funzione di ripartizione.
+      $$\hat{F}(x)=\frac{\# \{x_i\le x\}}{n}=\frac{1}{n}\sum_{i=1}^{n}I_{(-\infty,x]}(x_i)$$
+
+    \end{tcolorbox}
+
+    \subsection{Frequenze}
 \end{document}
