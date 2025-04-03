@@ -251,4 +251,26 @@
     \end{tcolorbox}
 
     \subsection{Frequenze}
+      \subsubsection*{Frequenza Assoluta}
+        La \textbf{frequenza assoluta} di un'osservazione $x$ in un campione di dati $A=\{x_1,\dots,x_n\*$ è il numero di apparizioni di $x$ in $A$. Formalmente indicata con $f_x$, la frequenza assoluta di $x$, ovvero $f_x= \#{j \in \{1,\dots,n\}:x_j=x}$.
+
+      \subsubsection*{Frequenza Relativa}
+        La \textbf{frequenza relativa} indica la presenza di ogni valore proporzionalmente sull'intero campione. Sia $A = {x_1, \dots, x_n}$ il campione di dati e $f_i$ la frequenza assoluta di $x_i \in A$ allora la \textit{frequenza relativa} di $x_i$ è $\frac{f_i}{n}$. Si può dimostrare quindi che la somma di tutte le frequenze relative è $1$.
+      
+        \begin{tcolorbox}
+          Sia $f_i$ la frequenza di apparizione di $x_i$, $A=\{x_1,\dots,x_n\}$ e $n$ la cardinalità di $A$ allora $\sum_{i=1}^{n} f_i=n$. La \textit{frequenza relativa} è $f'_i=\frac{f_i}{n}$. La Somma di tutte le $f'$ è $\sum_{i=1}^{n} f'_i = \sum_{i=1}^{n} \frac{f_i}{n}$. Ma essendo $n$ sempre constante la posso portare fuori, $\frac{1}{n}\sum_{i=1}^{n}f_i$ ma sappiamo che la somma di tutte le frequenze è uguale a $n$ arrivando a $\frac{n}{n}=1$.
+        \end{tcolorbox} 
+    
+      \subsubsection*{Frequenze cumulate}
+        Le \textit{frequenze cumulate} si hanno quando i valori sono ordinabili. Infatti per calcolare le \textit{frequenze cumulate} serve ordinare i dati in ordine crescente. Si sommano poi progressivamente le varie \textit{frequenze relaative} partendo dal primo. Per il primo valore solo la prima frequenza e per il terzo valore la somma delle frequenze del primo, secondo e terzo valore e così via. Anche qua il valore deve appartenere a $[0;1]$ dove il valore $1$ indica la \textit{frequenza cumulata} dell'ultimo valore, visto che è la somma di tutte le frequenze.
+        Per calcolarla ci avvaliamo della \textit{funzione cumulativa empirica} $\hat{F}:\mathbb{R}\to[0;1]$, la formula è: $$\hat{F}(x)=\frac{\# x_i\le x}{b}=\frac{1}{n}\sum_{i=1}^{n}I_{(-\infty,x]}(x_i)$$ dove $I_A:\mathbb{R}\to [0,1]$ indica l'appartenenza a $A$ dove $1$ indica l'appartenenza all'insieme e $0$ non appartiene all'insieme. Così si ha tutti i valori da $(-\infty,x)$ e si potrà sapere tutti i numeri minori di $x$. 
+        $$I_A(x)=\begin{cases}1 & \text{se } x \in A \\ 0 & \text{se } x \notin A\end{cases} \Rightarrow I_{(-\infty,x]}(x_i) = \begin{cases}1 & \text{se } x_i \in (-\infty,x] \\ 0 & \text{se } x_i \notin (-\infty,x] \end{cases} = \begin{cases}1 & \text{se } x_i \le x \\ x_i > x\end{cases}$$
+
+
+        Rappresenta il numero  di osservazioni dei miei campioni che sono minori o uguali di una certa $x$, diviso per il numero totale di campioni. La divisione per $n$ è per avere la \textit{frequenza relativa}.
+
+      \subsubsection*{Frequenze congiuente e marginali}
+        Le frequenze congiunte servono a considerare due caratteri contemporaneamente per verificare la relazione tra due attributi. Si può così contare il numero di occorrenze di due dati correlate. In casa ci sia una frazione si ottiene una \textit{frequenza congiunta relativa}.
+
+        In caso il numero di correlazioni non fosse elevato allora si possono rappresentare visivamente su una tabella di congiunzione. Gli elementi all'interno della tabella indicano le \textit{frequenze}(\textit{assolute, relative}). Le \textit{frequenze marginali} sono le frequenze ai margini del campione, in caso fossero relative i valori vanno normalizzati. 
 \end{document}
