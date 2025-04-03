@@ -34,10 +34,13 @@
     \end{enumerate}
 
     \subsection{Definire il problema}
-      Solitamente il problema da risolvere è descritto in termini vaghi, va quindi trovato un modo per formalizzarlo. 
-    \subsection{Formulo il modello matematico}
+      Solitamente il problema da risolvere è descritto in termini vaghi, va quindi trovato un modo per formalizzarlo. Solitamente, non si deve dare la "soluzione" ma un insieme di diverse alternative dove il cliente sceglierà quella che più lo aggrada in base a quale soluzione attrae lo attrae di più(Alcuni potrebbero volere una estrema rapidità altri una maggiore robustezza). Per prima cosa si deve discernere i \textbf{principi fondamentali}, che saranno quelli che guideranno la scelta finale. Generalmente per le imprese i punti salienti sono: \textit{Proprietario, Imppiegati, Clienti, Fornitori, Governo/nazione}. 
 
-    \subsection{Sviluppare la procedura}
+    \subsection{Formulo il modello matematico}
+      Il modello matematico sono versioni idealizzate della realtà per una più facile lavorazione. Esso è composto da \textbf{\textit{variabili decisionali}}, $(x_1,\dots,x_n)$ che rappresentano i valori come valori determinati. Le misure delle prestazioni con le \textbf{\textit{funzioni obiettivo}} espresse come funzioni aritmetiche, $(P=3x_1+2x_2+\dots+mx_n)$. Ci sono anche modi per avere delle restrizioni, chiamate \textbf{\textit{vincoli}}, espresse come equazioni, $(3x_1+2x_2+\dots+mx_n<10)$. Le costanti del modello vengono chiamate \textbf{\textit{parametro del modello}}. Solitamente, per motivo di incertezza, i parametri non sono altro che grezze stime, concetto a cui ci si riferisce come \textbf{\textit{sensitività d'analisi}}. Una volta modellato il problema esso non diventa altro che un problema di programmazione lineare. Bisogna evitare però di creare un modello essendo il modello astratto e idealizzato. Un criterio per giudicare un modello è la relativa correttezza di correttezza in base alle scelte prese. Nello sviluppo del modello è buona pratica da cominciare da un nucleo ristretto e arricchirlo, questo processo si chiama \textbf{\textit{arricchimento del modello}}. In caso gli obiettivi fossero molteplici essi vengono trasformati in una misura composita chiamata: \textbf{\textit{Misura globale delle prestazioni}}.
+
+    \subsection{Sviluppare la procedura} 
+      Solitamente un passo semplice dove applicare al modello sviluppato precedentemente un \textit{algoritmo standard}, la parte più complessa è l'\textit{analisi postottimale}. Gli algoritmi infatti restituiscono la soluzione \textit{ottime} per il modello dato, il problema è che il modello dato essendo un astrazione può quasi sempre essere migliorato per ottenere una nuova soluzione migliore. \textbf{\textit{Herbert Simon}}, nobel per l'economia, ha definito "\textit{satisficing}" (\textit{soddisfacente}) la tendenza dei manager a cercare una soluzione "\textit{abbastanza buona}" e non per forza ottima.
 
     \subsection{Test, Miglioramento, e rifinatura}
 
