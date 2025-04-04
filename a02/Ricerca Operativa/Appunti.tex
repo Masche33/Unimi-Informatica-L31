@@ -1,13 +1,17 @@
 \documentclass{article}
 \usepackage[italian]{babel}
 \usepackage[utf8]{inputenc}
+\usepackage{booktabs}
 \usepackage{amsmath}
 \usepackage{tcolorbox}
+\usepackage{tabularx}
 \usepackage{amsfonts}
 \usepackage{amssymb}
 \usepackage{geometry}
 \usepackage{pgfplots}
+\usepgfplotslibrary{fillbetween}
 \usepackage{caption}
+\usepackage{subcaption}
 \pgfplotsset{compat=1.16}
 
 \title{Ricerca Operativa}
@@ -20,6 +24,18 @@
 
   \section{Introduzione}
     Con lo scalare improvviso delle imprese della rivoluzione industriale è diventata preponderante la necessità di allocare al meglio le risorse disponibili. Spesso se un'operazione cresce velocemente è facile che ogni compartimento diventi un'entità a sé stante rendendo complessa la gestione. Da questa necessità è emersa la \textit{Ricerca operativa} che è maturata ed è stata sfruttata per la prima volta nella seconda guerra mondiale. Servì per allocare nel miglior modo le poche risorse inglesi per evitare di soccombere ai tedeschi. Con l'avvenire dei computer poi questa materia ha avuto una spinta che la ha portata alla situazione attuale.
+
+    \subsection{Attributi di una decisione}
+      Una buona decisione è caratterizzata da:
+      \begin{enumerate}
+        \item \textbf{\textit{Efficace}}: Raggiunge lo scopo prefissato.
+        \item \textbf{\textit{Efficente}}: Nel raggiungere lo scopo prefissato lo fa in modo da sprecare meno risorse possibile
+        \item \textbf{\textit{Tempestiva}}: Viene attuata in un arco di tempo coerente con l'orizzonte degli eventi prefissato(strategico(immediato), tattico(medio peridio), operativo(a lungo periodo)).
+        \item \textbf{\textit{Robusta}}: Rimane la una buona scelta anche in caso in caso di variazioni trascurabili.
+        \item \textbf{\textit{Giustificabile}}: Se si ha il compito di spiegare il motivo della decisione si può fare senza dover usare sotterfugi e depistaggi.
+      \end{enumerate}
+        
+
 
   \section{Panoramica all'approccio della modellazione}
     Nonostante la parte più preponderante della materia sia composta da metodi matematici non si deve dimenticare che una parte dello sforzo è la \textit{raccolta dei dati}.
@@ -50,4 +66,152 @@
 
     \subsection{Implementazione}
       La fase critica in cui le scelte prese in precedenza vanno, finalmente, attuate nel modo più accurato possibile al modello ricavato dai mesi di lavoro. Tasselli importanti nell'applicazione sono la comunicazione tra reparti. se tutto viene svolto in cordinazione tra i vari capi reparto il modello potrà essere utilizzato per anni, per questo è importante un riscontro costante per potere avere aggiustamenti minori che vanno documentati e motivati. Grazie a questo si potrà andare avanti fino a quando non cambieranno le necessità che il modello soddisfaceva.
+
+  \section{Programmazione lineare}
+    In breve l'applicazione più comune per la programmazione lineare è l'allocazione di \textit{risorse limitate}. La \textit{programmazione lineare} usa modelli matematici, dove lineare indica che le funzioni utilizzate devono essere lineari. Un metodo efficente per trovare la soluzione è l'\textbf{\textit{algoritmo del simplesso}}.
+
+  \subsection{Prototipo esempio}
+    \subsubsection{Il problema} 
+
+    Il problema è così formulato:
+    \begin{tcolorbox}
+      Schiopparelli \& CO produce vetri di alta qualità e ha $3$ stabilimenti. Lo scopo è massimizzare il guadagno bilanciando la quantità dei vari prodotti.
+      \begin{itemize}
+        \item \textbf{Stabilimento 1:} Crea gli infissi in alluminio.
+        \item \textbf{Stabilimento 2/3:} Creano e assemblano le fenistre. 
+      \end{itemize}
+      I prodotti sono:
+      \begin{itemize}
+        \item \textbf{Portafinistra:} Alta $2,4m$ con infissi in alluminio.\\  \hspace*{5mm} Necessita \textit{Stabilimento 1 e 3}
+        \item \textbf{Doppia finestra:} $1,2m$ x $1,8m$ con infissi in legno.\\  \hspace*{5mm} Necessita \textit{Stabilimento 2 e 3} 
+      \end{itemize}
+      I dati necessari:
+      \begin{itemize}
+        \item Numero di ore di lavoro disponibili a settimana in ogni stabilimento per ogni prodotto.
+        \item Numero di ore necessarie per assemblare ogni prodotto.
+        \item Profitto per ogni insieme di prodotti
+      \end{itemize}
+
+      \textbf{Modello risultante}: \\ \\ 
+      \begin{tabular}{cccc}
+      \toprule
+       & \multicolumn{2}{c}{\textbf{Tempi di produzione per lotto}} & \\
+      \cmidrule(lr){2-3}
+        \textbf{Stabilimento} & \textbf{Prod. 1} & \textbf{Prod. 2} & \parbox{1.5in}{\textbf{Produzione a settimana ($h$)}} \\
+        \midrule
+        1 & 1 & 0 & 4 \\
+        2 & 0 & 2 & 12 \\
+        3 & 3 & 2 & 18 \\
+        \midrule
+      \textbf{Profitto per lotto} & \$3,000 & \$5,000 & \\
+      \bottomrule
+      \end{tabular}
+    \end{tcolorbox} 
+
+      \subsubsection{Formulazione per la programmazione lineare}
+        Il modello allora per il problema.
+
+        $$
+          \begin{cases}
+            x_1 = \text{N° lotti prod. 1 per settimana} \\
+            x_2 = \text{N° lotti prod. 2 per settimana} \\ 
+            Z = \text{Profitto totale per settimana(in migliaia di \$)} \\
+          \end{cases}
+        $$
+
+        Quindi $x_1$,$x_2$ sono \textit{variabili decisionali} del modello. Dalla tabella precedente si ottiene $Z = 3x_1+tx_2$. L'obiettivo è trovare i valori $x_1$,$x_2$ tale che $Z$ abbia il valore massimo. Introduciamo ora i vincoli degli orari dei vari stabilimenti. Lo stabilimento 1: $x_1\le4$, stabilimento 2: $2x_2\le12$, stabilimento 3: $3x_1+2x_2\le18$, e infine i \textit{limiti di positività}. Si arriva quindi al sistema:
+
+        $$
+          \begin{cases}
+            x_1 \le 4 \\
+            2x_2 \le 12 \\
+            3x_1 + 2x_2 \le 18 \\
+            x_1 \ge 0 \\
+            x_2 \ge 0 \\
+            Z = 3x_1 + 5x_2
+            
+          \end{cases}
+        $$
+
+      \subsection{Soluzione dei grafici}
+        Avendo questo problema due \textit{variabili decisionali} su può usare un grafico bidimensionale. Analazziamo la soluzione passo passo. In \textit{blu} ci sono i vincoli di positività $x_1\ge0$, $x_2\ge0$. In \textit{rosso} il inseriamo i vincoli $x_1\le4$ e $2x_2\le12$ e $3x_1+2x_2\le18$. In \textit{verde} l'area delle possibili soluzioni. Si arriva quindi al punto di scegliere un punto che massimizzi $Z=3x_1+5x_2$. Da qui si avanza con il metodo \textit{trial and error} prendendo un valore arbitrario.
+
+
+      \begin{figure}[ht]
+        \centering
+        \begin{subfigure}[b]{0.45\textwidth}
+          \begin{tikzpicture}
+            \begin{axis}[
+              xlabel={$x_1$},
+              ylabel={$x_2$},
+              grid=major,
+              axis lines=left,
+              xmin=0, xmax=5,
+              ymin=0, ymax=10,
+              title={Soluzione grafica}
+            ]
+
+            %Primo punto
+            \draw[blue] (axis cs:0,0) -- (axis cs:0,10);
+            \addplot[blue, domain=0:10, samples=100] {0};
+            %Secondo punto
+            \draw[red] (axis cs:4,0) -- (axis cs:4,10) node[pos=0.8, above, rotate=90] {\textcolor{blue}{$x_1\le4$}};
+            \addplot[red, domain=0:10, samples=10] {6} node[pos=0.1, above] {\textcolor{blue}{$2x_2\le18$}};
+            \addplot[red, domain=0:10, samples=10] {-3/2*x+9} node[pos=0.4, above, rotate=-33]{\textcolor{blue}{$3x_1+2x_2\le18$}}; 
+
+            %Terzo punto
+
+            \coordinate (A) at (axis cs:0,0);
+            \coordinate (B) at (axis cs:0,6);
+            \coordinate (C) at (axis cs:2,6);
+            \coordinate (D) at (axis cs:4,3);
+            \coordinate (E) at (axis cs:4,0);
+
+            \fill[green, opacity=0.5] (A) -- (B) -- (C) -- (D) -- (E) -- cycle;
+            \draw[green, thick] (A) -- (B) -- (C) -- (D) -- (E) -- cycle;
+          \end{axis}
+          \end{tikzpicture}
+          \caption{Soluzione grafica}
+        \end{subfigure}
+        \quad
+        \begin{subfigure}[b]{0.50\textwidth}
+          \begin{tikzpicture}
+            \begin{axis}[
+              xlabel={$x_1$},
+              ylabel={$x_2$},
+              grid=major,
+              axis lines=left,
+              xmin=0, xmax=6,
+              ymin=0, ymax=10,
+              title={Possibili soluzioni}
+            ]
+            \addplot[red, domain=0:10, samples=10] {-3/5*x+36/5} node[pos=0.2, above, rotate=-15]{\textcolor{blue}{$Z=36=3x_1+5x_2$}}; 
+            \addplot[red, domain=0:10, samples=10] {-3/5*x+20/5} node[pos=0.2, above, rotate=-15]{\textcolor{blue}{$Z=20=3x_1+5x_2$}}; 
+            \addplot[red, domain=0:10, samples=10] {-3/5*x+10/5} node[pos=0.2, above, rotate=-15]{\textcolor{blue}{$Z=10=3x_1+5x_2$}}; 
+
+
+
+            \coordinate (A) at (axis cs:0,0);
+            \coordinate (B) at (axis cs:0,6);
+            \coordinate (C) at (axis cs:2,6);
+            \coordinate (D) at (axis cs:4,3);
+            \coordinate (E) at (axis cs:4,0);
+
+            \fill[green, opacity=0.1] (A) -- (B) -- (C) -- (D) -- (E) -- cycle;
+            \draw[green, thick] (A) -- (B) -- (C) -- (D) -- (E) -- cycle;
+
+            \end{axis}
+          \end{tikzpicture}
+          \caption{Possibili soluzioni}
+        \end{subfigure}
+
+      \end{figure}
+
+      Si noti nel grafico a sinistra che tutte le rette sono parallele, infatti sono tutte forme di una funzione chiamata \textbf{slope-intercept form}, in questo caso è $x_2=-\frac{3}{5}x_1+\frac{1}{5}Z$. Nel grafico a destra si può vedere che la soluzione massima sia $(x_1=2,x_2=6)$ portando $Z=36$.
+
+    \subsection{Modello di programmazione lineare}
+  \subsection{Modello di programmazione lineare}
+  \subsection{Preconcetti programmazione lineare}
+  \subsection{Formulare e Risolvere problemi}
+  \subsection{Formulare modelli di grandi dimensioni}
 \end{document}
