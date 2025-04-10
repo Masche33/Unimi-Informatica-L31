@@ -34,561 +34,606 @@
 
 \maketitle
 
-  \section{Introduzione}
-    Con lo scalare improvviso delle imprese della rivoluzione industriale è diventata preponderante la necessità di allocare al meglio le risorse disponibili. Spesso se un'operazione cresce velocemente è facile che ogni compartimento diventi un'entità a sé stante rendendo complessa la gestione. Da questa necessità è emersa la \textit{Ricerca operativa} che è maturata ed è stata sfruttata per la prima volta nella seconda guerra mondiale. Servì per allocare nel miglior modo le poche risorse inglesi per evitare di soccombere ai tedeschi. Con l'avvenire dei computer poi questa materia ha avuto una spinta che la ha portata alla situazione attuale.
+\section{Introduzione}
+Con lo scalare improvviso delle imprese della rivoluzione industriale è diventata preponderante la necessità di allocare al meglio le risorse disponibili. Spesso se un'operazione cresce velocemente è facile che ogni compartimento diventi un'entità a sé stante rendendo complessa la gestione. Da questa necessità è emersa la \textit{Ricerca operativa} che è maturata ed è stata sfruttata per la prima volta nella seconda guerra mondiale. Servì per allocare nel miglior modo le poche risorse inglesi per evitare di soccombere ai tedeschi. Con l'avvenire dei computer poi questa materia ha avuto una spinta che la ha portata alla situazione attuale.
 
-    \subsection{Attributi di una decisione}
-      Una buona decisione è caratterizzata da:
-      \begin{enumerate}
-        \item \textbf{\textit{Efficace}}: Raggiunge lo scopo prefissato.
-        \item \textbf{\textit{Efficente}}: Nel raggiungere lo scopo prefissato lo fa in modo da sprecare meno risorse possibile
-        \item \textbf{\textit{Tempestiva}}: Viene attuata in un arco di tempo coerente con l'orizzonte degli eventi prefissato(strategico(immediato), tattico(medio peridio), operativo(a lungo periodo)).
-        \item \textbf{\textit{Robusta}}: Rimane la una buona scelta anche in caso in caso di variazioni trascurabili.
-        \item \textbf{\textit{Giustificabile}}: Se si ha il compito di spiegare il motivo della decisione si può fare senza dover usare sotterfugi e depistaggi.
-      \end{enumerate}
-        
-
-
-  \section{Panoramica all'approccio della modellazione}
-    Nonostante la parte più preponderante della materia sia composta da metodi matematici non si deve dimenticare che una parte dello sforzo è la \textit{raccolta dei dati}.
-    Un riassunto delle varie fasi di uno studio sono:
-    \begin{enumerate}
-      \item Definire il problema e ottenere i dati.
-      \item Formulare il modello matematico che rappresenti il problema.
-      \item Sviluppare la procedura per derivare la soluzione del problema dal modello.
-      \item Test, miglioramento, rifinatura fino a quando si è soddisfatti.
-      \item Preparare l'applicazione operativa della soluzione.
-      \item Implementazione della soluzione trovata.
-    \end{enumerate}
-
-    \subsection{Definire il problema}
-      Solitamente il problema da risolvere è descritto in termini vaghi, va quindi trovato un modo per formalizzarlo. Solitamente, non si deve dare la "soluzione" ma un insieme di diverse alternative dove il cliente sceglierà quella che più lo aggrada in base a quale soluzione lo attrae di più(Alcuni potrebbero volere una estrema rapidità altri una maggiore robustezza). Per prima cosa si deve discernere i \textbf{principi fondamentali}, che saranno quelli che guideranno la scelta finale. Generalmente per le imprese i punti salienti sono: \textit{Proprietario, Imppiegati, Clienti, Fornitori, Governo/nazione}. 
-
-    \subsection{Formulo il modello matematico}
-      Il modello matematico sono versioni idealizzate della realtà per una più facile lavorazione. Esso è composto da \textbf{\textit{variabili decisionali}}, $(x_1,\dots,x_n)$ che rappresentano i valori come valori determinati. Le misure delle prestazioni con le \textbf{\textit{funzioni obiettivo}} espresse come funzioni aritmetiche, $(P=3x_1+2x_2+\dots+mx_n)$. Ci sono anche modi per avere delle restrizioni, chiamate \textbf{\textit{vincoli}}, espresse come equazioni, $(3x_1+2x_2+\dots+mx_n<10)$. Le costanti del modello vengono chiamate \textbf{\textit{parametro del modello}}. Solitamente, per motivo di incertezza, i parametri non sono altro che grezze stime, concetto a cui ci si riferisce come \textbf{\textit{sensitività d'analisi}}. Una volta modellato il problema esso non diventa altro che un problema di programmazione lineare. Bisogna evitare però di creare un modello insoddisfaciibile essendo il modello astratto e idealizzato ma con un utilizzo concreto. Un criterio per giudicare un modello è la relativa correttezza in base alle scelte prese. Nello sviluppo del modello è buona pratica da cominciare da un nucleo ristretto e arricchirlo, questo processo si chiama \textbf{\textit{arricchimento del modello}}. In caso gli obiettivi fossero molteplici essi vengono trasformati in una misura composita chiamata: \textbf{\textit{Misura globale delle prestazioni}}.
-
-    \subsection{Sviluppare la procedura} 
-      Solitamente un passo semplice dove applicare al modello sviluppato precedentemente un \textit{algoritmo standard}, la parte più complessa è l'\textit{analisi postottimale}. Gli algoritmi infatti restituiscono la soluzione \textit{ottime} per il modello dato, il problema è che il modello dato essendo un astrazione può quasi sempre essere migliorato per ottenere una nuova soluzione migliore. \textbf{\textit{Herbert Simon}}, nobel per l'economia, ha definito "\textit{satisficing}" (\textit{soddisfacente}) la tendenza dei manager a cercare una soluzione "\textit{abbastanza buona}" e non per forza ottima. Bisogna, nella modifica del modello porre attenzione alla \textit{sensitività delle analisi}, cioè determinare quale parametro modifica considerevomente la soluzione e la sposta di più verso un obiettivo che più si confà alla realtà del problema.
-
-    \subsection{Test, Miglioramento, e rifinatura}
-      Essendo i casi della realtà, al contrario degli esempi didattici, enormi è delirante aspettarsi che la prima soluzione trovata sia quella che alla fine si andrà ad attuare. Per questo esiste questa fase dove il modello viene messo sotto stress fino ad arrivare ad un livello soddisfacente. Non ci si può neanche aspettare di arrivare alla versione perfetta, si punta perciò alla minimizzazione dei bachi. Questo processo si chiama \textbf{\textit{validazione del modello}}. Visto l'ammontare di tempo speso nelle fasi precedenti è facile trascurare, per dimenticanza, vari dettagli. Per questo è spesso consigliato che a questo processo venga aggiunto nel team un elemento totalmente avulso dal progetto. Tra gli errori più frequenti ci sono gli errori di incosistenze nelle unità dei valori, \textit{consistenza dimensionale}. Un approccio sistematico è il \textit{test a retrospettiva}. Ciò consiste nell'utilizzo di dati passati per ricostruire vecchi scenari simili e determinare la risposta del modello. Lo svantaggio è che i dati usati per i test sono gli stessi usati per creare il modello quindi non i migliori per trovare le falle.
-      
-    \subsection{Preparazione dell'applicazione}
-      Una volta testato il modello ed essere arrivati ad una versione da adottare allora si deve creare una documentazione estesa che spieghi ogni dettaglio del modello. Il sistema che verrà creato sarà quasi certamente informatizzato. In questa fase si creano le \textit{basi di dati} e \textit{sistemi di gestione delle informazioni}. In caso le decisioni da prendere siano interattive si crea un \textit{sistema di supporto alle decisioni} in modo da avere un rapido accesso alle possibili migliori decisioni. 
-
-    \subsection{Implementazione}
-      La fase critica in cui le scelte prese in precedenza vanno, finalmente, attuate nel modo più accurato possibile al modello ricavato dai mesi di lavoro. Tasselli importanti nell'applicazione sono la comunicazione tra reparti. se tutto viene svolto in cordinazione tra i vari capi reparto il modello potrà essere utilizzato per anni, per questo è importante un riscontro costante per potere avere aggiustamenti minori che vanno documentati e motivati. Grazie a questo si potrà andare avanti fino a quando non cambieranno le necessità che il modello soddisfaceva.
-
-  \section{Programmazione lineare}
-    In breve l'applicazione più comune per la programmazione lineare è l'allocazione di \textit{risorse limitate}. La \textit{programmazione lineare} usa modelli matematici, dove lineare indica che le funzioni utilizzate devono essere lineari. Un metodo efficente per trovare la soluzione è l'\textbf{\textit{algoritmo del simplesso}}.
-
-  \subsection{Prototipo esempio}
-    \subsubsection{Il problema} 
-
-    Il problema è così formulato:
-    \begin{tcolorbox}
-      Schiopparelli \& CO produce vetri di alta qualità e ha $3$ stabilimenti. Lo scopo è massimizzare il guadagno bilanciando la quantità dei vari prodotti.
-      \begin{itemize}
-        \item \textbf{Stabilimento 1:} Crea gli infissi in alluminio.
-        \item \textbf{Stabilimento 2/3:} Creano e assemblano le fenistre. 
-      \end{itemize}
-      I prodotti sono:
-      \begin{itemize}
-        \item \textbf{Portafinistra:} Alta $2,4m$ con infissi in alluminio.\\  \hspace*{5mm} Necessita \textit{Stabilimento 1 e 3}
-        \item \textbf{Doppia finestra:} $1,2m$ x $1,8m$ con infissi in legno.\\  \hspace*{5mm} Necessita \textit{Stabilimento 2 e 3} 
-      \end{itemize}
-      I dati necessari:
-      \begin{itemize}
-        \item Numero di ore di lavoro disponibili a settimana in ogni stabilimento per ogni prodotto.
-        \item Numero di ore necessarie per assemblare ogni prodotto.
-        \item Profitto per ogni insieme di prodotti
-      \end{itemize}
-
-      \textbf{Modello risultante}: \\ \\ 
-      \begin{tabular}{cccc}
-      \toprule
-       & \multicolumn{2}{c}{\textbf{Tempi di produzione per lotto}} & \\
-      \cmidrule(lr){2-3}
-        \textbf{Stabilimento} & \textbf{Prod. 1} & \textbf{Prod. 2} & \parbox{1.5in}{\textbf{Produzione a settimana ($h$)}} \\
-        \midrule
-        1 & 1 & 0 & 4 \\
-        2 & 0 & 2 & 12 \\
-        3 & 3 & 2 & 18 \\
-        \midrule
-      \textbf{Profitto per lotto} & \$3,000 & \$5,000 & \\
-      \bottomrule
-      \end{tabular}
-    \end{tcolorbox} 
-
-      \subsubsection{Formulazione per la programmazione lineare}
-        Il modello allora per il problema.
-
-        $$
-          \begin{cases}
-            x_1 = \text{N° lotti prod. 1 per settimana} \\
-            x_2 = \text{N° lotti prod. 2 per settimana} \\ 
-            Z = \text{Profitto totale per settimana(in migliaia di \$)} \\
-          \end{cases}
-        $$
-
-        Quindi $x_1$,$x_2$ sono \textit{variabili decisionali} del modello. Dalla tabella precedente si ottiene $Z = 3x_1+tx_2$. L'obiettivo è trovare i valori $x_1$,$x_2$ tale che $Z$ abbia il valore massimo. Introduciamo ora i vincoli degli orari dei vari stabilimenti. Lo stabilimento 1: $x_1\le4$, stabilimento 2: $2x_2\le12$, stabilimento 3: $3x_1+2x_2\le18$, e infine i \textit{limiti di positività}. Si arriva quindi al sistema:
-
-        $$ \text{Modello}=
-          \begin{cases}
-            x_1 \le 4 \\
-            2x_2 \le 12 \\
-            3x_1 + 2x_2 \le 18 \\
-            x_1 \ge 0 \\
-            x_2 \ge 0 \\
-            Z = 3x_1 + 5x_2
-            
-          \end{cases}
-        $$
-
-      \subsection{Soluzione dei grafici}
-        Avendo questo problema due \textit{variabili decisionali} su può usare un grafico bidimensionale. Analazziamo la soluzione passo passo. In \textit{blu} ci sono i vincoli di positività $x_1\ge0$, $x_2\ge0$. In \textit{rosso} il inseriamo i vincoli $x_1\le4$ e $2x_2\le12$ e $3x_1+2x_2\le18$. In \textit{verde} l'area delle possibili soluzioni. Si arriva quindi al punto di scegliere un punto che massimizzi $Z=3x_1+5x_2$. Da qui si avanza con il metodo \textit{trial and error} prendendo un valore arbitrario.
-
-
-      \begin{figure}[ht]
-        \centering
-        \begin{subfigure}[b]{0.45\textwidth}
-          \begin{tikzpicture}
-            \begin{axis}[
-              xlabel={$x_1$},
-              ylabel={$x_2$},
-              grid=major,
-              axis lines=left,
-              xmin=0, xmax=5,
-              ymin=0, ymax=10,
-              title={Soluzione grafica}
-            ]
-
-            %Primo punto
-            \draw[blue] (axis cs:0,0) -- (axis cs:0,10);
-            \addplot[blue, domain=0:10, samples=100] {0};
-            %Secondo punto
-            \draw[red] (axis cs:4,0) -- (axis cs:4,10) node[pos=0.8, above, rotate=90] {\textcolor{blue}{$x_1\le4$}};
-            \addplot[red, domain=0:10, samples=10] {6} node[pos=0.1, above] {\textcolor{blue}{$2x_2\le18$}};
-            \addplot[red, domain=0:10, samples=10] {-3/2*x+9} node[pos=0.4, above, rotate=-33]{\textcolor{blue}{$3x_1+2x_2\le18$}}; 
-
-            %Terzo punto
-
-            \coordinate (A) at (axis cs:0,0);
-            \coordinate (B) at (axis cs:0,6);
-            \coordinate (C) at (axis cs:2,6);
-            \coordinate (D) at (axis cs:4,3);
-            \coordinate (E) at (axis cs:4,0);
-
-            \fill[green, opacity=0.5] (A) -- (B) -- (C) -- (D) -- (E) -- cycle;
-            \draw[green, thick] (A) -- (B) -- (C) -- (D) -- (E) -- cycle;
-          \end{axis}
-          \end{tikzpicture}
-          \caption{Soluzione grafica}
-        \end{subfigure}
-        \quad
-        \begin{subfigure}[b]{0.45\textwidth}
-          \begin{tikzpicture}
-            \begin{axis}[
-              xlabel={$x_1$},
-              ylabel={$x_2$},
-              grid=major,
-              axis lines=left,
-              xmin=0, xmax=6,
-              ymin=0, ymax=10,
-              title={Possibili soluzioni}
-            ]
-            \addplot[red, domain=0:10, samples=10] {-3/5*x+36/5} node[pos=0.2, above, rotate=-15]{\textcolor{blue}{$Z=36=3x_1+5x_2$}}; 
-            \addplot[red, domain=0:10, samples=10] {-3/5*x+20/5} node[pos=0.2, above, rotate=-15]{\textcolor{blue}{$Z=20=3x_1+5x_2$}}; 
-            \addplot[red, domain=0:10, samples=10] {-3/5*x+10/5} node[pos=0.2, above, rotate=-15]{\textcolor{blue}{$Z=10=3x_1+5x_2$}}; 
+\subsection{Attributi di una decisione}
+Una buona decisione è caratterizzata da:
+\begin{enumerate}
+  \item \textbf{\textit{Efficace}}: Raggiunge lo scopo prefissato.
+  \item \textbf{\textit{Efficente}}: Nel raggiungere lo scopo prefissato lo fa in modo da sprecare meno risorse possibile
+  \item \textbf{\textit{Tempestiva}}: Viene attuata in un arco di tempo coerente con l'orizzonte degli eventi prefissato(strategico(immediato), tattico(medio peridio), operativo(a lungo periodo)).
+  \item \textbf{\textit{Robusta}}: Rimane la una buona scelta anche in caso in caso di variazioni trascurabili.
+  \item \textbf{\textit{Giustificabile}}: Se si ha il compito di spiegare il motivo della decisione si può fare senza dover usare sotterfugi e depistaggi.
+\end{enumerate}
 
 
 
-            \coordinate (A) at (axis cs:0,0);
-            \coordinate (B) at (axis cs:0,6);
-            \coordinate (C) at (axis cs:2,6);
-            \coordinate (D) at (axis cs:4,3);
-            \coordinate (E) at (axis cs:4,0);
+\section{Panoramica all'approccio della modellazione}
+Nonostante la parte più preponderante della materia sia composta da metodi matematici non si deve dimenticare che una parte dello sforzo è la \textit{raccolta dei dati}.
+Un riassunto delle varie fasi di uno studio sono:
+\begin{enumerate}
+  \item Definire il problema e ottenere i dati.
+  \item Formulare il modello matematico che rappresenti il problema.
+  \item Sviluppare la procedura per derivare la soluzione del problema dal modello.
+  \item Test, miglioramento, rifinatura fino a quando si è soddisfatti.
+  \item Preparare l'applicazione operativa della soluzione.
+  \item Implementazione della soluzione trovata.
+\end{enumerate}
 
-            \fill[green, opacity=0.1] (A) -- (B) -- (C) -- (D) -- (E) -- cycle;
-            \draw[green, thick] (A) -- (B) -- (C) -- (D) -- (E) -- cycle;
+\subsection{Definire il problema}
+Solitamente il problema da risolvere è descritto in termini vaghi, va quindi trovato un modo per formalizzarlo. Solitamente, non si deve dare la "soluzione" ma un insieme di diverse alternative dove il cliente sceglierà quella che più lo aggrada in base a quale soluzione lo attrae di più(Alcuni potrebbero volere una estrema rapidità altri una maggiore robustezza). Per prima cosa si deve discernere i \textbf{principi fondamentali}, che saranno quelli che guideranno la scelta finale. Generalmente per le imprese i punti salienti sono: \textit{Proprietario, Imppiegati, Clienti, Fornitori, Governo/nazione}.
 
-            \end{axis}
-          \end{tikzpicture}
-          \caption{Possibili soluzioni}
-        \end{subfigure}
+\subsection{Formulo il modello matematico}
+Il modello matematico sono versioni idealizzate della realtà per una più facile lavorazione. Esso è composto da \textbf{\textit{variabili decisionali}}, $(x_1,\dots,x_n)$ che rappresentano i valori come valori determinati. Le misure delle prestazioni con le \textbf{\textit{funzioni obiettivo}} espresse come funzioni aritmetiche, $(P=3x_1+2x_2+\dots+mx_n)$. Ci sono anche modi per avere delle restrizioni, chiamate \textbf{\textit{vincoli}}, espresse come equazioni, $(3x_1+2x_2+\dots+mx_n<10)$. Le costanti del modello vengono chiamate \textbf{\textit{parametro del modello}}. Solitamente, per motivo di incertezza, i parametri non sono altro che grezze stime, concetto a cui ci si riferisce come \textbf{\textit{sensitività d'analisi}}. Una volta modellato il problema esso non diventa altro che un problema di programmazione lineare. Bisogna evitare però di creare un modello insoddisfaciibile essendo il modello astratto e idealizzato ma con un utilizzo concreto. Un criterio per giudicare un modello è la relativa correttezza in base alle scelte prese. Nello sviluppo del modello è buona pratica da cominciare da un nucleo ristretto e arricchirlo, questo processo si chiama \textbf{\textit{arricchimento del modello}}. In caso gli obiettivi fossero molteplici essi vengono trasformati in una misura composita chiamata: \textbf{\textit{Misura globale delle prestazioni}}.
 
-      \end{figure}
+\subsection{Sviluppare la procedura}
+Solitamente un passo semplice dove applicare al modello sviluppato precedentemente un \textit{algoritmo standard}, la parte più complessa è l'\textit{analisi postottimale}. Gli algoritmi infatti restituiscono la soluzione \textit{ottime} per il modello dato, il problema è che il modello dato essendo un astrazione può quasi sempre essere migliorato per ottenere una nuova soluzione migliore. \textbf{\textit{Herbert Simon}}, nobel per l'economia, ha definito "\textit{satisficing}" (\textit{soddisfacente}) la tendenza dei manager a cercare una soluzione "\textit{abbastanza buona}" e non per forza ottima. Bisogna, nella modifica del modello porre attenzione alla \textit{sensitività delle analisi}, cioè determinare quale parametro modifica considerevomente la soluzione e la sposta di più verso un obiettivo che più si confà alla realtà del problema.
 
-      Si noti nel grafico a sinistra che tutte le rette sono parallele, infatti sono tutte forme di una funzione chiamata \textbf{slope-intercept form}, in questo caso è $x_2=-\frac{3}{5}x_1+\frac{1}{5}Z$. Nel grafico a destra si può vedere che la soluzione massima sia $(x_1=2,x_2=6)$ portando $Z=36$.
-  
-    \begin{tcolorbox}
-      \textbf{ATTENZIONE:}
-        Nell'esempio fornito si può utilizzare un piano per la scaristà di parametri, ma con il crescere del numero di parametri cresce il numero di dimensioni del grafico. In caso la \textit{regione ammissibile} diventa un poliedro che può essere: \textit{vuoto} in caso non esistano soluzioni ammissibili, \textit{illimitato} in caso in almeno una dimensione non esiste il \textit{valore ottimo}. Esiste poi un almeno un vertice di tale poliedro che corrisponde ad un \textit{valore ottimo}. In ogni caso il poliedro è convesso.
-      
-    \end{tcolorbox}
+\subsection{Test, Miglioramento, e rifinatura}
+Essendo i casi della realtà, al contrario degli esempi didattici, enormi è delirante aspettarsi che la prima soluzione trovata sia quella che alla fine si andrà ad attuare. Per questo esiste questa fase dove il modello viene messo sotto stress fino ad arrivare ad un livello soddisfacente. Non ci si può neanche aspettare di arrivare alla versione perfetta, si punta perciò alla minimizzazione dei bachi. Questo processo si chiama \textbf{\textit{validazione del modello}}. Visto l'ammontare di tempo speso nelle fasi precedenti è facile trascurare, per dimenticanza, vari dettagli. Per questo è spesso consigliato che a questo processo venga aggiunto nel team un elemento totalmente avulso dal progetto. Tra gli errori più frequenti ci sono gli errori di incosistenze nelle unità dei valori, \textit{consistenza dimensionale}. Un approccio sistematico è il \textit{test a retrospettiva}. Ciò consiste nell'utilizzo di dati passati per ricostruire vecchi scenari simili e determinare la risposta del modello. Lo svantaggio è che i dati usati per i test sono gli stessi usati per creare il modello quindi non i migliori per trovare le falle.
 
-  \subsection{Modello di programmazione lineare}
-    Abbiamo visto come trovare la soluzione graficamente, ora vediamo l'approccio di programmazione lineare. Cominciamo ora con termini necessari e notazione. \textit{Risorse} e \textit{attività}, dove $m$ indica il numero di risorse utilizzabili e $n$ il numero di attività considerate. Lo scopo in questo caso è trovare i \textit{livelli} delle attività per avere la \textit{migliore prestazione globale}. Di seguito la lista di simboli e il grafico generici per la programmazione lineare.
-    \begin{itemize}
-      \item $Z$: Valore totale delle prestazioni.
-      \item $x_j$: Livello dell'attività $j\in[1,n]$.
-      \item $c_j$: Incremento in $Z$ per ogni incremento unitario dell'attività $j$.
-      \item $b_i$: Ammontare delle risorse $i$ disponibili per l'attività. $i\in[1,m]$.
-      \item $a_{ij}$: Valore della risorsa $i$ consumata da ogni unità di attività $j$.
-    \end{itemize}
-    
-    \begin{table}[ht]
-      \centering
-      \begin{tabular}{|c|c|c|c|c|c|}
-        \hline
-        \multicolumn{6}{|c|}{\textbf{Risorse usate per Unità di attività}} \\
-        \hline
-        \textbf{Risorse} & \multicolumn{4}{|c|}{\textbf{Attività}} & \textbf{Quantità di risorse disponibili} \\
-        \cline{2-5}
-         & \textbf{1} & \textbf{2} & \textbf{$\cdots$} & \textbf{$n$} &  \\
-        \hline
-        1 & $a_{11}$ & $a_{12}$ & $\cdots$ & $a_{1n}$ & $b_1$ \\
-        2 & $a_{21}$ & $a_{22}$ & $\cdots$ & $a_{2n}$ & $b_2$ \\
-        $\vdots$ & $\vdots$ & $\vdots$ & $\ddots$ & $\vdots$ & $\vdots$ \\
-        $m$ & $a_{m1}$ & $a_{m2}$ & $\cdots$ & $a_{mn}$ & $b_m$ \\
-        \hline
-        \multicolumn{6}{|c|}{\textbf{Contributo a $Z$ per unità}} \\
-        \hline
-        \multicolumn{1}{|c|}{} & $c_1$ & $c_2$ & $\cdots$ & $c_n$ & \\
-        \hline
-      \end{tabular}
-    \end{table} 
+\subsection{Preparazione dell'applicazione}
+Una volta testato il modello ed essere arrivati ad una versione da adottare allora si deve creare una documentazione estesa che spieghi ogni dettaglio del modello. Il sistema che verrà creato sarà quasi certamente informatizzato. In questa fase si creano le \textit{basi di dati} e \textit{sistemi di gestione delle informazioni}. In caso le decisioni da prendere siano interattive si crea un \textit{sistema di supporto alle decisioni} in modo da avere un rapido accesso alle possibili migliori decisioni.
 
-    \subsection{Forma standard del modello}
-      Dalla tabella precedente si deriva il modello generale(\textbf{forma standard}) dal quale si può derivare il modello per il problema che abbia già risolto graficamente.\\
-      
-      \subsubsection{Modello generale}
-      $$
-        \begin{cases}
-          \begin{rcases}
-            Z = c_1x_1 + \dots + c_nx_n \hspace{1.75cm}
-          \end{rcases} \text{Funzione obiettivo, da massimizzare} \\
-          \begin{rcases}
-            a_{11}x_1 + a_{12}+\dots + a_{1n}x_n \le b_1 \\
-            a_{21}x_1 + a_{22}+\dots + a_{2n}x_n \le b_2 \\
-            \vdots \\
-            a_{m1}x_1 + a_{m2}+\dots + a_{mn}x_n \le b_m \\
-          \end{rcases} \text{Vincoli funzionali} \\ 
-          \begin{rcases}
-            x_1\ge0 \\
-            \vdots  \\
-            x_n \ge 0 \hspace{4.10cm}
-          \end{rcases} \text{Vincoli di non negatività}
+\subsection{Implementazione}
+La fase critica in cui le scelte prese in precedenza vanno, finalmente, attuate nel modo più accurato possibile al modello ricavato dai mesi di lavoro. Tasselli importanti nell'applicazione sono la comunicazione tra reparti. se tutto viene svolto in cordinazione tra i vari capi reparto il modello potrà essere utilizzato per anni, per questo è importante un riscontro costante per potere avere aggiustamenti minori che vanno documentati e motivati. Grazie a questo si potrà andare avanti fino a quando non cambieranno le necessità che il modello soddisfaceva.
 
-        \end{cases}
-      $$
+\section{Programmazione lineare}
+In breve l'applicazione più comune per la programmazione lineare è l'allocazione di \textit{risorse limitate}. La \textit{programmazione lineare} usa modelli matematici, dove lineare indica che le funzioni utilizzate devono essere lineari. Un metodo efficente per trovare la soluzione è l'\textbf{\textit{algoritmo del simplesso}}.
 
-      \begin{tcolorbox}
-        \textbf{alternative}: \\     
-          \begin{itemize}
-            \item Minimizzare la \textit{funzione obiettivo}.
-            \item Rivoltare i \textit{vincoli funzionali} in modo da avere $\ge$.
-            \item Porre un \textit{vincolo funzionale} a un ugualianza.
-            \item Eliminare \textit{vincoli di non negatività}.
-          \end{itemize}
-      \end{tcolorbox}
-    
-    \subsubsection{Soluzione del modello}
-      Il termine è utilizzato per indicare il metodo di soluzione del modello. Una \textbf{soluzione accettabile} è una soluzione dove tutti vincoli sono soddisfatti. Una \textbf{soluzione inaccettabile} è una soluzione dove almeno un vincolo non è soddisfatto. La \textbf{regione accettabile} è l'insieme di tutte le possibili soluzioni. La \textbf{soluzione ottima} è la soluzione accettabile più favorevole alla funzione obiettivo. É possibile che non esista una soluzione. La maggior parte dei modelli ha una soluzione ottima, ma non è impossibile che ne esistano più di una. Potrebbe accadere che non esistano soluzioni ottimali, che succede in caso non esista una soluzione accettabile o se i limiti non prevengono la funzione obiettivo($Z$), al secondo caso ci si riferisce come \textbf{$Z$ svincolata} o \textbf{obiettivo svincolato}. Una soluzione che si trova a un angolo della regione accettabile si chiama \textbf{soluzione accettabile ad angolo}, (CPF).
+\subsection{Prototipo esempio}
+\subsubsection{Il problema}
 
-          \begin{tikzpicture}
-            \begin{axis}[
-              xlabel={$x_1$},
-              ylabel={$x_2$},
-              grid=major,
-              axis lines=left,
-              xmin=0, xmax=6,
-              ymin=0, ymax=10,
-              title={Possibili soluzioni}
-            ]
-            \coordinate (A) at (axis cs:0,0);
-            \coordinate (B) at (axis cs:0,6);
-            \coordinate (C) at (axis cs:2,6);
-            \coordinate (D) at (axis cs:4,3);
-            \coordinate (E) at (axis cs:4,0);
-            
-            \fill[gray, opacity=0.5] (A) -- (B) -- (C) -- (D) -- (E) -- cycle;
-            \draw[black, thick] (A) -- (B) -- (C) -- (D) -- (E) -- cycle;
-              \draw[opacity=0](1,1) -- (3,3) node[pos=0.5, above, opacity=1]{Regione accettabile};  
-            \end{axis}
-          \end{tikzpicture}
+Il problema è così formulato:
+\begin{tcolorbox}
+  Schiopparelli \& CO produce vetri di alta qualità e ha $3$ stabilimenti. Lo scopo è massimizzare il guadagno bilanciando la quantità dei vari prodotti.
+  \begin{itemize}
+    \item \textbf{Stabilimento 1:} Crea gli infissi in alluminio.
+    \item \textbf{Stabilimento 2/3:} Creano e assemblano le fenistre.
+  \end{itemize}
+  I prodotti sono:
+  \begin{itemize}
+    \item \textbf{Portafinistra:} Alta $2,4m$ con infissi in alluminio.\\  \hspace*{5mm} Necessita \textit{Stabilimento 1 e 3}
+    \item \textbf{Doppia finestra:} $1,2m$ x $1,8m$ con infissi in legno.\\  \hspace*{5mm} Necessita \textit{Stabilimento 2 e 3}
+  \end{itemize}
+  I dati necessari:
+  \begin{itemize}
+    \item Numero di ore di lavoro disponibili a settimana in ogni stabilimento per ogni prodotto.
+    \item Numero di ore necessarie per assemblare ogni prodotto.
+    \item Profitto per ogni insieme di prodotti
+  \end{itemize}
 
-    \subsection{Soluzione aritmetica del modello}
-        Metodo per risolvere il modello evitando di utilizzare il grafico. Si parte quindi dal \textit{modello lineare} per portarlo in forma standard e poi risolverlo. Per portare il modello in forma standard tutti i vincoli di \textit{disuguaglianza} devono essere trasformati in \textit{vincoli di ugualianza} e la funzione obiettivo $Z$ vengono poste in forma di minizzazione. \\ Per poter portare ogni vincolo di \textit{disuguaglianza} ad un vincolo di \textit{ugualianza} si aggiunge una variabile di \textit{slack} per ogni vincolo in gorma di disuguaglianza.
+  \textbf{Modello risultante}: \\ \\
+  \begin{tabular}{cccc}
+    \toprule
+                                & \multicolumn{2}{c}{\textbf{Tempi di produzione per lotto}} &                                                                          \\
+    \cmidrule(lr){2-3}
+    \textbf{Stabilimento}       & \textbf{Prod. 1}                                           & \textbf{Prod. 2} & \parbox{1.5in}{\textbf{Produzione a settimana ($h$)}} \\
+    \midrule
+    1                           & 1                                                          & 0                & 4                                                     \\
+    2                           & 0                                                          & 2                & 12                                                    \\
+    3                           & 3                                                          & 2                & 18                                                    \\
+    \midrule
+    \textbf{Profitto per lotto} & \$3,000                                                    & \$5,000          &                                                       \\
+    \bottomrule
+  \end{tabular}
+\end{tcolorbox}
 
-        $$
-          \begin{cases}
-            Z = x_1 + 3x_2 - 3x_3 \\
-            -3x_1 + 2x_2 - 2x_3 \le 9 \\
-            -4x_1 - 3x_2 + 3x_3 \le 8 \\
-            x_1 \ge 0,
-            x_2 \ge 0,
-            x_3 \ge 0
-          \end{cases}
-          \to
-          \begin{cases}
-            Z = x_1 + 3x_2 - 3x_3 \\
-            -3x_1 + 2x_2 - 2x_3 \textcolor{red}{+x_4 =} 9 \\
-            -4x_1 - 3x_2 + 3x_3 \textcolor{red}{+x_5 =} 8 \\
-            x_1 \ge 0,
-            x_2 \ge 0,
-            x_3 \ge 0 \\
-            \textcolor{red}{x_4 \ge 0, x_5 \ge 0}
+\subsubsection{Formulazione per la programmazione lineare}
+Il modello allora per il problema.
 
-          \end{cases}
-        $$
+$$
+  \begin{cases}
+    x_1 = \text{N° lotti prod. 1 per settimana}                 \\
+    x_2 = \text{N° lotti prod. 2 per settimana}                 \\
+    Z = \text{Profitto totale per settimana(in migliaia di \$)} \\
+  \end{cases}
+$$
 
-    Si passa così da un sistema da $m$ vincoli e $n$ variabili ad un modello con $m$ vincoli e $n+m$ variabili. Si rimane quindi con una matrice che, a meno di vincoli ridondanti, ha \textbf{Rango $m$}. Il sistema ha una soluzione univoca se eliminando gli $n$ gradi di libertà usando $n$ variabili.
+Quindi $x_1$,$x_2$ sono \textit{variabili decisionali} del modello. Dalla tabella precedente si ottiene $Z = 3x_1+tx_2$. L'obiettivo è trovare i valori $x_1$,$x_2$ tale che $Z$ abbia il valore massimo. Introduciamo ora i vincoli degli orari dei vari stabilimenti. Lo stabilimento 1: $x_1\le4$, stabilimento 2: $2x_2\le12$, stabilimento 3: $3x_1+2x_2\le18$, e infine i \textit{limiti di positività}. Si arriva quindi al sistema:
 
-    \begin{tcolorbox}
-      \textbf{Teorema di Rouché Capelli}
-        Data una matrice in forma $A'=[A|b]$ dove $A$ è una matrice $m\ x\ n$ e $b$ un vettore di $n$ elementi allora: 
-        \begin{enumerate}
-          \item Se il sistema è risolubile la soluzione è unica se, e solo se, $r(A')=k$ dove $k$ è il numero di incognite del sistema.
-          \item Se il sistema è risolubile si hanno $\infty^j$ soluzioni($j$ gradi di infinito) se, e solo se, $j=k-r(A')$.
-        \end{enumerate}
-    \end{tcolorbox}
-    
-    La soluzione poi si trova estrapolando la base($B$) dal modello dove il resto del modello lo chiamiamo $N$. Il modello allora lo si può riscrivere in forma $[B|N]$. Riscrivo quindi il modello nella forma $B_{x_B}+N_{x_N}=b$ dove $x_B$ e $x_N$ sono le soluzioni del sistema. La soluzione si ottiene dopo aver posto a $0$ tutte le $n$ variabili che non appartengono a $B$. Per farlo si inverte la matrice $B$, quindi si ottiene: $x_B=B^{-1}b-B^{-1}N_{X_N}$ da qui si comprende il motivo di porre $X_N$ a $0$ visto che la soluzione è:$X_N=0, X_B = B^{-1}b$.
+$$ \text{Modello}=
+  \begin{cases}
+    x_1 \le 4          \\
+    2x_2 \le 12        \\
+    3x_1 + 2x_2 \le 18 \\
+    x_1 \ge 0          \\
+    x_2 \ge 0          \\
+    Z = 3x_1 + 5x_2
+  \end{cases}
+$$
 
-    \subsubsection{Degenerazione del modello} 
-      La degenerazione si ottiene quando si pone a $0$ un parametro interno alla base $B$. questo porta ad avere più soluzioni nella base.
-
-    \subsubsection{\textbf{Teorema fondamentale della PL}}
-      Dato il problema lineare in forma standard
-      $$Z=\text{min}\{c^Tx:Ax=b, \ge 0 \}$$
-      con $A|r(A)=m$ 
-      \begin{enumerate}
-        \item Se esiste una \textit{soluzione ammissibile} esiste anche una soluzione di base
-        \item Se esiste una \textit{soluzione ottima} esiste una soluzione ottima di base.
-      \end{enumerate}
-
-    \subsection{Assunzioni sulla programmazione lineare}
-      
-      \subsubsection{Proporzionalità}
-        Il contributo di ogni attività al \textit{valore della funzione obiettivo $Z$} è proporzionale al livello dell'attività $x_j$ rappresentata da $c_jx_j$ in $Z$. Come il contributo nei vincoli funzionali è proporzionale al livello di $x_j$ rappresentato da prodotto $a_{ij}x_j$. L'assunzione dice dunque esclude ogni esponente diverso da quello neutro$(1)$ per ogni variabile nel modello lineare.
-
-      \subsubsection{Addività}
-        Ogni funzione nel modello lineare è la somma dei contributi individuali delle rispettive attività.
-
-      \subsubsection{Divisibilità}
-        Le variabili di decisione in un modello di programmazione lineare possono avere un qualsiasi valore, (anche non interi) per soddisfare i vincoli. Quindi i valori non sono obbligatoriamente interi, quindi un attività può essere svolta a \textit{livelli frazionati}.
-
-      \subsubsection{Certezza}
-        Il valore assegnato ad ogni parametro si assume sia una costante conosciuta.
-
-  \section{Risolvere i problemi di PL con l'algoritmo del simplesso:}
-    Arrivati a questo punti si deve introdurre l'\textit{algoritmo del simplesso} una procedura generale per risolvere problemi di programmazione lineare sviluppato da \textit{George Dantzig} nel 1947.
-
-    \subsection{Il concetto}
-      Il metodo del simplesso è un metodo algebrico che si basa su un concetto geometrico. Quindi una prefazione geometrica aiuta a comprendere il concetto sotto. Per evitare di definire un nuovo esempio riprenderemo quello del capitolo precendente di "Schiopparelli \& CO".
-      
-      \begin{figure}[ht]
-        \centering
-        \begin{subfigure}[b]{0.45\textwidth}
-          $$ \text{Modello}=
-          \begin{cases}
-            x_1 \le 4 \\
-            2x_2 \le 12 \\
-            3x_1 + 2x_2 \le 18 \\
-            x_1 \ge 0 \\
-            x_2 \ge 0 \\
-            Z = 3x_1 + 5x_2
-            
-          \end{cases}
-          $$ \\ \\ \\ \\ \\
-          \caption{Modello del problema "Schiopparelli \& CO"}
-        \end{subfigure}
-        \quad
-        \begin{subfigure}[b]{0.45\textwidth}
-          \begin{tikzpicture}
-            \begin{axis}[
-              xlabel={$x_1$},
-              ylabel={$x_2$},
-              grid=major,
-              axis lines=left,
-              xmin=0, xmax=6,
-              ymin=0, ymax=10,
-              title={Possibili soluzioni}
-            ]
-
-            \draw[red] (axis cs:4,0) -- (axis cs:4,10);
-            \addplot[red, domain=0:10, samples=10] {6};
-            \addplot[red, domain=0:10, samples=10] {-3/2*x+9}; 
-
-            \coordinate (A) at (axis cs:0,0);
-            \coordinate (B) at (axis cs:0,6);
-            \coordinate (C) at (axis cs:2,6);
-            \coordinate (D) at (axis cs:4,3);
-            \coordinate (E) at (axis cs:4,0);
-            
-            \fill[gray, opacity=0.5] (A) -- (B) -- (C) -- (D) -- (E) -- cycle;
-            \draw[black, thick] (A) -- (B) -- (C) -- (D) -- (E) -- cycle;
-              \draw[opacity=0](1,1) -- (3,3) node[pos=0.5, above, opacity=1]{Regione accettabile};  
-
-              \fill (0,0) circle (2pt) node[above right] {\color{darkgreen}{$(0,0)$}};
-              \fill (0,6) circle (2pt) node[above right] {\color{darkgreen}{$(0,6)$}};
-              \fill (2,6) circle (2pt) node[above right] {\color{darkgreen}{$(2,6)$}};
-              \fill (4,3) circle (2pt) node[above right] {\color{darkgreen}{$(4,3)$}};
-              \fill (4,0) circle (2pt) node[above right] {\color{darkgreen}{$(4,0)$}};
-              \fill (0,9) circle (2pt) node[above right] {\color{red}{$(0,9)$}};
-              \fill (4,6) circle (2pt) node[above right] {\color{red}{$(4,6)$}};
-              \fill (6,0) circle (2pt) node[above left ] {\color{red}{$(6,0)$}};
-            \end{axis}
+\subsection{Soluzione dei grafici}
+Avendo questo problema due \textit{variabili decisionali} su può usare un grafico bidimensionale. Analazziamo la soluzione passo passo. In \textit{blu} ci sono i vincoli di positività $x_1\ge0$, $x_2\ge0$. In \textit{rosso} il inseriamo i vincoli $x_1\le4$ e $2x_2\le12$ e $3x_1+2x_2\le18$. In \textit{verde} l'area delle possibili soluzioni. Si arriva quindi al punto di scegliere un punto che massimizzi $Z=3x_1+5x_2$. Da qui si avanza con il metodo \textit{trial and error} prendendo un valore arbitrario.
 
 
-          \end{tikzpicture}
-          \caption{Soluzioni grafiche}
-        \end{subfigure}
+\begin{figure}[ht]
+  \centering
+  \begin{subfigure}[b]{0.45\textwidth}
+    \begin{tikzpicture}
+      \begin{axis}[
+          xlabel={$x_1$},
+          ylabel={$x_2$},
+          grid=major,
+          axis lines=left,
+          xmin=0, xmax=5,
+          ymin=0, ymax=10,
+          title={Soluzione grafica}
+        ]
 
-      \end{figure}
+        %Primo punto
+        \draw[blue] (axis cs:0,0) -- (axis cs:0,10);
+        \addplot[blue, domain=0:10, samples=100] {0};
+        %Secondo punto
+        \draw[red] (axis cs:4,0) -- (axis cs:4,10) node[pos=0.8, above, rotate=90] {\textcolor{blue}{$x_1\le4$}};
+        \addplot[red, domain=0:10, samples=10] {6} node[pos=0.1, above] {\textcolor{blue}{$2x_2\le18$}};
+        \addplot[red, domain=0:10, samples=10] {-3/2*x+9} node[pos=0.4, above, rotate=-33]{\textcolor{blue}{$3x_1+2x_2\le18$}};
 
-      Si noti come i punti evidenziati(CFP) non siano altro che l'intersezione di due \textit{vincoli}, alcuni sono al limitare e altri no, rispettivamente quelli \textit{verdi} e quelli \textit{rossi}, se ora questa affermazione lascia il tempo che trova più tardi sarà importante.
-      
-      \begin{tcolorbox}
-        \textbf{Definizione:} \\
-        Per ogni problema lineare con $n$ variabili di decisione due CPF sono \textit{adiacenti} se condividono $n-1$ vincoli. Due CPF adiacenti sono uniti da un segmento sulle dimensioni dei vincoli condivisi. Ci si riferisce a questo segmento come: \textbf{Spigolo} della regione accettabile.
-      \end{tcolorbox}
-    
-      Per la soluzione si usa il \textbf{test di ottimalità}:
+        %Terzo punto
 
-      \begin{tcolorbox}
-        \textbf{Test di ottimalità:}
-        Considerando un qualsiasi problema di programmazione lineare che possiede almeno una soluzione ottimale. Se una soluzione CPF non ha \textit{adiacenze} migliori allora quella soluzione è la soluzione migliore.
-      \end{tcolorbox}
-    \subsection{Risolvere il problema d'esempio}
-      \begin{minipage}{0.55\textwidth}
-        Dato che nel nostro problema $n=2$ i CPF adiacenti devono condividere un vincolo.
-      \end{minipage}
-      \hfill
-      \begin{minipage}{0.30\textwidth}
-          \begin{tabular}{|c|c|}
-            \hline
-            \textbf{CPF} & \textbf{Adiacenze} \\
-            \hline
-            $(0,0)$ & $(0,6),(4,0)$ \\
-            $(0,6)$ & $(2,6),(0,0)$ \\
-            $(2,6)$ & $(4,3),(0,6)$ \\
-            $(4,3)$ & $(4,0),(2,6)$ \\
-            $(4,0)$ & $(0,0),(4,3)$ \\
-            \hline
-          \end{tabular}
-      \end{minipage}
-      \begin{tcolorbox}
-        \textbf{Inizializzazione}: \\
-          Prendo $(0,0)$ come soluzione CPF da esaminare, non c'è un vero e proprio criterio per scegliere in questo caso era solo il più semplice. \\
-        \circled{1}\textbf{Test di ottimalità}: \\ 
-          \textcolor{red}{Fallito}, non è ottimale, esiste una soluzione migliore adiacente. \\
-        \textbf{Iterazione 1:}
-          Mi muovo verso $(0,6)$ usando i seguenti step.
-          \begin{enumerate}
-            \item Considero(nella tabella) i due CPF adiacenti $(0,6)$ e $(4,0)$, da cui vien fuori: $(0,6): Z=3\cdot 0 + 6 \cdot 5 = 30$ e $(4,0): Z=3 \cdot 4 + 5 \cdot 0 = 12$. Ora prendo il valore che massimizza $Z$, quindi $(0,6)$ mi muoverò nella direzione di $x_2$ fino a trovare il primo CPF.
-            \item Mi fermo all'incontrare primo vincolo incontrato: $2x_2 \le 12$ per evitare di uscire dalla \textit{regione accettabile}.
-            \item Risolvo l'intersezione del nuovo insieme di vincoli.
-          \end{enumerate}
+        \coordinate (A) at (axis cs:0,0);
+        \coordinate (B) at (axis cs:0,6);
+        \coordinate (C) at (axis cs:2,6);
+        \coordinate (D) at (axis cs:4,3);
+        \coordinate (E) at (axis cs:4,0);
 
-          \circled{2}\textbf{Test di ottimalità}: \\
-          \textcolor{red}{Fallito}, non è ottimale, esiste una soluzione migliore adiacente. \\
+        \fill[green, opacity=0.5] (A) -- (B) -- (C) -- (D) -- (E) -- cycle;
+        \draw[green, thick] (A) -- (B) -- (C) -- (D) -- (E) -- cycle;
+      \end{axis}
+    \end{tikzpicture}
+    \caption{Soluzione grafica}
+  \end{subfigure}
+  \quad
+  \begin{subfigure}[b]{0.45\textwidth}
+    \begin{tikzpicture}
+      \begin{axis}[
+          xlabel={$x_1$},
+          ylabel={$x_2$},
+          grid=major,
+          axis lines=left,
+          xmin=0, xmax=6,
+          ymin=0, ymax=10,
+          title={Possibili soluzioni}
+        ]
+        \addplot[red, domain=0:10, samples=10] {-3/5*x+36/5} node[pos=0.2, above, rotate=-15]{\textcolor{blue}{$Z=36=3x_1+5x_2$}};
+        \addplot[red, domain=0:10, samples=10] {-3/5*x+20/5} node[pos=0.2, above, rotate=-15]{\textcolor{blue}{$Z=20=3x_1+5x_2$}};
+        \addplot[red, domain=0:10, samples=10] {-3/5*x+10/5} node[pos=0.2, above, rotate=-15]{\textcolor{blue}{$Z=10=3x_1+5x_2$}};
 
-        \textbf{Iterazione 2:}
-          Mi muovo verso $(2,6)$ usando i seguenti step.
-          \begin{enumerate}
-            \item Considero(nella tabella) i due CPF adiacenti $(2,6)$ e $(0,0)$, da cui vien fuori: $(0,0): Z=3\cdot 0 + 6 \cdot 0 = 0$ e $(2,6): Z=3 \cdot 2 + 5 \cdot 6 = 36$. Ora prendo il valore che massimizza $Z$, quindi $(2,6)$ mi muoverò nella direzione di $x_1$ fino a trovare il primo CPF.
-            \item Mi fermo all'incontrare primo vincolo incontrato: $3x_1+2x_2\le18$ per evitare di uscire dalla \textit{regione accettabile}.
-            \item Risolvo l'intersezione del nuovo insieme di vincoli.
-          \end{enumerate}
 
-          \circled{3}\textbf{Test di ottimalità}: \\
-          \textcolor{darkgreen}{Passato}, è ottimale, non esiste una soluzione migliore adiacente. Ho trovato la soluzione migliore.\\
-      
-      \end{tcolorbox} 
-        \subsubsection{Concetti della soluzione:}
-        \begin{enumerate}
-          \item Il simplesso si concentra esclusivamnete sui CPF perché se esite una soluzione migliore ne esiste una che coincide con un CPF.
-          \item Il simplesso è algoritmo \textit{iterativo}.
-          \usetikzlibrary {calc,positioning,shapes.misc}
-          \begin{tikzpicture}[node distance=5mm and 5mm,
+
+        \coordinate (A) at (axis cs:0,0);
+        \coordinate (B) at (axis cs:0,6);
+        \coordinate (C) at (axis cs:2,6);
+        \coordinate (D) at (axis cs:4,3);
+        \coordinate (E) at (axis cs:4,0);
+
+        \fill[green, opacity=0.1] (A) -- (B) -- (C) -- (D) -- (E) -- cycle;
+        \draw[green, thick] (A) -- (B) -- (C) -- (D) -- (E) -- cycle;
+
+      \end{axis}
+    \end{tikzpicture}
+    \caption{Possibili soluzioni}
+  \end{subfigure}
+
+\end{figure}
+
+Si noti nel grafico a sinistra che tutte le rette sono parallele, infatti sono tutte forme di una funzione chiamata \textbf{slope-intercept form}, in questo caso è $x_2=-\frac{3}{5}x_1+\frac{1}{5}Z$. Nel grafico a destra si può vedere che la soluzione massima sia $(x_1=2,x_2=6)$ portando $Z=36$.
+
+\begin{tcolorbox}
+  \textbf{ATTENZIONE:}
+  Nell'esempio fornito si può utilizzare un piano per la scaristà di parametri, ma con il crescere del numero di parametri cresce il numero di dimensioni del grafico. In caso la \textit{regione ammissibile} diventa un poliedro che può essere: \textit{vuoto} in caso non esistano soluzioni ammissibili, \textit{illimitato} in caso in almeno una dimensione non esiste il \textit{valore ottimo}. Esiste poi un almeno un vertice di tale poliedro che corrisponde ad un \textit{valore ottimo}. In ogni caso il poliedro è convesso.
+
+\end{tcolorbox}
+
+\subsection{Modello di programmazione lineare}
+Abbiamo visto come trovare la soluzione graficamente, ora vediamo l'approccio di programmazione lineare. Cominciamo ora con termini necessari e notazione. \textit{Risorse} e \textit{attività}, dove $m$ indica il numero di risorse utilizzabili e $n$ il numero di attività considerate. Lo scopo in questo caso è trovare i \textit{livelli} delle attività per avere la \textit{migliore prestazione globale}. Di seguito la lista di simboli e il grafico generici per la programmazione lineare.
+\begin{itemize}
+  \item $Z$: Valore totale delle prestazioni.
+  \item $x_j$: Livello dell'attività $j\in[1,n]$.
+  \item $c_j$: Incremento in $Z$ per ogni incremento unitario dell'attività $j$.
+  \item $b_i$: Ammontare delle risorse $i$ disponibili per l'attività. $i\in[1,m]$.
+  \item $a_{ij}$: Valore della risorsa $i$ consumata da ogni unità di attività $j$.
+\end{itemize}
+
+\begin{table}[ht]
+  \centering
+  \begin{tabular}{|c|c|c|c|c|c|}
+    \hline
+    \multicolumn{6}{|c|}{\textbf{Risorse usate per Unità di attività}}                                                                                        \\
+    \hline
+    \textbf{Risorse}       & \multicolumn{4}{|c|}{\textbf{Attività}} & \textbf{Quantità di risorse disponibili}                                               \\
+    \cline{2-5}
+                           & \textbf{1}                              & \textbf{2}                               & \textbf{$\cdots$} & \textbf{$n$} &          \\
+    \hline
+    1                      & $a_{11}$                                & $a_{12}$                                 & $\cdots$          & $a_{1n}$     & $b_1$    \\
+    2                      & $a_{21}$                                & $a_{22}$                                 & $\cdots$          & $a_{2n}$     & $b_2$    \\
+    $\vdots$               & $\vdots$                                & $\vdots$                                 & $\ddots$          & $\vdots$     & $\vdots$ \\
+    $m$                    & $a_{m1}$                                & $a_{m2}$                                 & $\cdots$          & $a_{mn}$     & $b_m$    \\
+    \hline
+    \multicolumn{6}{|c|}{\textbf{Contributo a $Z$ per unità}}                                                                                                 \\
+    \hline
+    \multicolumn{1}{|c|}{} & $c_1$                                   & $c_2$                                    & $\cdots$          & $c_n$        &          \\
+    \hline
+  \end{tabular}
+\end{table}
+
+\subsection{Forma standard del modello}
+Dalla tabella precedente si deriva il modello generale(\textbf{forma standard}) dal quale si può derivare il modello per il problema che abbia già risolto graficamente.\\
+
+\subsubsection{Modello generale}
+$$
+  \begin{cases}
+    \begin{rcases}
+      Z = c_1x_1 + \dots + c_nx_n \hspace{1.75cm}
+    \end{rcases} \text{Funzione obiettivo, da massimizzare} \\
+    \begin{rcases}
+      a_{11}x_1 + a_{12}+\dots + a_{1n}x_n \le b_1 \\
+      a_{21}x_1 + a_{22}+\dots + a_{2n}x_n \le b_2 \\
+      \vdots                                       \\
+      a_{m1}x_1 + a_{m2}+\dots + a_{mn}x_n \le b_m \\
+    \end{rcases} \text{Vincoli funzionali}            \\
+    \begin{rcases}
+      x_1\ge0 \\
+      \vdots  \\
+      x_n \ge 0 \hspace{4.10cm}
+    \end{rcases} \text{Vincoli di non negatività}
+  \end{cases}
+$$
+
+\begin{tcolorbox}
+  \textbf{alternative}: \\
+  \begin{itemize}
+    \item Minimizzare la \textit{funzione obiettivo}.
+    \item Rivoltare i \textit{vincoli funzionali} in modo da avere $\ge$.
+    \item Porre un \textit{vincolo funzionale} a un ugualianza.
+    \item Eliminare \textit{vincoli di non negatività}.
+  \end{itemize}
+\end{tcolorbox}
+
+\subsubsection{Soluzione del modello}
+Il termine è utilizzato per indicare il metodo di soluzione del modello. Una \textbf{soluzione accettabile} è una soluzione dove tutti vincoli sono soddisfatti. Una \textbf{soluzione inaccettabile} è una soluzione dove almeno un vincolo non è soddisfatto. La \textbf{regione accettabile} è l'insieme di tutte le possibili soluzioni. La \textbf{soluzione ottima} è la soluzione accettabile più favorevole alla funzione obiettivo. É possibile che non esista una soluzione. La maggior parte dei modelli ha una soluzione ottima, ma non è impossibile che ne esistano più di una. Potrebbe accadere che non esistano soluzioni ottimali, che succede in caso non esista una soluzione accettabile o se i limiti non prevengono la funzione obiettivo($Z$), al secondo caso ci si riferisce come \textbf{$Z$ svincolata} o \textbf{obiettivo svincolato}. Una soluzione che si trova a un angolo della regione accettabile si chiama \textbf{soluzione accettabile ad angolo}, (CPF).
+
+\begin{tikzpicture}
+  \begin{axis}[
+      xlabel={$x_1$},
+      ylabel={$x_2$},
+      grid=major,
+      axis lines=left,
+      xmin=0, xmax=6,
+      ymin=0, ymax=10,
+      title={Possibili soluzioni}
+    ]
+    \coordinate (A) at (axis cs:0,0);
+    \coordinate (B) at (axis cs:0,6);
+    \coordinate (C) at (axis cs:2,6);
+    \coordinate (D) at (axis cs:4,3);
+    \coordinate (E) at (axis cs:4,0);
+
+    \fill[gray, opacity=0.5] (A) -- (B) -- (C) -- (D) -- (E) -- cycle;
+    \draw[black, thick] (A) -- (B) -- (C) -- (D) -- (E) -- cycle;
+    \draw[opacity=0](1,1) -- (3,3) node[pos=0.5, above, opacity=1]{Regione accettabile};
+  \end{axis}
+\end{tikzpicture}
+
+\subsection{Soluzione aritmetica del modello}
+Metodo per risolvere il modello evitando di utilizzare il grafico. Si parte quindi dal \textit{modello lineare} per portarlo in forma standard e poi risolverlo. Per portare il modello in forma standard tutti i vincoli di \textit{disuguaglianza} devono essere trasformati in \textit{vincoli di ugualianza} e la funzione obiettivo $Z$ vengono poste in forma di minizzazione. \\ Per poter portare ogni vincolo di \textit{disuguaglianza} ad un vincolo di \textit{ugualianza} si aggiunge una variabile di \textit{slack} per ogni vincolo in gorma di disuguaglianza.
+
+$$
+  \begin{cases}
+    Z = x_1 + 3x_2 - 3x_3     \\
+    -3x_1 + 2x_2 - 2x_3 \le 9 \\
+    -4x_1 - 3x_2 + 3x_3 \le 8 \\
+    x_1 \ge 0,
+    x_2 \ge 0,
+    x_3 \ge 0
+  \end{cases}
+  \to
+  \begin{cases}
+    Z = x_1 + 3x_2 - 3x_3                         \\
+    -3x_1 + 2x_2 - 2x_3 \textcolor{red}{+x_4 =} 9 \\
+    -4x_1 - 3x_2 + 3x_3 \textcolor{red}{+x_5 =} 8 \\
+    x_1 \ge 0,
+    x_2 \ge 0,
+    x_3 \ge 0                                     \\
+    \textcolor{red}{x_4 \ge 0, x_5 \ge 0}
+  \end{cases}
+$$
+
+Si passa così da un sistema da $m$ vincoli e $n$ variabili ad un modello con $m$ vincoli e $n+m$ variabili. Si rimane quindi con una matrice che, a meno di vincoli ridondanti, ha \textbf{Rango $m$}. Il sistema ha una soluzione univoca se eliminando gli $n$ gradi di libertà usando $n$ variabili.
+
+\begin{tcolorbox}
+  \textbf{Teorema di Rouché Capelli}
+  Data una matrice in forma $A'=[A|b]$ dove $A$ è una matrice $m\ x\ n$ e $b$ un vettore di $n$ elementi allora:
+  \begin{enumerate}
+    \item Se il sistema è risolubile la soluzione è unica se, e solo se, $r(A')=k$ dove $k$ è il numero di incognite del sistema.
+    \item Se il sistema è risolubile si hanno $\infty^j$ soluzioni($j$ gradi di infinito) se, e solo se, $j=k-r(A')$.
+  \end{enumerate}
+\end{tcolorbox}
+
+La soluzione poi si trova estrapolando la base($B$) dal modello dove il resto del modello lo chiamiamo $N$. Il modello allora lo si può riscrivere in forma $[B|N]$. Riscrivo quindi il modello nella forma $B_{x_B}+N_{x_N}=b$ dove $x_B$ e $x_N$ sono le soluzioni del sistema. La soluzione si ottiene dopo aver posto a $0$ tutte le $n$ variabili che non appartengono a $B$. Per farlo si inverte la matrice $B$, quindi si ottiene: $x_B=B^{-1}b-B^{-1}N_{X_N}$ da qui si comprende il motivo di porre $X_N$ a $0$ visto che la soluzione è:$X_N=0, X_B = B^{-1}b$.
+
+\subsubsection{Degenerazione del modello}
+La degenerazione si ottiene quando si pone a $0$ un parametro interno alla base $B$. questo porta ad avere più soluzioni nella base.
+
+\subsubsection{\textbf{Teorema fondamentale della PL}}
+Dato il problema lineare in forma standard
+$$Z=\text{min}\{c^Tx:Ax=b, \ge 0 \}$$
+con $A|r(A)=m$
+\begin{enumerate}
+  \item Se esiste una \textit{soluzione ammissibile} esiste anche una soluzione di base
+  \item Se esiste una \textit{soluzione ottima} esiste una soluzione ottima di base.
+\end{enumerate}
+
+\subsection{Assunzioni sulla programmazione lineare}
+
+\subsubsection{Proporzionalità}
+Il contributo di ogni attività al \textit{valore della funzione obiettivo $Z$} è proporzionale al livello dell'attività $x_j$ rappresentata da $c_jx_j$ in $Z$. Come il contributo nei vincoli funzionali è proporzionale al livello di $x_j$ rappresentato da prodotto $a_{ij}x_j$. L'assunzione dice dunque esclude ogni esponente diverso da quello neutro$(1)$ per ogni variabile nel modello lineare.
+
+\subsubsection{Addività}
+Ogni funzione nel modello lineare è la somma dei contributi individuali delle rispettive attività.
+
+\subsubsection{Divisibilità}
+Le variabili di decisione in un modello di programmazione lineare possono avere un qualsiasi valore, (anche non interi) per soddisfare i vincoli. Quindi i valori non sono obbligatoriamente interi, quindi un attività può essere svolta a \textit{livelli frazionati}.
+
+\subsubsection{Certezza}
+Il valore assegnato ad ogni parametro si assume sia una costante conosciuta.
+
+\section{Risolvere i problemi di PL con l'algoritmo del simplesso:}
+Arrivati a questo punti si deve introdurre l'\textit{algoritmo del simplesso} una procedura generale per risolvere problemi di programmazione lineare sviluppato da \textit{George Dantzig} nel 1947.
+
+\subsection{Il concetto}
+Il metodo del simplesso è un metodo algebrico che si basa su un concetto geometrico. Quindi una prefazione geometrica aiuta a comprendere il concetto sotto. Per evitare di definire un nuovo esempio riprenderemo quello del capitolo precendente di "Schiopparelli \& CO".
+
+\begin{figure}[ht]
+  \centering
+  \begin{subfigure}[b]{0.45\textwidth}
+    $$ \text{Modello}=
+      \begin{cases}
+        x_1 \le 4          \\
+        2x_2 \le 12        \\
+        3x_1 + 2x_2 \le 18 \\
+        x_1 \ge 0          \\
+        x_2 \ge 0          \\
+        Z = 3x_1 + 5x_2
+      \end{cases}
+    $$ \\ \\ \\ \\ \\
+    \caption{Modello del problema "Schiopparelli \& CO"}
+  \end{subfigure}
+  \quad
+  \begin{subfigure}[b]{0.45\textwidth}
+    \begin{tikzpicture}
+      \begin{axis}[
+          xlabel={$x_1$},
+          ylabel={$x_2$},
+          grid=major,
+          axis lines=left,
+          xmin=0, xmax=6,
+          ymin=0, ymax=10,
+          title={Possibili soluzioni}
+        ]
+
+        \draw[red] (axis cs:4,0) -- (axis cs:4,10);
+        \addplot[red, domain=0:10, samples=10] {6};
+        \addplot[red, domain=0:10, samples=10] {-3/2*x+9};
+
+        \coordinate (A) at (axis cs:0,0);
+        \coordinate (B) at (axis cs:0,6);
+        \coordinate (C) at (axis cs:2,6);
+        \coordinate (D) at (axis cs:4,3);
+        \coordinate (E) at (axis cs:4,0);
+
+        \fill[gray, opacity=0.5] (A) -- (B) -- (C) -- (D) -- (E) -- cycle;
+        \draw[black, thick] (A) -- (B) -- (C) -- (D) -- (E) -- cycle;
+        \draw[opacity=0](1,1) -- (3,3) node[pos=0.5, above, opacity=1]{Regione accettabile};
+
+        \fill (0,0) circle (2pt) node[above right] {\color{darkgreen}{$(0,0)$}};
+        \fill (0,6) circle (2pt) node[above right] {\color{darkgreen}{$(0,6)$}};
+        \fill (2,6) circle (2pt) node[above right] {\color{darkgreen}{$(2,6)$}};
+        \fill (4,3) circle (2pt) node[above right] {\color{darkgreen}{$(4,3)$}};
+        \fill (4,0) circle (2pt) node[above right] {\color{darkgreen}{$(4,0)$}};
+        \fill (0,9) circle (2pt) node[above right] {\color{red}{$(0,9)$}};
+        \fill (4,6) circle (2pt) node[above right] {\color{red}{$(4,6)$}};
+        \fill (6,0) circle (2pt) node[above left ] {\color{red}{$(6,0)$}};
+      \end{axis}
+
+
+    \end{tikzpicture}
+    \caption{Soluzioni grafiche}
+  \end{subfigure}
+
+\end{figure}
+
+Si noti come i punti evidenziati(CFP) non siano altro che l'intersezione di due \textit{vincoli}, alcuni sono al limitare e altri no, rispettivamente quelli \textit{verdi} e quelli \textit{rossi}, se ora questa affermazione lascia il tempo che trova più tardi sarà importante.
+
+\begin{tcolorbox}
+  \textbf{Definizione:} \\
+  Per ogni problema lineare con $n$ variabili di decisione due CPF sono \textit{adiacenti} se condividono $n-1$ vincoli. Due CPF adiacenti sono uniti da un segmento sulle dimensioni dei vincoli condivisi. Ci si riferisce a questo segmento come: \textbf{Spigolo} della regione accettabile.
+\end{tcolorbox}
+
+Per la soluzione si usa il \textbf{test di ottimalità}:
+
+\begin{tcolorbox}
+  \textbf{Test di ottimalità:}
+  Considerando un qualsiasi problema di programmazione lineare che possiede almeno una soluzione ottimale. Se una soluzione CPF non ha \textit{adiacenze} migliori allora quella soluzione è la soluzione migliore.
+\end{tcolorbox}
+\subsection{Risolvere il problema d'esempio}
+\begin{minipage}{0.55\textwidth}
+  Dato che nel nostro problema $n=2$ i CPF adiacenti devono condividere un vincolo.
+\end{minipage}
+\hfill
+\begin{minipage}{0.30\textwidth}
+  \begin{tabular}{|c|c|}
+    \hline
+    \textbf{CPF} & \textbf{Adiacenze} \\
+    \hline
+    $(0,0)$      & $(0,6),(4,0)$      \\
+    $(0,6)$      & $(2,6),(0,0)$      \\
+    $(2,6)$      & $(4,3),(0,6)$      \\
+    $(4,3)$      & $(4,0),(2,6)$      \\
+    $(4,0)$      & $(0,0),(4,3)$      \\
+    \hline
+  \end{tabular}
+\end{minipage}
+\begin{tcolorbox}
+  \textbf{Inizializzazione}: \\
+  Prendo $(0,0)$ come soluzione CPF da esaminare, non c'è un vero e proprio criterio per scegliere in questo caso era solo il più semplice. \\
+  \circled{1}\textbf{Test di ottimalità}: \\
+  \textcolor{red}{Fallito}, non è ottimale, esiste una soluzione migliore adiacente. \\
+  \textbf{Iterazione 1:}
+  Mi muovo verso $(0,6)$ usando i seguenti step.
+  \begin{enumerate}
+    \item Considero(nella tabella) i due CPF adiacenti $(0,6)$ e $(4,0)$, da cui vien fuori: $(0,6): Z=3\cdot 0 + 6 \cdot 5 = 30$ e $(4,0): Z=3 \cdot 4 + 5 \cdot 0 = 12$. Ora prendo il valore che massimizza $Z$, quindi $(0,6)$ mi muoverò nella direzione di $x_2$ fino a trovare il primo CPF.
+    \item Mi fermo all'incontrare primo vincolo incontrato: $2x_2 \le 12$ per evitare di uscire dalla \textit{regione accettabile}.
+    \item Risolvo l'intersezione del nuovo insieme di vincoli.
+  \end{enumerate}
+
+  \circled{2}\textbf{Test di ottimalità}: \\
+  \textcolor{red}{Fallito}, non è ottimale, esiste una soluzione migliore adiacente. \\
+
+  \textbf{Iterazione 2:}
+  Mi muovo verso $(2,6)$ usando i seguenti step.
+  \begin{enumerate}
+    \item Considero(nella tabella) i due CPF adiacenti $(2,6)$ e $(0,0)$, da cui vien fuori: $(0,0): Z=3\cdot 0 + 6 \cdot 0 = 0$ e $(2,6): Z=3 \cdot 2 + 5 \cdot 6 = 36$. Ora prendo il valore che massimizza $Z$, quindi $(2,6)$ mi muoverò nella direzione di $x_1$ fino a trovare il primo CPF.
+    \item Mi fermo all'incontrare primo vincolo incontrato: $3x_1+2x_2\le18$ per evitare di uscire dalla \textit{regione accettabile}.
+    \item Risolvo l'intersezione del nuovo insieme di vincoli.
+  \end{enumerate}
+
+  \circled{3}\textbf{Test di ottimalità}: \\
+  \textcolor{darkgreen}{Passato}, è ottimale, non esiste una soluzione migliore adiacente. Ho trovato la soluzione migliore.\\
+
+\end{tcolorbox}
+\subsubsection{Concetti della soluzione:}
+\begin{enumerate}
+  \item Il simplesso si concentra esclusivamnete sui CPF perché se esite una soluzione migliore ne esiste una che coincide con un CPF.
+  \item Il simplesso è algoritmo \textit{iterativo}.
+        \usetikzlibrary {calc,positioning,shapes.misc}
+        \begin{tikzpicture}[node distance=5mm and 5mm,
             skip loop/.style={to path={-- ++(0,-.5) -| (\tikztotarget)}}]
-            \node (init)[terminal]{Inizializzazione};
-            \node (test)[terminal, right=of init]{Test di ottimalità};
-            \node (pass)[terminal, above right=of test]{\textcolor{darkgreen}{Passato}};
-            \node (fail)[terminal, below right=of test]{\textcolor{red}{Fallito}};
-            \node (iter)[terminal, right=of fail]{Iterazione};
-            \node (end)[terminal, right=of pass]{Soluzione ottima};
-          
-            \path (init) edge[->] (test)
-                  (test) edge[->] (pass)
-                  (test) edge[->] (fail)
-                  (fail) edge[->] (iter)
-                  ($ (iter.east) + (2mm,0) $)
-                  edge[->,skip loop] ($ (test.west) - (2mm,0) $)
-                  (pass) edge[->] (end)
-                  ;
-          
-                  \draw (iter.east) -- ($(iter.east) + (2mm,0)$);
-          
-          \end{tikzpicture}
-            \item Se possibile per l'inizializzazione si sceglie l'origine in modo da eliminare entropia iniziale.
-            \item Computazionalmente è più efficente confrontare il CPF adiacenti.
-            \item Dopo aver trovato un CPF controlla se ne esiste uno adiacente migliore, cerca per ogni paramatro quale deve essere modificato per incrementare di più la funzione obiettivo. O per meglio dire quale incrementa di più il \textit{rateo di incremento di $Z$}
+          \node (init)[terminal]{Inizializzazione};
+          \node (test)[terminal, right=of init]{Test di ottimalità};
+          \node (pass)[terminal, above right=of test]{\textcolor{darkgreen}{Passato}};
+          \node (fail)[terminal, below right=of test]{\textcolor{red}{Fallito}};
+          \node (iter)[terminal, right=of fail]{Iterazione};
+          \node (end)[terminal, right=of pass]{Soluzione ottima};
 
-        \end{enumerate}
-    \subsection{Il metodo del simplesso}
-      Per quanto graficamente sia più facile da comprendere queseto metodo non si può tradurre computazionalmente, per poterlo rendere computabile lo si deve formalizzare aritmeticamente. Come nel capitolo precedente per la soluzione aritmetica si pone il modello in forma aumentata.
-    
-    $$
-      \begin{cases}
-        Z = 3x_1 + 5x_2 \\
-        x_1 \le 4 \\
-        2x_2 \le 12\\
-        3x_1+2x_2\le 18\\
-        x_1 \ge 0,
-        x_2 \ge 0
-      \end{cases}
-      \to
-      \begin{cases}
-        Z = 3x_1 + 5x_2\\
-        x_1 \textcolor{red}{+x_3 =}  4 \\
-        2x_2 \textcolor{red}{+x_4 =}  12\\
-        3x_1+2x_2\textcolor{red}{+x_5 =} 18\\
-        -3x_1 + 2x_2 - 2x_3 \textcolor{red}{+x_4 =} 9 \\
-        -4x_1 - 3x_2 + 3x_3 \textcolor{red}{+x_5 =} 8 \\
-        x_1 \ge 0,
-        x_2 \ge 0,
-        \textcolor{red}{x_3 \ge 0, x_4 \ge 0, x_5 \ge 0}
+          \path (init) edge[->] (test)
+          (test) edge[->] (pass)
+          (test) edge[->] (fail)
+          (fail) edge[->] (iter)
+          ($ (iter.east) + (2mm,0) $)
+          edge[->,skip loop] ($ (test.west) - (2mm,0) $)
+          (pass) edge[->] (end)
+          ;
 
-      \end{cases}
-    $$
-  
-    Si può notare dal nuovo modello che se una delle variabili di slack(\textit{in rosso}) sono poste a zero allora la soluzione si sul limite di un vincolo. Un valore maggiore di $0$ invece lo porta nella \textit{regione accettabile} e un valore negativo lo porta nella \textit{regione inaccettabile}. Per meglio comprendere viene comodo un esempio, ma prima si deve introdurre un po di terminologia.
+          \draw (iter.east) -- ($(iter.east) + (2mm,0)$);
 
-    \begin{itemize}
-      \item \textbf{Soluzione aumentata:} \\
+        \end{tikzpicture}
+  \item Se possibile per l'inizializzazione si sceglie l'origine in modo da eliminare entropia iniziale.
+  \item Computazionalmente è più efficente confrontare il CPF adiacenti.
+  \item Dopo aver trovato un CPF controlla se ne esiste uno adiacente migliore, cerca per ogni paramatro quale deve essere modificato per incrementare di più la funzione obiettivo. O per meglio dire quale incrementa di più il \textit{rateo di incremento di $Z$}
+
+\end{enumerate}
+\subsection{Il metodo del simplesso}
+Per quanto graficamente sia più facile da comprendere queseto metodo non si può tradurre computazionalmente, per poterlo rendere computabile lo si deve formalizzare aritmeticamente. Come nel capitolo precedente per la soluzione aritmetica si pone il modello in forma aumentata.
+
+$$
+  \begin{cases}
+    Z = 3x_1 + 5x_2 \\
+    x_1 \le 4       \\
+    2x_2 \le 12     \\
+    3x_1+2x_2\le 18 \\
+    x_1 \ge 0,
+    x_2 \ge 0
+  \end{cases}
+  \to
+  \begin{cases}
+    Z = 3x_1 + 5x_2                     \\
+    x_1 \textcolor{red}{+x_3 =}  4      \\
+    2x_2 \textcolor{red}{+x_4 =}  12    \\
+    3x_1+2x_2\textcolor{red}{+x_5 =} 18 \\
+    x_1 \ge 0,
+    x_2 \ge 0,
+    \textcolor{red}{x_3 \ge 0, x_4 \ge 0, x_5 \ge 0}
+  \end{cases}
+$$
+
+Si può notare dal nuovo modello che se una delle variabili di slack(\textit{in rosso}) sono poste a zero allora la soluzione si sul limite di un vincolo. Un valore maggiore di $0$ invece lo porta nella \textit{regione accettabile} e un valore negativo lo porta nella \textit{regione inaccettabile}. Per meglio comprendere viene comodo un esempio, ma prima si deve introdurre un po di terminologia.
+
+\begin{itemize}
+  \item \textbf{Soluzione aumentata:} \\
         Soluzione per le variabili originali, \textit{di decisione}, che devono essere aumentate dal valore corrispondente della \textit{variabile di slack}. \\
-          \begin{tcolorbox}
-            \textbf{Esempio}\\
-              Una soluzione normale sarebbe: $(x_1:3,x_2:2) \to (x_1:3,x_2:2, x_3:1, x_4:8, x_5:5) $
-          \end{tcolorbox}
-      \item \textbf{Soluzione basica:} \\
+        \begin{tcolorbox}
+          \textbf{Esempio}\\
+          Una soluzione normale sarebbe: $(x_1:3,x_2:2) \to (x_1:3,x_2:2, x_3:1, x_4:8, x_5:5) $
+        \end{tcolorbox}
+  \item \textbf{Soluzione basica:} \\
         È una soluzione CPF aumentata che può trovarsi all'interno o all'esterno della regione accettabile, che porta al condetto di \textit{soluzione basica accettabile} una soluzione basica ha le seguenti proprietà:
         \begin{enumerate}
-          \item 
-          \item
-          \item
-          \item
-          \item
+          \item Ogni variabile può essere o \textit{basica} o \textit{non basica}.
+          \item Il numero di \textit{variabili basiche} è uguale al numero di vincoli funzionali, parimenti il numero di \textit{variabili non basiche} sono il grado di libertà.
+          \item Le \textit{variabili non basiche} sono settate a $0$.
+          \item I valori delle variabili basiche sono ottenute simultaneamente.
+          \item Se le \textit{variabili basiche} soddisfano i vincoli di non negatività alla la soluzione basica è accettabile.
         \end{enumerate}
-      \item \textbf{Soluzione basica accettabile:}\\
-        Come da nome una \textit{soluzione basica} ma con il vincolo di trovarsi nella regione accettabile. 
-      \item \textbf{Gradi di libertà:} \\
+  \item \textbf{Soluzione basica accettabile:}\\
+        Come da nome una \textit{soluzione basica} ma con il vincolo di trovarsi nella regione accettabile.
+  \item \textbf{Gradi di libertà:} \\
         Differenza tra in numeri di variabili, (\textit{variabili di decisione} + \textit{variabili di slack}) e il numero di \textit{vincoli funzionali}. Indica il numero di variabili che possono essere poste ad un valore aribtrario, $0$, per poter ottenere una soluzione per le variabili rimanenti.
-    \end{itemize}
+\end{itemize}
 
+\subsection{L'algebra dell'algoritmo del simplesso}
+In questo paragrafo verranno rielaborati i punti precedenti per illustrare la connessione tra interpretazione geometrica e algebrica. Ci si riferisce allo stesso problema d'esempio usato precedentemente, in caso di dubbi sui passaggi si faccia riferimento lì.
+\begin{tcolorbox}
+  \begin{itemize}
+    \item \textbf{Inizializzazione}: \\
+          Scelgo di mettere $x_1, x_2$ al di fuori della base, in modo da trovare immediatamente i valori di $x_3, x_4, x_5$.
+          $$
+            \begin{cases}
+              Z = 3x_1 + 5x_2           \\
+              0+x_3 =  4 \to x_3=4      \\
+              0 +x_4 =  12 \to x_4 = 12 \\
+              0+0+x_5 = 18 \to x_5 = 18 \\
+              x_1 \ge 0,
+              x_2 \ge 0,
+              x_3 \ge 0,
+              x_4 \ge 0,
+              x_5 \ge 0
+            \end{cases}
+          $$
+          Si trova quindi la soluzione $(0,0,4,12,18)$.
+    \item \circled{1}\textbf{Test di ottimalità} \\
+          La funzione obiettivo $Z=3x_1+5x_2=0$. Essendo però i ratei di incremenento positivi i valori possono incrementare. Visto che tutte le altre BF esaminate hanno almeno un parametro maggiore di $0$ allora il valore attuale non è il migliore.
+    \item \textbf{Iterazione 1:}
+          \begin{enumerate}
+            \item \textbf{Determinare la direzione}:
+                  L'incrementare di una variabile non basica corrisponde al muoversi in una delle dimensioni. Data la funzione obiettivo $Z=3x_1+5x_2$ so che il coefficente di $x_1$ è $3$ e $x_2$ è $5$, prendo il maggiore: $5$.
+            \item \textbf{Dove fermarsi} \\
+                  Si vuole incrementare il più possibile il valore di un parametro ma rimanendo nella regione accettabile.
+                  $$
+                    \begin{cases}
+                      Z = 3x_1 + 5x_2                        \\
+                      x_1+x_3 =  4 \to x_3=4                 \\
+                      2x_2 +x_4 =  12 \to x_4 = 12 - 2x_2    \\
+                      3x_1+2x_2+x_5 = 18 \to x_5 = 18 - 2x_2 \\
+                      x_1 \ge 0,
+                      x_2 \ge 0,
+                      x_3 \ge 0,
+                      x_4 \ge 0,
+                      x_5 \ge 0
+                    \end{cases}
+                  $$
+                  Dal quale si estrapolano i vincoli:
+                  $
+                    \\
+                    x_4=12-2x_2\ge 0 \Rightarrow x_2\le \frac{12}{2}=6 \\
+                    x_5=18-2x\ge 0 \Rightarrow x_2 \le \frac{18}{2}=9
+                  $
+                  Porto $x_4$ a $0$ ottengo $x_2=6$ incrementarlo ulteriormente violerebbe i vincoli. Ci si riferisce a questi calcoli come \textbf{test di rateo minimo}. Quando una variabile viene portata "esce" dalla base e lascia entrare la variabile che viene incrementata.
+            \item \textbf{Risolvere per la nuova BF}
+          \end{enumerate}
 
-    
+  \end{itemize}
+\end{tcolorbox}
+
 \end{document}
