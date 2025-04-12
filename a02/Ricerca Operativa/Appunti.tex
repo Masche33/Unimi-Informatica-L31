@@ -8,6 +8,7 @@
 \usepackage{mathtools}
 \usepackage{tabularx}
 
+\usepackage{listings}
 \usepackage{pgfplots}
 \usepackage{tikz}
 \usetikzlibrary{tikzmark}
@@ -42,7 +43,10 @@
 
 \begin{document}
 
+
 \maketitle
+\tableofcontents
+\newpage
 
 \section{Introduzione}
 Con lo scalare improvviso delle imprese della rivoluzione industriale è diventata preponderante la necessità di allocare al meglio le risorse disponibili. Spesso se un'operazione cresce velocemente è facile che ogni compartimento diventi un'entità a sé stante rendendo complessa la gestione. Da questa necessità è emersa la \textit{Ricerca operativa} che è maturata ed è stata sfruttata per la prima volta nella seconda guerra mondiale. Servì per allocare nel miglior modo le poche risorse inglesi per evitare di soccombere ai tedeschi. Con l'avvenire dei computer poi questa materia ha avuto una spinta che la ha portata alla situazione attuale.
@@ -96,7 +100,7 @@ In breve l'applicazione più comune per la programmazione lineare è l'allocazio
 \subsubsection{Il problema}
 
 Il problema è così formulato:
-\begin{tcolorbox}
+\begin{tcolorbox}[breakable]
   Schiopparelli \& CO produce vetri di alta qualità e ha $3$ stabilimenti. Lo scopo è massimizzare il guadagno bilanciando la quantità dei vari prodotti.
   \begin{itemize}
     \item \textbf{Stabilimento 1:} Crea gli infissi in alluminio.
@@ -230,7 +234,7 @@ Avendo questo problema due \textit{variabili decisionali} su può usare un grafi
 
 Si noti nel grafico a sinistra che tutte le rette sono parallele, infatti sono tutte forme di una funzione chiamata \textbf{slope-intercept form}, in questo caso è $x_2=-\frac{3}{5}x_1+\frac{1}{5}Z$. Nel grafico a destra si può vedere che la soluzione massima sia $(x_1=2,x_2=6)$ portando $Z=36$.
 
-\begin{tcolorbox}
+\begin{tcolorbox}[breakable]
   \textbf{ATTENZIONE:}
   Nell'esempio fornito si può utilizzare un piano per la scaristà di parametri, ma con il crescere del numero di parametri cresce il numero di dimensioni del grafico. In caso la \textit{regione ammissibile} diventa un poliedro che può essere: \textit{vuoto} in caso non esistano soluzioni ammissibili, \textit{illimitato} in caso in almeno una dimensione non esiste il \textit{valore ottimo}. Esiste poi un almeno un vertice di tale poliedro che corrisponde ad un \textit{valore ottimo}. In ogni caso il poliedro è convesso.
 
@@ -291,7 +295,7 @@ $$
   \end{cases}
 $$
 
-\begin{tcolorbox}
+\begin{tcolorbox}[breakable]
   \textbf{alternative}: \\
   \begin{itemize}
     \item Minimizzare la \textit{funzione obiettivo}.
@@ -352,7 +356,7 @@ $$
 
 Si passa così da un sistema da $m$ vincoli e $n$ variabili ad un modello con $m$ vincoli e $n+m$ variabili. Si rimane quindi con una matrice che, a meno di vincoli ridondanti, ha \textbf{Rango $m$}. Il sistema ha una soluzione univoca se eliminando gli $n$ gradi di libertà usando $n$ variabili.
 
-\begin{tcolorbox}
+\begin{tcolorbox}[breakable]
   \textbf{Teorema di Rouché Capelli}
   Data una matrice in forma $A'=[A|b]$ dove $A$ è una matrice $m\ x\ n$ e $b$ un vettore di $n$ elementi allora:
   \begin{enumerate}
@@ -364,7 +368,7 @@ Si passa così da un sistema da $m$ vincoli e $n$ variabili ad un modello con $m
 La soluzione poi si trova estrapolando la base($B$) dal modello dove il resto del modello lo chiamiamo $N$. Il modello allora lo si può riscrivere in forma $[B|N]$. Riscrivo quindi il modello nella forma $B_{x_B}+N_{x_N}=b$ dove $x_B$ e $x_N$ sono le soluzioni del sistema. La soluzione si ottiene dopo aver posto a $0$ tutte le $n$ variabili che non appartengono a $B$. Per farlo si inverte la matrice $B$, quindi si ottiene: $x_B=B^{-1}b-B^{-1}N_{X_N}$ da qui si comprende il motivo di porre $X_N$ a $0$ visto che la soluzione è:$X_N=0, X_B = B^{-1}b$.
 
 \subsubsection{Degenerazione del modello}
-La degenerazione si ottiene quando si pone a $0$ un parametro interno alla base $B$. questo porta ad avere più soluzioni nella base.
+La degenerazione si ottiene quando si pone a $0$ un parametro interno alla base $B$. Questo porta ad avere più soluzioni basiche decidibili.
 
 \subsubsection{\textbf{Teorema fondamentale della PL}}
 Dato il problema lineare in forma standard
@@ -456,18 +460,44 @@ Il metodo del simplesso è un metodo algebrico che si basa su un concetto geomet
 
 Si noti come i punti evidenziati(CFP) non siano altro che l'intersezione di due \textit{vincoli}, alcuni sono al limitare e altri no, rispettivamente quelli \textit{verdi} e quelli \textit{rossi}, se ora questa affermazione lascia il tempo che trova più tardi sarà importante.
 
-\begin{tcolorbox}
+\begin{tcolorbox}[breakable]
   \textbf{Definizione:} \\
   Per ogni problema lineare con $n$ variabili di decisione due CPF sono \textit{adiacenti} se condividono $n-1$ vincoli. Due CPF adiacenti sono uniti da un segmento sulle dimensioni dei vincoli condivisi. Ci si riferisce a questo segmento come: \textbf{Spigolo} della regione accettabile.
 \end{tcolorbox}
 
 Per la soluzione si usa il \textbf{test di ottimalità}:
 
-\begin{tcolorbox}
+\begin{tcolorbox}[breakable]
   \textbf{Test di ottimalità:}
   Considerando un qualsiasi problema di programmazione lineare che possiede almeno una soluzione ottimale. Se una soluzione CPF non ha \textit{adiacenze} migliori allora quella soluzione è la soluzione migliore.
 \end{tcolorbox}
-\subsection{Risolvere il problema d'esempio}
+
+
+\begin{tcolorbox}[breakable]
+  \textbf{Test di illimitatezza:}
+  Si dice illimitato un problema se non esistono candidati pivot su una colonna con costo ridotto negativo.
+\end{tcolorbox}
+
+\subsubsection{L'algoritmo}
+\begin{tcolorbox}[breakable]
+  while ($\lnot$ inaccettabile(b,c))$\land$ ($\lnot$ Baseaccettabile(b)) do\\
+  Pivot(A,b,c)\\
+  if(inaccettabile(b,c)) then\\
+  Stop: Problema inammissibile\\
+  else\\
+  while($\lnot$ Ottimale(c))$\land$ ($\lnot$ Illimitato(A,c)) do\\
+  Pivot(A,b,c)\\
+  if(Ottimale(c)) then\\
+  Stop: Soluzione ottima\\
+  else\\
+  Stop: Problema illimitato\\
+\end{tcolorbox}
+
+\subsection{Variabili artificiali:}
+Dato un modello di programmazione lineare in forma standard con $n$ variabili e $m$ vincoli nella forma: $Z=$min$\{C^Tx:AX=b\}$. Si può introdurre una variabile artificiale $u_i\ge0\ \forall i \in [1,m]$. Così si ottiene il problema artificiale $Z^a=$min\{$e^Tu:Ax+Iu=b$\} con $e^T=[1,\dots,1]$. Per ottenere una forma canonica uso la formula $u_i=b_i-\sum_{j=1}^{n}a_{ij}x_j$.
+
+
+\subsection{Risolvere il problema d'esempio:}
 \begin{minipage}{0.55\textwidth}
   Dato che nel nostro problema $n=2$ i CPF adiacenti devono condividere un vincolo.
 \end{minipage}
@@ -485,7 +515,7 @@ Per la soluzione si usa il \textbf{test di ottimalità}:
     \hline
   \end{tabular}
 \end{minipage}
-\begin{tcolorbox}
+\begin{tcolorbox}[breakable]
   \textbf{Inizializzazione}: \\
   Prendo $(0,0)$ come soluzione CPF da esaminare, non c'è un vero e proprio criterio per scegliere in questo caso era solo il più semplice. \\
   \circled{1}\textbf{Test di ottimalità}: \\
@@ -573,14 +603,15 @@ Si può notare dal nuovo modello che se una delle variabili di slack(\textit{in 
 \begin{itemize}
   \item \textbf{Soluzione aumentata:} \\
         Soluzione per le variabili originali, \textit{di decisione}, che devono essere aumentate dal valore corrispondente della \textit{variabile di slack}. \\
-        \begin{tcolorbox}
+        \begin{tcolorbox}[breakable]
           \textbf{Esempio}\\
           Una soluzione normale sarebbe: $(x_1:3,x_2:2) \to (x_1:3,x_2:2, x_3:1, x_4:8, x_5:5) $
         \end{tcolorbox}
   \item \textbf{Soluzione basica:} \\
         È una soluzione CPF aumentata che può trovarsi all'interno o all'esterno della regione accettabile, che porta al condetto di \textit{soluzione basica accettabile} una soluzione basica ha le seguenti proprietà:
         \begin{enumerate}
-          \item Ogni variabile può essere o \textit{basica} o \textit{non basica}.
+          \item Ogni variabile può essere o \textit{basica} o \textit{non basica}. \\
+                L'insieme dei coefficenti delle variabili basiche si scrive $B_{x_B}$, l'insieme dei coefficenti delle variabili non basiche si scrive $N_{x_N}$. Questo porta il modello a poter essere riscritto così: $B_{x_B}+N_{x_N}=b$
           \item Il numero di \textit{variabili basiche} è uguale al numero di vincoli funzionali, parimenti il numero di \textit{variabili non basiche} sono il grado di libertà.
           \item Le \textit{variabili non basiche} sono settate a $0$.
           \item I valori delle variabili basiche sono ottenute simultaneamente.
@@ -734,7 +765,7 @@ I passaggi da svolgere sono i segunti e generano il tablue successivo:
   \item Sommare la nuova riga di pivot ad ogni altra riga che abbia nella colonna di pivot un valore negativo.
   \item Per ogni riga che nella colonna di pivot ha un valore positivo, sottrarre la nuova riga di pivot.
 \end{enumerate}
-\begin{tcolorbox}
+\begin{tcolorbox}[breakable]
   \textbf{Attenzione:} \\
   Si può notare, che le variabile basiche nel \textit{tablue} hanno la forma della matrice $I$ di identità. Infatti dopo la prima iterazione dove $x_2$ prende il posto di $x_4$ i vettori che formano la base della matrice sono le nuove variabili di base: ($x_2, x_3, x_5$)
 \end{tcolorbox}
@@ -782,5 +813,43 @@ Da qui, si continua con il normale svoglimento dell'algoritmo del simplesso, nel
     \hline
   \end{tabular}
 \end{table}
+
+\subsection{Forma canonica}
+Dato un modello in forma standard, nella forma di una funzione obiettivo ($Z=C_B^Tx_B+C^T_Nx_N$) e un matrice che rappresenta le funzioni di vincolo($B_{X_B}+N_{X_N}=b$) si può riscrive il modello in modo di poter trovare $x_B$.
+
+$$
+  \begin{cases}
+    Z=C_B^Tx_B+C^T_Nx_N \\
+    B_{X_B}+N_{X_N}=b   \\
+    X_B, X_N \ge 0
+  \end{cases}
+  \overset{\text{Moltiplico per } B^{-1}}{\Longrightarrow}
+  \begin{cases}
+    Z=C_B^Tx_B+C^T_Nx_N       \\
+    Ix_B+(B^{-1}N)x_N=B^{-1}b \\
+    X_B, X_N \ge 0
+  \end{cases}
+  \to x_B= (B^{-1}N)x_n=B^{-1}b
+$$
+Si è ora trovata la funzione per trovare il valore di $x_B$. Ora l'idea è vedere cosa succede se insieriamo nella funzione obiettivo il valore dei coefficenti della base.
+$$
+  \begin{cases}
+    Z=C_B^Tx_B+C^T_Nx_N       \\
+    Ix_B+(B^{-1}N)x_N=B^{-1}b \\
+    X_B, X_N \ge 0
+  \end{cases}
+  \overset{\text{Inserisco }x_B}{\Longrightarrow}
+  \begin{cases}
+    Z=C_B^TB^{-1}b+(C^T_N-C^T_BB^{-1}N)x_N \\
+    Ix_B+(B^{-1}N)x_N=B^{-1}b              \\
+    X_B, X_N \ge 0
+  \end{cases} \\
+  {\Rightarrow}
+  \begin{cases}
+    Z=Z_B+\overline{C}^T_Nx_N         \\
+    Ix_B+\overline{N}x_N=\overline{b} \\
+    X_B, X_N \ge 0
+  \end{cases}
+$$
 
 \end{document}
