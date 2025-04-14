@@ -20,6 +20,7 @@
 \usepackage{tcolorbox}
 \tcbuselibrary{breakable}
 
+\usepackage{titlesec} 
 \usepackage{caption}
 \usepackage{subcaption}
 
@@ -43,9 +44,8 @@
 
 \begin{document}
 
-
 \maketitle
-\tableofcontents
+%\tableofcontents
 \newpage
 
 \section{Introduzione}
@@ -494,8 +494,33 @@ Per la soluzione si usa il \textbf{test di ottimalità}:
 \end{tcolorbox}
 
 \subsection{Variabili artificiali:}
-Dato un modello di programmazione lineare in forma standard con $n$ variabili e $m$ vincoli nella forma: $Z=$min$\{C^Tx:AX=b\}$. Si può introdurre una variabile artificiale $u_i\ge0\ \forall i \in [1,m]$. Così si ottiene il problema artificiale $Z^a=$min\{$e^Tu:Ax+Iu=b$\} con $e^T=[1,\dots,1]$. Per ottenere una forma canonica uso la formula $u_i=b_i-\sum_{j=1}^{n}a_{ij}x_j$.
+Dato un modello di programmazione lineare in forma standard con $n$ variabili e $m$ vincoli nella forma: $Z=$min$\{C^Tx:Ax=b\}$. Si può introdurre una variabile artificiale $u_i\ge0\ \forall i \in [1,m]$. Così si ottiene il problema artificiale $Z^a=$min\{$e^Tu:Ax+Iu=b$\} con $e^T=[1,\dots,1]$. Si può dimostrare che il problema $Z^a\cong Z$ ma la differenza fondamentale è che trovare una base iniziale in $Z^a$ è estremamente semplice e da lì si può risolvere il modello tramite l'algoritmo del simplesso. Infatti con la sostituzione $u_i=b_i-\sum_{j=1}^{n}a_{ij}x_j$ si ottiene una riga del \textit{tablue} con una riga tutta uguale a zero. Si arriva quindi a una soluzione iniziale dove $x=0$ e $u=b$ ma ammissibile. Si è trovata una soluzione ottimale se si trova $Z^a=0$ altrimenti $Z$ è inammissibile.
+\subsubsection{Evitare $m$ passi per rendere non basiche $m$ variabili}
+Per evitare gli $m$ passi si possono usare dele variabili di slack.
+$$
+  \begin{cases}
+    \text{Min} (Z=\sum_{j=1}^{n}c_jx_j)              \\
+    \sum_{j=1}^{n}a_{ij}x_j\ge b_i \forall i \in I_1 \\
+    \sum_{j=1}^{n}a_{ij}x_j\le b_i \forall i \in I_2 \\
+    \sum_{j=1}^{n}a_{ij}x_j = b_i \forall i \in I_3  \\
+    x\ge 0
+  \end{cases}
+  \to
+  \begin{cases}
+    \text{Min} (Z=\sum_{j=1}^{n}c_jx_j)                                         \\
+    \sum_{j=1}^{n}a_{ij}x_j+\textcolor{red}{\hat{x_i}}\ge b_i \forall i \in I_1 \\
+    \sum_{j=1}^{n}a_{ij}x_j-\textcolor{red}{\hat{x_i}}\le b_i \forall i \in I_2 \\
+    \sum_{j=1}^{n}a_{ij}x_j = b_i \forall i \in I_3                             \\
+    x, \hat{x} \ge 0
+  \end{cases}
+$$
+Le variabili $\hat{x_i}$ per $i \in I_1$ soddisfano la prima condizione della forma canonica. Invece sia $h\in I_2|h=\text{max}_{i\in I_2} {b_i}$ sottraendo ogni riga nella forma $\le$ si ottengono i vincoli equivalenti con termine noto non-negativo e variabile $\hat{x_i}$. Si necessita quindi di inserire variabili artificiali soòo per il vincolo $h$ e per i vincoli in $I_3$.
 
+\subsubsection{Metodo "\textit{Big M}"}
+Al posti di eliminare dal problema il problema delle varibiali aritificiali $x$ è possibile le variabili $u$ e penalizzarle. Si risolve il problema $Z^a=\text{min}(c^Tx+w^Tu:Ax+Iu=b)|w^T=[M,\dots,M]$ sia un vettore di coefficenti abbastanza grandi in modo che ogni soluzione con $u_i$ sia penalizzata a tal punto da rendere favorevoli solo le soluzioni influenzate da $c^T$ cioè quelle che appartengono anche a $Z$ originale.
+
+\subsubsection{Balinsky-Gomery}
+Quest'algoritmo trascura temporaneamente la funzione obiettivo e minimizza l'inammissibilità del vincolo violato finché si trova una base ammissibile o si scopre che il problema è inammissibile.
 
 \subsection{Risolvere il problema d'esempio:}
 \begin{minipage}{0.55\textwidth}
@@ -851,5 +876,97 @@ $$
     X_B, X_N \ge 0
   \end{cases}
 $$
+
+\section{Teoria della dualità}
+Uno dei concetti più importanti nella programmazione lineare è il concetto di \textbf{dualità}. Ogni problema di programmazione lineare ha associato un altro problema chiamato \textbf{dualità}. La relazione tra due problemi duali, dove quello originale si chiama \textbf{primale} è molto utile in vari ambiti. Uno degli usi fondamentali è l'implentazioine della \textit{analisi della sensitività}. Questa connessione deriva dal fatto che i valori del modelli primale sono stime di condizioni future, l'effetto sulle soluzioni prevale quando in realtà andrebbe ultreriormente investigato.
+
+\subsection{Essenza della teoria della dualità:}
+Dato un problema primale il problema duale si trova invertendo: funzione obiettivo e vincoli funzionali. (Nota bene: $n$ è il numero di parametri e $m$ è il numero di vincoli)
+$$
+  \overset{\text{Prob. primale}}{
+    \begin{cases}
+      \text{Max}(Z=\sum_{j=1}^{n}c_jx_j)        \\
+      \sum_{j=1}^{n}a_{ij}x_j\le b_b|i\in [1,m] \\
+      x_j\ge 0|j\in [1,n]
+    \end{cases}
+  }
+  \hspace{3cm}
+  \overset{\text{Prob. Duale}}{
+    \begin{cases}
+      \text{Min}(Z=\sum_{j=1}^{n}c_iy_i)        \\
+      \sum_{i=1}^{m}a_{ij}y_i\ge c_j|j\in [1,n] \\
+      y_i\ge 0|j\in [1,n]
+    \end{cases}
+  }
+$$
+
+Si noti che dove il problema priamrio è in forma di massimizzazione allora il problema duale è in forma di minimizzazione. Il problema duale usa anche gli stessi parametri. Le differenze sono le seguenti.
+\begin{itemize}
+  \item I coefficenti della funzione obiettivo del problema primale si trovato come parametri nelle funzioni di vincolo del problema duale.
+  \item I parametri del problema primale sono i coefficenti delle funzioni obiettivo del problema duale.
+  \item I coefficenti di una variabile nelle funzioni di vincolo di un problema primale sono i coefficenti della funzione vincolo del problema duale.
+\end{itemize}
+
+Queste differenze si notato al meglio in notazione matriciale.
+$$
+  \overset{\text{Prob. primale}}{
+    \begin{cases}
+      \text{Max}(Z=\textcolor{red}{c}x)                 \\
+      \textcolor{blue}{A}x \le \textcolor{darkgreen}{b} \\
+      x \ge 0
+    \end{cases}
+  }
+  \hspace{3cm}
+  \overset{\text{Prob. Duale}}{
+    \begin{cases}
+      \text{Min}(W=y\textcolor{darkgreen}{b})         \\
+      \textcolor{blue}{A^{T}}y \ge \textcolor{red}{c} \\
+      y \ge 0
+    \end{cases}
+  }
+$$
+
+\begin{tcolorbox}[breakable]
+  \textbf{Esempio:}\\
+  Creiamo il problema duale dell'esercizio della Schiopparelli \& co. Dato il solito modello. Troviamo prima di tutto $\overline{x}, \overline{c}, \overline{b}, A$.\\
+  \begin{equation*}
+    \begin{cases}
+      \text{Max}\ Z = 3x_1 + 5x_2 \\
+      x_1 \le 4                   \\
+      2x_2 \le 12                 \\
+      3x_1 + 2x_2 \le 18          \\
+      x_1, x_2, x_3 \ge 0
+    \end{cases}
+  \end{equation*}
+  \begin{equation*}
+    \begin{array}{cccc}
+      \overline{x} = \begin{bmatrix} x_1 & x_2 \end{bmatrix},  &
+      \overline{c} = \begin{bmatrix} 3 & 5 \end{bmatrix},      &
+      \overline{b} = \begin{bmatrix} 4 & 12 & 18 \end{bmatrix} &
+      A = \begin{bmatrix} 1 & 0\\ 0 & 2 \\ 3 & 2\end{bmatrix}
+    \end{array}
+  \end{equation*}
+  $
+    \begin{cases}
+      \text{Min}(W=y\textcolor{darkgreen}{b})         \\
+      \textcolor{blue}{A^{T}}y \ge \textcolor{red}{c} \\
+      y \ge 0
+    \end{cases}
+    \to
+    \begin{cases}
+      \text{Min}(W=4y_1+12y_2+18y_3) \\
+      y_1+3y_3 \ge 3                 \\
+      2y_2+2y_3 \ge 5                \\
+      y \ge 0
+    \end{cases}
+  $
+
+\end{tcolorbox}
+
+Si può ora notare la relazione tra il problema primale e il problema duale.
+\begin{itemize}
+  \item I parametri per un vincolo in uno dei due problemi sono i coefficenti di una variabile nell'altro problema
+  \item I coefficenti della funzione obiettivo di uno dei due problemi sono i parametri delle funzioni di vincolo dell'altro problema.
+\end{itemize}
 
 \end{document}
