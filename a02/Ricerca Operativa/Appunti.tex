@@ -4,6 +4,7 @@
 \usepackage[utf8]{inputenc}
 
 \usepackage{amsmath}
+\usepackage{amssymb}
 \usepackage{booktabs}
 \usepackage{mathtools}
 \usepackage{tabularx}
@@ -893,7 +894,7 @@ $$
   \hspace{3cm}
   \overset{\text{Prob. Duale}}{
     \begin{cases}
-      \text{Min}(Z=\sum_{j=1}^{n}c_iy_i)        \\
+      \text{Min}(Z=\sum_{j=1}^{m}b_iy_i)        \\
       \sum_{i=1}^{m}a_{ij}y_i\ge c_j|j\in [1,n] \\
       y_i\ge 0|j\in [1,n]
     \end{cases}
@@ -967,6 +968,105 @@ Si può ora notare la relazione tra il problema primale e il problema duale.
 \begin{itemize}
   \item I parametri per un vincolo in uno dei due problemi sono i coefficenti di una variabile nell'altro problema
   \item I coefficenti della funzione obiettivo di uno dei due problemi sono i parametri delle funzioni di vincolo dell'altro problema.
+  \item Si può anche notare che su un problema ha $n$ parametri nella funzione obiettivo e $m$ vincoli allora il problema duale avrà $m$ parametri nella funzione obiettivo e $n$ vincoli allora il problema duale
 \end{itemize}
+
+\subsubsection{Relazione dei problemi primali-duali}
+\textbf{Proprietà di dualità debole}\\
+Se $\overline{x}$ è accetabile per la soluzione per problema primale e $\overline{y}$ è accettabile per la soluzione di del problema duale allora $\overline{c}\overline{x}\le \overline{y}\overline{b}$. Quest'affermazione deve valore per ogni coppia di soluzione accetabili, il valore massimo di $Z=cx$ è uguale al valore minimo possibile per $W=yb$.\\
+\begin{tcolorbox}
+  \textbf{Dimostrazione:}\\
+  Data una coppia  di problema composti da uno \textit{primale} e uno \textit{duale} così formulati:\\
+  \hspace{3cm}P: Max $Z=c^Tx, Ax \le b, x (\in X) \ge 0$\\
+  \hspace{3cm}D: Min $W=b^Ty, A^Ty\ge c, y(\in X) \ge 0$\\
+  $$
+    \begin{cases}
+      A^T_{n \ m}\overline{y}_m \ge \overline{c}_n \\
+      \overline{x}_n \ge 0                         \\
+    \end{cases}
+    {\Rightarrow} \underset{\overline{x}_{n\ 1}\cdot A_{n\ m} = \alpha_{1\ m} \\ \alpha_{1 m}\cdot \overline{y}_{1\ m} = k}{\overline{x}_n^TA^T_{n\ m}\overline{y}^T_m} \ge \underset{\text{Scalare}}{\overline{x}_n^T\overline{c}_n} \Leftrightarrow \underbrace{\overline{c}_n^T\overline{x}_n}_{Z} \le \overline{x}_n^TA_{n\ m}^T\overline{y_m}^T
+  $$
+  $$
+    \begin{cases}
+      A\overline{x} \le \overline{b} \\
+      \overline{y}\ge 0              \\
+    \end{cases}
+    {\Rightarrow} \overline{y}_m^TA_{m\ n}\overline{x}_n \ge \overline{y}_m^Tb_m \Leftrightarrow \underbrace{\overline{b}_m^T\overline{y}_m}_{W} \ge \overline{y}_m^TA_{m\ n}\overline{x}_n
+  $$
+  In entrambi casi il secondo membro è uno scalare che porta a poter scrivere $\overline{x}^TA^T\overline{y}=(\overline{x}^TA^T\overline{y})^T$ visto che il trasposto di uno scalare è sé stesso. Ma per la proprietà $(BA)^T=B^TA^T$ posso scrivere $(\overline{x}^TA^T\overline{y})^T=\overline{y}^T (A^T)^T (\overline{x}^T)^T$. Tolgo le trasposte ridontanti e ottengo $(\overline{x}^TA^T\overline{y})^T=\overline{y}^TA\overline{x}$ arrivando allora a poter riassumere tutto così:
+  $$\overline{x}^T A^T \overline{y} = (\overline{x}^T A^T \overline{y})^T = \overline{y}^T (A^T)^T (\overline{x}^T)^T = \overline{y}^T A \overline{x}$$
+
+  Assemblando il tutto:
+  $$\underset{Z(\overline{x})}{c^T \overline{x}} \leq \overline{x}^T A^T \overline{y} = \overline{y}^T A \overline{x} \leq \underset{W(\overline{y})}{b^T \overline{y}}$$
+\end{tcolorbox}
+A questo teorema seguono due corollari:
+\begin{itemize}
+  \item Se $\overline{x} \in X, \overline{y} \in Y, z(\overline{x})=w(\overline{y})$ allora $\overline{x}=x^{\ast}, \overline{y}=y^{\ast}, z(\overline{x})=z^{\ast}, w(\overline{y})=w^{\ast}$
+  \item Se il problema prilame è \textit{illimitato} allora il suo duale è \textit{inammissibile}.
+\end{itemize}
+\textbf{Lemma di Farkas:}\\
+Il lemma di Farkas dice che dato $A_{m\ n}\overline{x}_m=\overline{b}_m$ allora una sola delle seguenti è vera:
+\begin{enumerate}
+  \item $\exists\overline{x} \in R^n|A\overline{x}=\overline{b}, \overline{x}\ge 0$
+  \item $\exists\overline{y} \in R^m|A^T\overline{y}\ge 0, \overline{b}^T\overline{y} < 0$
+\end{enumerate}
+\begin{tcolorbox}
+  \textbf{Dimostrazione:}\\
+  \begin{enumerate}
+    \item $1)$ è vera, $2)$ è falsa.\\
+          Riscrivo le premesse:\\
+
+          $
+            \begin{cases}
+              A\overline{x}=\overline{b}                             \\
+              \exists \overline{x}\in R^n|A\overline{x}=\overline{b} \\
+              \overline{x}\ge \overline{0}                           \\
+            \end{cases}
+          $
+          Date le premesse:
+          \begin{itemize}
+            \item $A^T\overline{y}\ge 0 \Rightarrow \underset{\text{scalare}}{\overline{x}^T A^T y > 0} \forall\overline{y}\in R^m$
+            \item $\overline{x}^TA^T=\overline{b}^T \Rightarrow \overline{b}^T\overline{y}\ge 0 \forall \overline{y} \in R^m$
+            \item $\nexists\overline{y}\in R^m| A^T\overline{y}\ge 0, b^T\overline{y} < 0$ perché nel punto precedente abbiamo dimostrato che $\overline{b}^T\overline{y}\ge 0 \forall \overline{y} \in R^m$.
+          \end{itemize}
+    \item $1)$ è false, $2)$ è vera.\\
+          \begin{tcolorbox}[
+              colback=black,
+              colframe=black,
+              coltext=white,
+              title=Convessità,
+              colbacktitle=black,
+              coltitle=white,
+            ]
+            Uno spazio vettoriale $C$ è convesso se per ogni coppia di punti $x,y$:\\
+            $\forall x, y \in C, \forall \lambda \in [0,1] \to \lambda x+(1-\lambda)y \in C$. In poche parole l'insieme è convesso se per ogni coppia di punti contiene tutti i segmenti li uniscono.
+          \end{tcolorbox}
+          \begin{tcolorbox}[
+              colback=black,
+              colframe=black,
+              coltext=white,
+              title=Teorema dell'iperpiano separatore,
+              colbacktitle=black,
+              coltitle=white,
+            ]
+            Da aggiungere
+          \end{tcolorbox}
+          Assumiamo che $1)$ sia falsa e definiamo il cono $C={\overline{q}\in R^m|\exists X(\overline{q}\in R^n|Ax(q)=q, x(q) ge 0)}$. $C$ è convesso, essendo $1)$ falsa $b\notin C$. \\
+          Per il teorema del piano separatore: \\
+          $\exists \overline{y}\in R^m-{0}:\overline{q}^T\overline{y} \ge 0 \forall \overline{q} \in C, \overline{b}^T\overline{y} <0
+  \end{enumerate}
+\end{tcolorbox}
+\textbf{Proprietà di dualità forte}\\
+Se ${x}^{\ast}$ è una soluzione ottima per il problema ottimale e ${y}^{\ast}$ allora $cx^{\ast}=y^{\ast}b$. Questo si può dedurre dal punto precendente. Perché tra tutte le soluzioni per il problema primale $x^{\ast}$ è il massimo dell'insieme delle soluzioni accettabili, per $y^{\ast}$ è il minore delle soluzioni accettabili per il problema duale. Avendo il vincolo della \textbf{proprietà  di dualità debole} $cx\le yb$ l'unico caso in cui le due soluzioni possano essere uguali è avere la soluzione ottima.
+\begin{tcolorbox}
+  \textbf{Dimostrazione:}\\
+  Sia $y^{\ast} \in R^m$ una soluzione ottima per il problema duale di valore: $w^{\ast}=b^Ty^{\ast}$. Si punta a dimostrare che $\exists x^{\ast} \in R^n|Ax^{\ast}\le b, c^Tx^{\ast} \ge b^Ty^{\ast}$.
+  \textbf{Da concludere}.
+\end{tcolorbox}
+\textbf{Proprietà della soluzione complementare}\\
+Ad ogni iterazione dell'algoritmo del simplesso l'algoritmo identifica simultaneamente i CPF in $x$ per il problema primale e la soluzione complementare di $y$ per il problema duale tale che $cx=yb$. Da questo si può dedurre che se $x$ non è ottima allora neanche $y$ sarà ottima.
+
+\textbf{Proprietà della soluzione ottima complementare}\\
+All'iterazione finale, l'algoritmo del simplesso identifica simultaneamente la soluzione ottima per il problema primale($x^{\ast})$ e per il problema duale($y^{\ast}$) tale che $cx^{\ast}=y^{\ast}b$.\\
 
 \end{document}
