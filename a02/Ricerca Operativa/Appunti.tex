@@ -330,29 +330,29 @@ $$
 \end{tcolorbox}
 
 \subsubsection{Soluzione del modello}
-Il termine è utilizzato per indicare il metodo di soluzione del modello. Una \textbf{soluzione accettabile} è una soluzione dove tutti vincoli sono soddisfatti. Una \textbf{soluzione inaccettabile} è una soluzione dove almeno un vincolo non è soddisfatto. La \textbf{regione accettabile} è l'insieme di tutte le possibili soluzioni. La \textbf{soluzione ottima} è la soluzione accettabile più favorevole alla funzione obiettivo. É possibile che non esista una soluzione. La maggior parte dei modelli ha una soluzione ottima, ma non è impossibile che ne esistano più di una. Potrebbe accadere che non esistano soluzioni ottimali, che succede in caso non esista una soluzione accettabile o se i limiti non prevengono la funzione obiettivo($Z$), al secondo caso ci si riferisce come \textbf{$Z$ svincolata} o \textbf{obiettivo svincolato}. Una soluzione che si trova a un angolo della regione accettabile si chiama \textbf{soluzione accettabile ad angolo}, (CPF).
 
-\begin{tikzpicture}
-  \begin{axis}[
-      xlabel={$x_1$},
-      ylabel={$x_2$},
-      grid=major,
-      axis lines=left,
-      xmin=0, xmax=6,
-      ymin=0, ymax=10,
-      title={Possibili soluzioni}
-    ]
-    \coordinate (A) at (axis cs:0,0);
-    \coordinate (B) at (axis cs:0,6);
-    \coordinate (C) at (axis cs:2,6);
-    \coordinate (D) at (axis cs:4,3);
-    \coordinate (E) at (axis cs:4,0);
 
-    \fill[gray, opacity=0.5] (A) -- (B) -- (C) -- (D) -- (E) -- cycle;
-    \draw[black, thick] (A) -- (B) -- (C) -- (D) -- (E) -- cycle;
-    \draw[opacity=0](1,1) -- (3,3) node[pos=0.5, above, opacity=1]{Regione accettabile};
-  \end{axis}
-\end{tikzpicture}
+  \begin{tikzpicture}
+    \begin{axis}[
+        xlabel={$x_1$},
+        ylabel={$x_2$},
+        grid=major,
+        axis lines=left,
+        xmin=0, xmax=6,
+        ymin=0, ymax=10,
+        title={Possibili soluzioni}
+      ]
+      \coordinate (A) at (axis cs:0,0);
+      \coordinate (B) at (axis cs:0,6);
+      \coordinate (C) at (axis cs:2,6);
+      \coordinate (D) at (axis cs:4,3);
+      \coordinate (E) at (axis cs:4,0);
+
+      \fill[gray, opacity=0.5] (A) -- (B) -- (C) -- (D) -- (E) -- cycle;
+      \draw[black, thick] (A) -- (B) -- (C) -- (D) -- (E) -- cycle;
+      \draw[opacity=0](1,1) -- (3,3) node[pos=0.5, above, opacity=1]{Regione accettabile};
+    \end{axis}
+  \end{tikzpicture}
 
 \subsection{Soluzione aritmetica del modello}
 Metodo per risolvere il modello evitando di utilizzare il grafico. Si parte quindi dal \textit{modello lineare} per portarlo in forma standard e poi risolverlo. Per portare il modello in forma standard tutti i vincoli di \textit{disuguaglianza} devono essere trasformati in \textit{vincoli di ugualianza} e la funzione obiettivo $Z$ vengono poste in forma di minizzazione. \\ Per poter portare ogni vincolo di \textit{disuguaglianza} ad un vincolo di \textit{ugualianza} si aggiunge una variabile di \textit{slack} per ogni vincolo in gorma di disuguaglianza.
@@ -600,6 +600,7 @@ Quest'algoritmo trascura temporaneamente la funzione obiettivo e minimizza l'ina
     \hline
   \end{tabular}
 \end{minipage}
+
 \begin{tcolorbox}[
     colback=lightgray,
     colframe=black,
@@ -846,7 +847,6 @@ $
 \end{tabular} \\ \\
 
 \subsubsection{Riassunto del metodo del simplesso}
-Visto che sarebbe inutile ripetere quello che è stato detto nel paragrafo precedente si darà per scontato che si sia compreso i concetti e si evidenzieranno solo riassuntivamente i passaggi che non mutano. \\
 \textbf{Inizializzazione:} \\
 Si introducono le variabili di slack e si decide che le variabili di decisione siano al di fuori della base(rosso) e complementarmente le variabili di slack siano nella base(blue). \\
 \textbf{Test di ottimalità:} \\
@@ -1068,6 +1068,9 @@ Si può ora notare la relazione tra il problema primale e il problema duale.
 \end{itemize}
 
 \subsubsection{Relazione dei problemi primali-duali}
+
+  
+
 \textbf{Proprietà di dualità debole}\\
 Se $\overline{x}$ è accetabile per la soluzione per problema primale e $\overline{y}$ è accettabile per la soluzione di del problema duale allora $\overline{c}\overline{x}\le \overline{y}\overline{b}$. Quest'affermazione deve valore per ogni coppia di soluzione accetabili, il valore massimo di $Z=cx$ è uguale al valore minimo possibile per $W=yb$.\\
 \begin{tcolorbox}[
@@ -1240,7 +1243,7 @@ All'iterazione finale, l'algoritmo del simplesso identifica simultaneamente la s
 
 \textbf{Teorema Fondamentale Dualità Lineare}\\
 Data una coppia di problemi.\\
-$$ P: \text{Max}\ z(x)\ x \in X$$ 
+$$ P: \text{Max}\ z(x)\ x \in X$$
 $$D: \text{Min}\ w(x)\ y \in Y$$
 Allora una delle quattro è vera.
 \begin{itemize}
@@ -1258,5 +1261,68 @@ $$D: \text{Min}\ w=b^Ty, A^Ty \ge c, y \ge 0$$
 La condizione per l'ottimalità è:
 $$\overline{y}^T(b-A\overline{x})=0$$
 $$(A^T\overline{y}-\overline{c})^T\overline{x}=0$$
+
+
+
+\textbf{Teorema dello scarto complementare}\\
+Data la coppia:
+$$P: max(z)=c^Tx: Ax \le b, x \ge 0$$
+$$D: mix(w)=b^Ty: A^Ty \ge c, y \ge 0$$
+
+Allora date le soluzioni ottime $\overline{x}^{\ast}$ $\overline{y}^{\ast}$ sono valide le seguenti equazioni:
+
+$$\overline{y}^T(b-A\overline{x})=0$$
+$$(A^T\overline{y}-c)^T\overline{x}=0$$
+
+\begin{tcolorbox}[
+  colback=lightgray,
+  colframe=black,
+  coltext=black,
+  title=Dimostrazione,
+  colbacktitle=black,
+  coltitle=lightgray,
+  breakable
+  ]
+  Sappiamo che dati due problemi duali $P$ e $D$ che hanno entrambi soluzioni ottime vale l'equazione: $z^{\ast}=c^T\overline{x}^{\ast}=\overline{b}^Ty^{\ast}=\overline{w}^{\ast}$\\
+  Sappiamo anche che nella soluzione: $A\overline{x}=b$ e $A^T\overline{y}=c$, da questi si può ricavare:\\
+  $A\overline{x}-b=0\to b-A\overline{x}$=0 \& $A^T\overline{y}-c=0$\\
+  Sostituiamo nelle premesse e ci viene: $\overline{y}^T(0)=0$ e $(0)^T\overline{x}=0$. Quindi il teorema è dimostrato.
+\end{tcolorbox}
+
+\subsection{Algoritmo simplesso duale}
+
+Dato i coefficenti di $P$ e $D$ sono gli stessi cioé $A$ e $A^T$ quindi si possono rappresentare con lo stesso tablueat.\\
+\textbf{Problema Primale:} Conserva l'ottimalità e persegue l'ottimalità.\\
+\textbf{Problema Duale:} Conserva l'ottimalità e persegue l'ammissibilità.
+
+\begin{itemize}
+  \item La riga di pivot viene nella prima colonna
+  \item Il pivot deve essere non negativa
+  \item La colonna di Pivot viene scelta minimizzando il valore assoluto del rapporto tra il coefficente di costo ridotto ed il candidato pivot.
+\end{itemize}
+\textbf{DA QUI LA QUALITA' CALA}
+
+\section{\textbf{Sezione post-ottima:}}
+
+Controllo della robustezza del progetto. Esso viene fatto tramite l'analisi post'ottima.\\
+Input: $A, \overline{b}, \overline{c}$\\
+Output: $B^{\ast}, \overline{x}^{\ast}, \overline{z}^{\ast}$.\\
+L'Analisi post-ottima ha lo scopo di capir quanto può variare ogni coefficente(dei vettori $\overline{c}$ e $\overline{b}$) $c_j, b_i$ senza che cambi la base ottima $B^{\ast}$.\\
+La Base $B^{\ast}$ rimane ottima finché:
+\begin{itemize}
+  \item Ammissibilità: $x_B=B^{-1}b \ge 0$
+  \item Ottimalità: $c_N=c_N-c_BB^{-1}N \ge 0$
+\end{itemize}
+
+Come effettuare l'analisi post'ottima va eseguita nella forma:
+\begin{itemize}
+  \item Funzione obiettivo massimizzato.
+  \item Vincoli in forma di disuguaglianza $\ge$
+\end{itemize}
+Consideriamo una colonna $\overline{j}$ con due casi:
+\begin{enumerate}
+  \item ($\overline{j} \in B$ e $\overline{r}$):\\ $\text{max}\{-\infty, \underset{j \in N^+}{\text{max}}\{\frac{-c_j^{\ast}}{a^{\ast+}_{\overline{r}j}}\}\} \le \Delta c_{\overline{j}} \le \text{min}\{\underset{j \in N^-}{\text{min}}\{\frac{-c^{\ast}_j}{a^{\ast -}_{\overline{r}j}}\}, +\infty\}$
+  \item ($\overline{j} \in N$): $\Delta c_{\overline{j}} \le c_{\overline{j}^{\ast}}$
+\end{enumerate}
 
 \end{document}
