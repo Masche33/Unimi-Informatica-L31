@@ -1339,3 +1339,87 @@ Dato i coefficenti di $P$ e $D$ sono gli stessi cioé $A$ e $A^T$ quindi si poss
 - **Problema Primale:**  Conserva l'ottimalità e persegue l'ottimalità.
 - **Problema Duale:** Conserva l'ottimalità e persegue l'ammissibilità.
 
+- La riga di pivot viene nella prima colonna
+- Il pivot deve essere non negativa
+- La colonna di Pivot viene scelta minimizzando il valore assoluto del rapporto tra il coefficente di costo ridotto ed il candidato pivot.
+
+```{=latex}
+
+\begin{tcolorbox}[
+  colback=lightgray,
+  colframe=black,
+  coltext=black,
+  title=ATTENZIONE,
+  colbacktitle=black,
+  coltitle=lightgray,
+  breakable
+  ]
+  Tralascio questa parte per andare avanti, debbo implementare
+
+\end{tcolorbox}
+```
+
+# Analisi Post Ottima o Analisi di sensibilità:
+
+$\quad$Una volta trovata la soluzione ottima non si è arrivati alla fine del lavoro, inizia ora l'operazione più complessa l'*analisi post-ottima* o *analisi di sensibilità*. Visto che i dati e la base ottima è stata trovata su un modello che per sua natura è prono a non essere, soprattutto ai primi tentativi, abbastanza rappresentativo della realtà per o una esagerata semplificazione o per colpa dei valori scelti inizialmente che sono scelti aribitrariamente e senza un metodo preciso. Bisogna quindi rimanere scettici delle prime soluzioni ottenute. L'analisi post-ottima serve a comprendere i valori del porblema iniziale potrebbero variare per fare in modo che ancora la soluzione rimanga invariata. Per un *tablueat* di piccola dimensione non ci sarà gran difficoltà. Una volta modificiati i valori si può risvogere il simplesso e ancora si arriverà alla stessa base ottima. Serve quindi revisionare il modello.
+
+## Calcolo di $\Delta \overline{c}$
+
+Dato i seguenti dati:
+
+- Un problema in forma canonica: $$\begin{cases}z=\overline{x}\overline{y}\\ A\overline{x} \le \overline{b}\end{cases}$$
+- La base ottima: $B^{\ast}$
+- I coefficenti di x: $\overline{x}^{\ast}$
+- Il valore della funzione della funzione ottima: $z^{\ast}$
+- I coefficenti del *tablueat* finale: $A^{\ast}$
+
+$\quad$Si può calcolare il valore dei $\Delta c_i$, cioè, quanto i coiefficenti della funzione obiettivo possono oscillare, senza modificare la base ottima della soluzione. Questi sono tutti dati che abbiamo già se abbia trovato la soluzione ottima per il problema. 
+
+```{=latex}
+$$
+\begin{cases}
+\Delta c_y \le  c_y^{\ast} \qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad \text{se}\ y \notin B^{\ast} \\
+
+\max \left\{ -\infty, \max_{x \in A_{\overline{y}}} \left\{ \frac{-c_y^*}{A_{yx}^{\ast +}} \right\} \right\} \leq \Delta c_y \leq \min \left\{ \min_{y \in A_{\overline{y}}} \left\{ \frac{-c_y^*}{A_{yx}^{\ast -}} \right\}, +\infty \right\} \text{se}\ y \in B^{\ast}
+\end{cases}
+$$
+```
+
+$\quad$La formula, abbastanza astrusa, non è di facile comprensione senza una vera e propria spiegazione. Partiamo quindi dal dire che la formula si divide tra le due opzioni, il valore $c_y$ appartiene o no alla **base ottima**. Se $c_i$ non appartiene alla base allora $\Delta c_y$ è solo limitata superiormente con il valore $c_y^{\ast}$.
+
+$\quad$Invece in caso di $c_i$ appartenga alla Base ottima allora $\Delta c_y$ può essere limitato o illimitato sia superiormente che inferiormente. Per una più semplice spiegazione dividiamo la spiegazione in due parti.
+
+$\qquad$**Limite inferiore**: Si prende la riga della matrice dei coefficenti che ha l'1 nella colonna, in altre parole la riga con il valore del vincolo. Per ogni valore che sia strettamente positivo, eliminando il valore della colonna $y$ si prendono i valori che massimizzano la frazione $\frac{-c_y^*}{A_{yx}^{\ast +}}$. Infatti il $+$ indica che vanno presi solo i coefficenti positivi. Se non ci sono altri coefficenti positivi allora il limite inferiore non c'è o si può dire che sia $-\infty$.
+
+
+$\qquad$**Limite superiore**: Si prende la riga della matrice dei coefficenti che ha l'1 nella colonna, in altre parole la riga con il valore del vincolo. Per ogni valore che sia strettamente negatico, eliminando il valore della colonna $y$ si prendono i valori che minimizzano la frazione $\frac{-c_y^*}{A_{yx}^{\ast -}}$. Infatti il $$ indica che vanno presi solo i coefficenti positivi. Se non ci sono altri coefficenti negativi allora il limite superiore non c'è o si può dire che sia $+\infty$.
+
+$\qquad$Una volta ottenuti questi valori si può ottenere l'intervallo dei valori di $c_i$ tali per il quale ancora nella soluzione ottima rimangono gli stessi valori. Si calcola l'intervallo dei valori sottraendo a $c_i$ il limite inferiore e il limite superiore di $\Delta c_i$. 
+
+## Calcolo dei $\Delta \overline{b}$
+
+
+Dato i seguenti dati:
+
+- Un problema in forma canonica: $$\begin{cases}z=\overline{x}\overline{y}\\ A\overline{x} \le \overline{b}\end{cases}$$
+- La base ottima: $B^{\ast}$
+- I coefficenti di b: $\overline{b}^{\ast}$
+- Il valore della funzione della funzione ottima: $z^{\ast}$
+- I coefficenti del *tablueat* finale: $A^{\ast}$
+
+Per ogni riga $\overline{y}$ si prende la colonna ($\overline{x}$) che equivale alla variabile di slack del vincolo nel tableuat iniziale e si applica la formula sulla colonna:
+
+
+```{=latex}
+$$
+\begin{cases}
+\Delta b_{y} \ge  -\overline{x}_{x}^{\ast} \qquad\qquad\qquad\qquad\qquad\quad\qquad\qquad\qquad\qquad\qquad\qquad\qquad \text{se } y \text{ è attivo} \\
+
+\max \left\{ -\infty, \max_{y \in A_{\overline{y}}} \left\{ \frac{-b_y^*}{A_{yx}^{\ast +}} \right\} \right\} \leq \Delta b_y \leq \min \left\{ \min_{y \in A_{\overline{y}}} \left\{ \frac{-b_y^*}{A_{yx}^{\ast -}} \right\}, +\infty \right\} \text{se } y \text{ non è attivo} 
+\end{cases}
+$$
+```
+
+$\quad$Anche questa formula è abbastanza complessa da comprendere senza una vera spiegazione. Prima di tutto bisogna comprendere come capire se $b_y$ è attivo e non attivo. Una colonna è attiva se e solo se il valore del coefficente ad essa associata è $0$.
+
+  
