@@ -1343,21 +1343,7 @@ Dato i coefficenti di $P$ e $D$ sono gli stessi cioé $A$ e $A^T$ quindi si poss
 - Il pivot deve essere non negativa
 - La colonna di Pivot viene scelta minimizzando il valore assoluto del rapporto tra il coefficente di costo ridotto ed il candidato pivot.
 
-```{=latex}
-
-\begin{tcolorbox}[
-  colback=lightgray,
-  colframe=black,
-  coltext=black,
-  title=ATTENZIONE,
-  colbacktitle=black,
-  coltitle=lightgray,
-  breakable
-  ]
-  Tralascio questa parte per andare avanti, debbo implementare
-
-\end{tcolorbox}
-```
+$\quad$Se ci si trova, nell'esecuzione dell'algoritmo del simplesso in un punto dove il problema diventa inaccettabile si può provare a superare l'ostacolo trasponendo il problema nel suo duale. In caso torni ad essere accettabile si svolge il passo di simplesso per poi potere tornare al problema primale o arrivare ad una soluzione ottima. In caso anche il duale non sia accettabile allora i due problemi sono *insoddisfacibili*. In caso si arrivi alla soluzione ottima ci si può trovare nella situazione nella quale il problema primale non è accetabile.
 
 # Analisi Post Ottima o Analisi di sensibilità:
 
@@ -1387,12 +1373,14 @@ $$
 
 $\quad$La formula, abbastanza astrusa, non è di facile comprensione senza una vera e propria spiegazione. Partiamo quindi dal dire che la formula si divide tra le due opzioni, il valore $c_y$ appartiene o no alla **base ottima**. Se $c_i$ non appartiene alla base allora $\Delta c_y$ è solo limitata superiormente con il valore $c_y^{\ast}$.
 
-$\quad$Invece in caso di $c_i$ appartenga alla Base ottima allora $\Delta c_y$ può essere limitato o illimitato sia superiormente che inferiormente. Per una più semplice spiegazione dividiamo la spiegazione in due parti.
+---
+
+$\quad$In alternativa, nel caso di $c_i$ appartenga alla Base ottima allora $\Delta c_y$ può essere limitato o illimitato sia superiormente che inferiormente. Per una più semplice spiegazione dividiamo la spiegazione in due parti.
 
 $\qquad$**Limite inferiore**: Si prende la riga della matrice dei coefficenti che ha l'1 nella colonna, in altre parole la riga con il valore del vincolo. Per ogni valore che sia strettamente positivo, eliminando il valore della colonna $y$ si prendono i valori che massimizzano la frazione $\frac{-c_y^*}{A_{yx}^{\ast +}}$. Infatti il $+$ indica che vanno presi solo i coefficenti positivi. Se non ci sono altri coefficenti positivi allora il limite inferiore non c'è o si può dire che sia $-\infty$.
 
 
-$\qquad$**Limite superiore**: Si prende la riga della matrice dei coefficenti che ha l'1 nella colonna, in altre parole la riga con il valore del vincolo. Per ogni valore che sia strettamente negatico, eliminando il valore della colonna $y$ si prendono i valori che minimizzano la frazione $\frac{-c_y^*}{A_{yx}^{\ast -}}$. Infatti il $$ indica che vanno presi solo i coefficenti positivi. Se non ci sono altri coefficenti negativi allora il limite superiore non c'è o si può dire che sia $+\infty$.
+$\qquad$**Limite superiore**: Si prende la riga della matrice dei coefficenti che ha l'1 nella colonna, in altre parole la riga con il valore del vincolo. Per ogni valore che sia strettamente negatico, eliminando il valore della colonna $y$ si prendono i valori che minimizzano la frazione $\frac{-c_y^*}{A_{yx}^{\ast -}}$. Infatti il $-$ indica che vanno presi solo i coefficenti positivi. Se non ci sono altri coefficenti negativi allora il limite superiore non c'è o si può dire che sia $+\infty$.
 
 $\qquad$Una volta ottenuti questi valori si può ottenere l'intervallo dei valori di $c_i$ tali per il quale ancora nella soluzione ottima rimangono gli stessi valori. Si calcola l'intervallo dei valori sottraendo a $c_i$ il limite inferiore e il limite superiore di $\Delta c_i$. 
 
@@ -1422,4 +1410,53 @@ $$
 
 $\quad$Anche questa formula è abbastanza complessa da comprendere senza una vera spiegazione. Prima di tutto bisogna comprendere come capire se $b_y$ è attivo e non attivo. Una colonna è attiva se e solo se il valore del coefficente ad essa associata è $0$.
 
-  
+
+$\quad$Nel caso il vincolo di $b_i$ non sia attivo allora $\Delta b_i$ è maggiore o uguale al valore della $x$ nella colonna che è stata scelta.
+
+$\quad$Nel caso il vincolo di $b_i$ sia attivo allora $\Delta b_i$ può essere limitato sia superiormente che inferiormente. Per una più semplice comprensione dividerò la spiegazione dei due vincoli separatamente.
+
+$\qquad$**Limite inferiore**: Si raccolgono tutti i coefficenti positivi nella colonna scelta in precedenza, se presenti. In caso non ci siano allora il limite inferiore è $-\infty$. Una volta raccolti tutti i valori negativi si cercano i valori che massimizzano la frazione $\frac{-b_y^*}{A_{yx}^{\ast +}}$. Il valore trovato è il limite inferiore di $\Delta b_i$.
+
+$\qquad$**Limite superiore**:  Si raccolgono tutti i coefficenti positivi nella colonna scelta in precedenza, se presenti. In caso non ci siano allora il limite superiore è $+\infty$. Una volta raccolti tutti i valori negativi si cercano i valori che minizzano la frazione $\frac{-b_y^*}{A_{yx}^{\ast -}}$. Il valore trovato è il limite superiore di $\Delta b_i$.
+
+Una volta trovato l'intervallo dei valori di $\Delta b_i$ si sottrae il limite inferiore a $b_i$ e lo stesso con il limite superiore. Si ottengono così gli intervalli dei valori accettabili per $b_i$.
+
+```{=latex}
+
+\begin{tcolorbox}[
+  colback=lightgray,
+  colframe=black,
+  coltext=black,
+  title=ATTENZIONE,
+  colbacktitle=black,
+  coltitle=lightgray,
+  breakable
+  ]
+  $\Delta b_i$ va controllato per incertezza sullo svolgimento della soluzione.
+\end{tcolorbox}
+```
+
+## Prezzi ombra:
+
+$\quad$I prezzi ombra per una certa risorsa misurano i *valori marginali* della risorsa con la quale $Z$ potrebbe essere incrementata all'incrementare di $b_i$. Vengo denominati $y_i^{\ast}$ che indica la i-esima variabile che ha $0$ nella riga della funzione obiettivo. Le risorse corrispondo alle variabili di slack originale e le associa al rispettivo vincolo. Quindi la prima risorsa è la prima variabile di slack e il prezzo ombra è il valore della funzione obiettivo finale.
+
+### Costi ridotti:
+
+$\quad$Dati prezzi ombra si possono ottenere i costi ridotti di ogni variabile $x_j$. 
+
+$$
+\overline{c}_j = c_j - \sum_{i}A_{ij}\lambda_i
+$$
+
+Dove:
+
+- $c_j$: è il coefficente di $x_j$ nella funzione obiettivo
+- $A_{ij}$: Il coefficente in riga $i$ e colonna $j$ nella matrice $A$.
+- $\lambda_i$: è il prezzo ombra del vincoli $i$
+
+$\quad$Quindi, si può vedere che il nuovo valore di $c_j$, è uguale al $c_j$ meno la somma di tutti i coefficenti della riga $i$ moltiplicati per il relativo prezzo ombra. 
+
+# Programmazione lineare a molti obiettivi
+
+$\quad$Estensione della programmazione lineare ad un singolo obiettivo. Quindi il caso in cui esistano più funzioni obiettivo che possono anche entrare in conflitto tra di loro. Si perde però il concetto di soluzione ottima, in caso degli obiettivi siano in conflitto la soluzione non può essere ottima e viene sostituita con *soluzioni non-dominate*. (Per questo corso si arriverà ad avere 2 funzioni obiettivo).
+
