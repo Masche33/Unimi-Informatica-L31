@@ -1,0 +1,8 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+
+\PYG{k}{match} \PYG{n}{expression} \PYG{k}{with}
+\PYG{o}{|}  \PYG{n}{pattern} \PYG{l+m+mi}{1} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n}{expression} \PYG{l+m+mi}{1}
+\PYG{o}{|}  \PYG{n}{pattern} \PYG{l+m+mi}{2} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n}{expression} \PYG{l+m+mi}{2}
+\PYG{o}{|}  \PYG{o}{.........} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{o}{............}
+\PYG{o}{|}  \PYG{n}{pattern} \PYG{n}{n} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n}{expression} \PYG{n}{n}
+\end{Verbatim}

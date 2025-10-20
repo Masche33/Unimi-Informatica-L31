@@ -1,0 +1,9 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8\relax}]
+\PYG{k}{module} \PYG{n+nc}{TheSetSig} \PYG{o}{=} \PYG{o}{(}\PYG{n+nn}{SetSig}\PYG{p}{.}\PYG{n}{setSig}\PYG{o}{:}
+      \PYG{n+nn}{SetSigADT}\PYG{p}{.}\PYG{n+nc}{SetSig}\PYG{o}{)}\PYG{o}{;;}
+
+\PYG{k}{open} \PYG{n+nc}{TheSetSig}\PYG{o}{;;}
+
+\PYG{k}{let} \PYG{n}{s} \PYG{o}{=} \PYG{n+nn}{TheSetSig}\PYG{p}{.}\PYG{n}{empty}\PYG{o}{;;}
+\PYG{k}{let} \PYG{n}{s1} \PYG{o}{=} \PYG{n+nn}{TheSetSig}\PYG{p}{.}\PYG{n}{add} \PYG{l+m+mi}{1} \PYG{n}{s}\PYG{o}{;;}
+\end{Verbatim}

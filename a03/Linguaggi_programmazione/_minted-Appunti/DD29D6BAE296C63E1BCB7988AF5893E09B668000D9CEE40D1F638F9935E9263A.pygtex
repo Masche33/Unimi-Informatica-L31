@@ -1,0 +1,8 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8\relax}]
+\PYG{k}{let} \PYG{k}{rec} \PYG{n}{fibonacci} \PYG{n}{x} \PYG{o}{=}
+  \PYG{k}{match} \PYG{n}{x} \PYG{k}{with}
+  \PYG{o}{|} \PYG{l+m+mi}{1} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{l+m+mi}{0}
+  \PYG{o}{|} \PYG{l+m+mi}{2} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{l+m+mi}{1}
+  \PYG{o}{|} \PYG{o}{\PYGZus{}} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{o}{(}\PYG{n}{fibonacci} \PYG{o}{(}\PYG{n}{x}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{o}{)}\PYG{o}{)}
+         \PYG{o}{+} \PYG{o}{(}\PYG{n}{fibonacci} \PYG{o}{(}\PYG{n}{x}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{2}\PYG{o}{)}\PYG{o}{)}\PYG{o}{;;}
+\end{Verbatim}

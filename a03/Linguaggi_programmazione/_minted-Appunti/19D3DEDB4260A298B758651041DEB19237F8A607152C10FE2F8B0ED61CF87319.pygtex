@@ -1,0 +1,23 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{o}{\PYGZsh{}} \PYG{k}{let} \PYG{n}{comp} \PYG{n}{f} \PYG{n}{g} \PYG{n}{x} \PYG{o}{=} \PYG{n}{f}\PYG{o}{(}\PYG{n}{g} \PYG{n}{x}\PYG{o}{);;}
+\PYG{k}{val} \PYG{n}{comp} \PYG{o}{:} \PYG{o}{(}\PYG{k}{\PYGZsq{}}\PYG{n}{a} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{k}{\PYGZsq{}}\PYG{n}{b}\PYG{o}{)} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{o}{(}\PYG{k}{\PYGZsq{}}\PYG{n}{c} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{k}{\PYGZsq{}}\PYG{n}{a}\PYG{o}{)} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{k}{\PYGZsq{}}\PYG{n}{c} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{k}{\PYGZsq{}}\PYG{n}{b} \PYG{o}{=} \PYG{o}{\PYGZlt{}}\PYG{k}{fun}\PYG{o}{\PYGZgt{}}
+\PYG{c}{(*          |              |            |}
+\PYG{c}{            |              |            |}
+\PYG{c}{            \PYGZhy{} f deve prendere in input un tipo, non specificato associato al}
+\PYG{c}{              nome \PYGZsq{}a e deve restituire il tipo \PYGZsq{}b.}
+\PYG{c}{                           |            |}
+\PYG{c}{                           \PYGZhy{} g deve prendere un tipo \PYGZsq{}c input ma si nota ora}
+\PYG{c}{                             che deve dare in output un tipo compatible con l\PYGZsq{}}
+\PYG{c}{                             input di f, quindi si può inferire che g restituisce}
+\PYG{c}{                             il tipo indefinito \PYGZsq{}a.}
+\PYG{c}{                                        |}
+\PYG{c}{                                        \PYGZhy{} Il parametro x va dato in input a g}
+\PYG{c}{                                          si può inferire allora che il tipo}
+\PYG{c}{                                          indefinito debba coincidere con il}
+\PYG{c}{                                          tipo \PYGZsq{}c. L\PYGZsq{}output della funzione invece}
+\PYG{c}{                                          coincide con il tipo di output di f}
+
+
+\PYG{c}{*)}
+
+\end{Verbatim}

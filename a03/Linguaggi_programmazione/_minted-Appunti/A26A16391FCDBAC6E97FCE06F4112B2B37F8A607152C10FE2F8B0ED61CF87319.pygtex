@@ -1,0 +1,20 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{o}{\PYGZsh{}} \PYG{k}{let} \PYG{n}{y} \PYG{o}{=} \PYG{l+m+mi}{5}\PYG{o}{;;}
+\PYG{k}{val} \PYG{n}{y} \PYG{o}{:} \PYG{k+kt}{int} \PYG{o}{=} \PYG{l+m+mi}{5}
+\PYG{o}{\PYGZsh{}} \PYG{k}{let} \PYG{n}{addy} \PYG{o}{=} \PYG{k}{fun} \PYG{n}{x} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n}{x}\PYG{o}{+}\PYG{n}{y}\PYG{o}{;;} \PYG{o}{\PYGZlt{}\PYGZhy{}\PYGZhy{}\PYGZhy{}} \PYG{c}{(*L\PYGZsq{}etichetta addy serve a richiamare una funzione}
+\PYG{c}{                                   che data una x(intero) gli somma y*)}
+\PYG{k}{val} \PYG{n}{addy} \PYG{o}{:} \PYG{k+kt}{int} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{k+kt}{int} \PYG{o}{=} \PYG{o}{\PYGZlt{}}\PYG{k}{fun}\PYG{o}{\PYGZgt{}} \PYG{o}{\PYGZlt{}\PYGZhy{}} \PYG{c}{(*L\PYGZsq{}interprete di OCaMl ha valutato il tipo addy}
+\PYG{c}{                                   che prende un intero e restituisce un intero*)}
+\PYG{o}{\PYGZsh{}} \PYG{n}{addy} \PYG{l+m+mi}{8}\PYG{o}{;;} \PYG{o}{\PYGZlt{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}} \PYG{c}{(*Uso l\PYGZsq{}applicazione addy con 8*)}
+\PYG{o}{\PYGZhy{}} \PYG{o}{:} \PYG{k+kt}{int} \PYG{o}{=} \PYG{l+m+mi}{13} \PYG{o}{\PYGZlt{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}} \PYG{c}{(*L\PYGZsq{}espressione viene valutata come intero e da}
+\PYG{c}{                                   8 + 5*)}
+\PYG{o}{\PYGZsh{}} \PYG{k}{let} \PYG{n}{y} \PYG{o}{=} \PYG{l+m+mi}{10}\PYG{o}{;;} \PYG{o}{\PYGZlt{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}} \PYG{c}{(*Aggiorno il valore di y, perdendo il valore 5*)}
+\PYG{k}{val} \PYG{n}{y} \PYG{o}{:} \PYG{k+kt}{int} \PYG{o}{=} \PYG{l+m+mi}{10}
+\PYG{o}{\PYGZsh{}} \PYG{n}{addy} \PYG{l+m+mi}{8}\PYG{o}{;;} \PYG{o}{\PYGZlt{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}} \PYG{c}{(*Chiamo nuovamente addy con 8, mi aspetterei in}
+\PYG{c}{                                   altri linguaggi di ottenere il risultato di}
+\PYG{c}{                                   8 + 10*)}
+\PYG{o}{\PYGZhy{}} \PYG{o}{:} \PYG{k+kt}{int} \PYG{o}{=} \PYG{l+m+mi}{13} \PYG{o}{\PYGZlt{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}} \PYG{c}{(*Una volta definita addy y è stato valutato e}
+\PYG{c}{                                   quindi addy è diventato una \PYGZdq{}costante\PYGZdq{} defini\PYGZhy{}}
+\PYG{c}{                                   ta x + 5, da questo momento il valore y non è}
+\PYG{c}{                                   legato al risultato di addy*)}
+\end{Verbatim}

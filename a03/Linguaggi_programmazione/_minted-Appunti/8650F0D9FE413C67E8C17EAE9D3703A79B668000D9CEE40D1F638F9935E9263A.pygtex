@@ -1,0 +1,8 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8\relax}]
+\PYG{k}{module} \PYG{n+nc}{Set} \PYG{o}{:} \PYG{n+nc}{SetSig} \PYG{o}{=} \PYG{k}{struct}
+  \PYG{k}{type} \PYG{k}{\PYGZsq{}}\PYG{n}{a} \PYG{n}{set} \PYG{o}{=} \PYG{k}{\PYGZsq{}}\PYG{n}{a} \PYG{k+kt}{list}
+  \PYG{k}{let} \PYG{n}{empty} \PYG{n+nb+bp}{()} \PYG{o}{=} \PYG{n+nb+bp}{[]}
+  \PYG{k}{let} \PYG{n}{add} \PYG{n}{x} \PYG{n}{l} \PYG{o}{=} \PYG{n}{x} \PYG{o}{::} \PYG{n}{l}
+  \PYG{k}{let} \PYG{n}{mem} \PYG{n}{x} \PYG{n}{l} \PYG{o}{=} \PYG{n+nn}{List}\PYG{p}{.}\PYG{n}{mem} \PYG{n}{x} \PYG{n}{l}
+\PYG{k}{end}\PYG{o}{;;}
+\end{Verbatim}

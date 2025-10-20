@@ -1,0 +1,6 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{let} \PYG{k}{rec} \PYG{n}{fact} \PYG{n}{x} \PYG{o}{=}
+  \PYG{k}{match} \PYG{n}{x} \PYG{k}{with}
+  \PYG{o}{|} \PYG{l+m+mi}{1} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{l+m+mi}{1} \PYG{o}{\PYGZlt{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}} \PYG{c}{(*Al caso base restituisco un valore fisso *)}
+  \PYG{o}{|} \PYG{o}{\PYGZus{}} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n}{x} \PYG{o}{*} \PYG{o}{(}\PYG{n}{fact} \PYG{o}{(}\PYG{n}{x}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{o}{));;} \PYG{o}{\PYGZlt{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}} \PYG{c}{(*x viene moltiplicata con un valore che va calcolato ancora*)}
+\end{Verbatim}

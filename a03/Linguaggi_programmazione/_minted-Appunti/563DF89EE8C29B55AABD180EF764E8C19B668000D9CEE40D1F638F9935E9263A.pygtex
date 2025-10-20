@@ -1,0 +1,8 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8\relax}]
+\PYG{k}{module} \PYG{k}{type} \PYG{n+nc}{SetSig} \PYG{o}{=} \PYG{k}{sig}
+  \PYG{k}{type} \PYG{k}{\PYGZsq{}}\PYG{n}{a} \PYG{n}{set}
+  \PYG{k}{val} \PYG{n}{empty} \PYG{o}{:} \PYG{k+kt}{unit} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{k}{\PYGZsq{}}\PYG{n}{a} \PYG{n}{set}
+  \PYG{k}{val} \PYG{n}{add} \PYG{o}{:} \PYG{k}{\PYGZsq{}}\PYG{n}{a} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{k}{\PYGZsq{}}\PYG{n}{a} \PYG{n}{set} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{k}{\PYGZsq{}}\PYG{n}{a} \PYG{n}{set}
+  \PYG{k}{val} \PYG{n}{add} \PYG{o}{:} \PYG{k}{\PYGZsq{}}\PYG{n}{a} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{k}{\PYGZsq{}}\PYG{n}{a} \PYG{n}{set} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{k+kt}{bool}
+\PYG{k}{end}\PYG{o}{;;}
+\end{Verbatim}

@@ -1,0 +1,9 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{let} \PYG{n}{fact2} \PYG{n}{i} \PYG{o}{=}
+  \PYG{k}{let} \PYG{k}{rec} \PYG{n}{fact} \PYG{n}{acc} \PYG{n}{x} \PYG{o}{=}
+    \PYG{k}{match} \PYG{n}{x} \PYG{k}{with}
+    \PYG{o}{|} \PYG{l+m+mi}{0} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n}{acc} \PYG{o}{\PYGZlt{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}} \PYG{c}{(*Restituisce il risultato del fattoriale*)}
+    \PYG{o}{|} \PYG{o}{\PYGZus{}} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n}{fact} \PYG{o}{(}\PYG{n}{x}\PYG{o}{*}\PYG{n}{acc}\PYG{o}{)} \PYG{o}{(}\PYG{n}{x}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{o}{)} \PYG{o}{\PYGZlt{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}} \PYG{c}{(*Esegue solo una chiamata a loop passando il valore già aggiornato,}
+\PYG{c}{                                        in questo e un secondo trucco si nasconde la ricorsione di coda*)}
+    \PYG{k}{in} \PYG{n}{fact} \PYG{l+m+mi}{1} \PYG{n}{i}\PYG{o}{;;}
+\end{Verbatim}
